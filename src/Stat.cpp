@@ -1,0 +1,57 @@
+#include "Stat.hpp"
+#include <iostream>
+
+using namespace std;
+
+
+/*-----Constructeur par défaut-----*/
+Stat::Stat(){
+  _hitPoint = 10;
+  _mana = 10;
+  _endu = 1;
+  _intel = 1;
+  _force = 1;
+  _agi = 1;
+  _esprit = 1;
+  _resiPeste = 1;
+  _capCombat = 1;
+  _capTir = 1;
+}
+
+/*-----Getters-----*/
+int Stat::getHP(){return _hitPoint;}
+int Stat::getMana(){return _mana;}
+int Stat::getIntel(){return _intel;}
+int Stat::getEndu(){return _endu;}
+int Stat::getForce(){return _force;}
+int Stat::getAgi(){return _agi;}
+int Stat::getEsprit(){return _esprit;}
+int Stat::getRP(){return _resiPeste;}
+int Stat::getCc(){return _capCombat;}
+int Stat::getCt(){return _capTir;}
+
+/*-----Setters-----*/
+void Stat::setHP(int hp){_hitPoint = hp;}
+void Stat::setMana(int mana){_mana = mana;}
+void Stat::setEndu(int endu){_endu = endu;}
+void Stat::setIntel(int intel){_intel = intel;}
+void Stat::setForce(int force){_force = force;}
+void Stat:: setAgi(int agi){_agi = agi;}
+void Stat::setEsprit(int esprit){_esprit = esprit;}
+void Stat::setRP(int RP){_resiPeste = RP;}
+void Stat::setCc(int cc){_capCombat = cc;}
+void Stat::setCt(int ct){_capTir = ct;}
+
+
+void Stat::afficher(){
+  cout << "Points de vie : " << _hitPoint << endl;
+  cout << "Points de mana : " << _mana  << endl;
+  cout << "Endurance : " << _endu  << endl;
+  cout << "Intelligence : "<< _intel  << endl;
+  cout << "Force : "<< _force  << endl;
+  cout << "Agilité : "<< _agi << endl;
+  cout << "Esprit : "<< _esprit  << endl;
+  cout << "Résistance à la peste : " << _resiPeste << endl;
+  cout << "Capacité de combat : " << _capCombat << endl;
+  cout << "Capacité de tir : " << _capTir  << endl;
+}
