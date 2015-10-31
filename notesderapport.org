@@ -1,1 +1,63 @@
+* Planning
+** Done
+Personnage :
+- membres
+- stats
+Armures
 
+** Not done
+*** TODO Equipement
+- faire la classe
+  -> trois armures
+  -> une arme
+  -> afficher, mettre un objet dans un slot (en vérifiant que c’est
+  bon), enlever un objet (le mettre dans l’inventaire)
+*** TODO Inventaire
+- faire la classe
+  -> trois vectors (armures armes objets)
+  -> afficher, récupérer un objet, supprimer un objet
+  -> inventaire infini
+*** TODO Objets (bandages, drap)
+- faire la classe
+  -> transformer un drap en bandage (en le consommant)
+  -> un objet a un affichage, un use() et des getters (nom et description)
+*** TODO Armes
+- faire l’interface
+- faire les classes armes au cac (pas distance pour la “démo”)
+  -> attaquer simple et multiple (avec message d’erruer pour distance)
+  -> portée
+  -> dommages
+  -> pénétration
+  -> contondance
+*** TODO PNJ
+- faire la classe
+  -> état inactif et agressif
+  -> attaque au cac et se déplace vers toi
+  -> vitesse d’attaque
+  -> remplacer le pnj par un conteneur à sa mort
+*** TODO conteneur (cadavre, armoire, coffre, whatever)
+- faire la classe
+  ->tile qui contient des objets
+*** TODO Deplacements
+*** TODO Interface
+- 3 types
+  ->hud par défaut + inventaires et conteneurs par moments
+  ->affiche de la feuille de perso
+  ->dialogues
+*** TODO Map
+-tiles 16*16
+-matrice chargée par un fichier :
+
+#+BEGIN_EXAMPLE
+#############################
+| ol |   |                  |
+####################--#######
+#+END_EXAMPLE
+
+
+*** TODO Sauvegarde
+- note tout dans un fichier et recharge du fichier (position du
+  perso, équipement, stats, etc.)
+*** TODO Dialogues
+-écrire les dialogues/script
+*** TODO Personnage “objet” qui déclenche les dialogues à proximité
