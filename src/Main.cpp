@@ -38,7 +38,8 @@ int main(){
   mario.attaquer(bowser);
   mario.attaquer(bowser);
   mario.attaquer(bowser);
-  bowser.getCorps().afficher();
+  bowser.getEquipement().afficher();
+  //bowser.getCorps().afficher();
 
   /*Armure arm = Armure("arm", 20, "Plaque", 3, 2, 25.3, couv);
   arm.afficher();

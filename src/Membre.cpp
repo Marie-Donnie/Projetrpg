@@ -29,10 +29,14 @@ void Membre::setPv(int pv){
 }
 void Membre::setNom(string nom){_nom = nom;}
 void Membre::changerPv(int pv){
-  _pv += pv;
+  _pv -= pv;
+}
+void Membre::changerMembre(Membre m, int loca){
+  _sousMembre[loca] = m;
 }
 
 //Getters
 int Membre::getPv(){return _pv;}
 string Membre::getNom(){return _nom;}
 vector<Membre> Membre::getMembres(){return _sousMembre;}
+Membre Membre::getMembre(int loca){return _sousMembre.at(loca);}

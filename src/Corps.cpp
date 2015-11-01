@@ -84,14 +84,14 @@ Corps::Corps(){
   mD.push_back(doigt2D);
   mD.push_back(doigt3D);
   mD.push_back(doigt4D);
-  Membre mainD = Membre(4, "Main droite");
+  Membre mainD = Membre(4, "Main droite", mD);
   Membre coudeD = Membre(4, "Coude droite");
   Membre epauleD = Membre(4, "Epaule droite");
   vector<Membre>bD;
   bD.push_back(mainD);
   bD.push_back(coudeD);
   bD.push_back(epauleD);
-  Membre brasD = Membre(10, "Bras droit");
+  Membre brasD = Membre(10, "Bras droit", bD);
   //Fin Bras Droit
 
   //Torse

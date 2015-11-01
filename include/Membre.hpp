@@ -20,11 +20,12 @@ public :
   void setPv(int pv);
   void setNom(string nom);
   void changerPv(int pv);
+  void changerMembre(Membre m, int loca);
   //Getters
   int getPv();
   string getNom();
   vector<Membre> getMembres();
-
+  Membre getMembre(int loca);
 };
 
 #endif //MEMBRE_HPP

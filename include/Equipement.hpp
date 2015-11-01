@@ -1,5 +1,6 @@
 #include <string>
 #include <vector>
+#include <iostream>
 #include "Armure.hpp"
 
 #ifndef EQUIPEMENT_HPP
@@ -23,6 +24,9 @@ public:
 
   //Setters
   //void ajouterArmure();
+
+  //Autres méthodes
+  void afficher();
 };
 
 #endif //EQUIPEMENT_HPP

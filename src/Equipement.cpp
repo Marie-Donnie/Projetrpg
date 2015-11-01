@@ -34,3 +34,10 @@ vector<Armure> Equipement::getArmures(){
 Armure Equipement::getArmure(int loca){
   return _armures.at(loca);
 }
+
+void Equipement::afficher(){
+  cout << "*------------------Equipement------------------*" << endl;
+  for (int i = 0; i < _armures.size(); ++i){
+    _armures.at(i).afficher();
+  }
+}

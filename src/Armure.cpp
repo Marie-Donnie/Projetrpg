@@ -27,7 +27,7 @@ Armure::Armure(string piece){
   _matiere = matieres[mat];
   _nom = _piece + " en " + _matiere;
   _durabilite = (rand() % 20 + 40);
-  _scoreArmure = 2*(pow(mat,2));
+  _scoreArmure = 2*(mat)+1;
   _mallusAgi = 1*(mat-1);
   _scoreSauvegarde = mat;
   _poids = 0.75+(pow(mat,2));
@@ -50,7 +50,7 @@ Armure::Armure(){
   _matiere = matieres[mat];
   _nom = _piece + " en " + _matiere;
   _durabilite = (rand() % 20 + 40);
-  _scoreArmure = 2*(pow(mat,2));
+  _scoreArmure = 2*(mat)+1;
   _mallusAgi = 1*(mat-1);
   _scoreSauvegarde = mat;
   _poids = 0.75+(pow(mat,2));
@@ -83,7 +83,7 @@ void Armure::setNom(string nom){_nom = nom;}
 void Armure::setPiece(string piece){_piece = piece;}
 void Armure::setMat(string mat){_matiere = mat;}
 void Armure::setDura(int dura){_durabilite = dura;}
-void Armure::changerDura(int dura){ _durabilite += dura;}
+void Armure::changerDura(int dura){ _durabilite -= dura;}
 void Armure::setScA(int scA){_scoreArmure = scA;}
 void Armure::setMA(int mA){_mallusAgi = mA;}
 void Armure::setSauv(int scS){_scoreSauvegarde = scS;}
@@ -97,12 +97,4 @@ void Armure::setPoids(double poids){_poids = poids;}
    cout << "Score d'armure\t" << _scoreArmure << endl;
    cout << "Mallus d'agilité " << _mallusAgi << endl;
    cout << "Poids\t\t" << _poids << endl;
-   /*cout << "Type" ;
-   string membre = _couverture.at(0);
-   if (membre.compare("Torse") == 0)
-     cout << "\t \tPlastron" << endl;
-   if (membre.compare("Jambe gauche") == 0)
-     cout << "\t \tJambières" << endl;
-   if (membre.compare("Tête") == 0)
-   cout << "\t \tHeaume" << endl;*/
  }
