@@ -16,7 +16,9 @@ private :
 
 
 public :
-  Stat(); //Constructeur
+ //Constructeur
+  Stat();
+  Stat(int hp, int mana, int endu, int intel, int force, int agi, int esprit, int rP, int cc, int ct);
   /*-----Getters-----*/
   int getHP();
   int getMana();
@@ -30,16 +32,16 @@ public :
   int getCt();
 
   /*-----Setters-----*/
-  void setHP(int);
-  void setMana(int);
-  void setEndu(int);
-  void setIntel(int);
-  void setForce(int);
-  void setAgi(int);
-  void setEsprit(int);
-  void setRP(int);
-  void setCc(int);
-  void setCt(int);
+  void setHP(int hp);
+  void setMana(int mana);
+  void setEndu(int endu);
+  void setIntel(int intel);
+  void setForce(int force);
+  void setAgi(int agi);
+  void setEsprit(int esprit);
+  void setRP(int rP);
+  void setCc(int cc);
+  void setCt(int ct);
 
   void afficher();
 };

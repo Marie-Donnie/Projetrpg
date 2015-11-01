@@ -14,8 +14,22 @@ Stat::Stat(){
   _agi = 1;
   _esprit = 1;
   _resiPeste = 1;
-  _capCombat = 1;
-  _capTir = 1;
+  _capCombat = 80;
+  _capTir = 80;
+}
+
+/*-----Constructeur complet-----*/
+Stat::Stat(int hp, int mana, int endu, int intel, int force, int agi, int esprit, int rP, int cc, int ct){
+  _hitPoint = hp;
+  _mana = mana;
+  _endu = endu;
+  _intel = intel;
+  _force = force;
+  _agi = agi;
+  _esprit = esprit;
+  _resiPeste = rP;
+  _capCombat = cc;
+  _capTir = ct;
 }
 
 /*-----Getters-----*/
@@ -36,9 +50,9 @@ void Stat::setMana(int mana){_mana = mana;}
 void Stat::setEndu(int endu){_endu = endu;}
 void Stat::setIntel(int intel){_intel = intel;}
 void Stat::setForce(int force){_force = force;}
-void Stat:: setAgi(int agi){_agi = agi;}
+void Stat::setAgi(int agi){_agi = agi;}
 void Stat::setEsprit(int esprit){_esprit = esprit;}
-void Stat::setRP(int RP){_resiPeste = RP;}
+void Stat::setRP(int rP){_resiPeste = rP;}
 void Stat::setCc(int cc){_capCombat = cc;}
 void Stat::setCt(int ct){_capTir = ct;}
 
