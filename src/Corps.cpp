@@ -4,7 +4,7 @@
 
 using namespace std;
 
-//Constructeur Corps()
+/*-----Constructeur par défaut-----*/
 Corps::Corps(){
   //Jambe Gauche
   Membre orteil0G = Membre(2, "Quintus gauche");
@@ -139,31 +139,43 @@ Corps::Corps(){
   _corps.push_back(torse);
   _corps.push_back(tete);
 
-}//Fin Constructeur Corps()
+}
+/*-----Fin du constructeur par défaut-----*/
 
 
-
-vector<Membre> Corps::getLMembres(){return _corps;}
-
-
+/*-----Getters-----*/
+vector<Membre>& Corps::getLMembres(){return _corps;}
 
 
+/*-----Setters-----*/
+void Corps::changerMembre(Membre m, int loca){
+  _corps.at(loca) = m;
+}
+
+
+/*-----Autre méthodes-----*/
+
+/*Afficher()*/
 void Corps::afficher(){
+  //cout << &_corps;
   cout << "-----------------Corps-----------------" << endl;
   for (int i=0; i < _corps.size(); ++i){
-    Membre m = _corps.at(i);
-    cout << m.getNom() << " : "<< m.getPv () << endl ;
+    Membre& m = _corps.at(i);
+    //cout << &m;
+    cout << m.getNom() << " : "<< m.getPv() << endl ;
     for (int j=0; j < m.getMembres().size(); ++j){
-      Membre sm = m.getMembres().at(j);
-      cout << "\t" << sm.getNom() << " : "<< sm.getPv () << endl;
+      Membre& sm = m.getMembres().at(j);
+      //cout << &sm;
+      cout << "\t" << sm.getNom() << " : "<< sm.getPv() << endl;
       if (i < 4 && j == 0) {
-        cout << "\t\t" ;
         for (int k=0; k<sm.getMembres().size(); ++k){
-          Membre ssm = sm.getMembres().at(k);
-          cout << ssm.getNom() << " : "<< ssm.getPv() << + " | ";
+          Membre& ssm = sm.getMembres().at(k);
+          //cout << &ssm;
+          cout << "\t\t" <<ssm.getNom() << " : "<< ssm.getPv() << endl;
         }
       }
     }
   }
   cout << "-----------------Fin Corps-----------------" << endl;
 }
+/*Fin de Afficher()*/

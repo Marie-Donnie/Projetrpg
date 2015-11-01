@@ -16,14 +16,15 @@ private:
 public:
   Equipement();
   Equipement(string suff);
-  Equipement(vector<Armure> armor);
+  Equipement(vector<Armure>& armor);
   //Getters
-  vector<Armure> getArmures();
-  Armure getArmure(int loca);
+  vector<Armure>& getArmures();
+  Armure& getArmure(int loca);
   //void getArme();
 
   //Setters
   //void ajouterArmure();
+  void changerArmure(Armure& a, int loca);
 
   //Autres méthodes
   void afficher();

@@ -60,9 +60,9 @@ int Personnage::getAge(){return _age;}
 int Personnage::getNiveau(){return _niveau;}
 double Personnage::getTaille(){return _taille;}
 double Personnage::getPoids(){return _poids;}
-Stat Personnage::getStats(){return _stats;}
-Corps Personnage::getCorps(){return _corps;}
-Equipement Personnage::getEquipement(){return _equipement;}
+Stat& Personnage::getStats(){return _stats;}
+Corps& Personnage::getCorps(){return _corps;}
+Equipement& Personnage::getEquipement(){return _equipement;}
 
 //Setters
 void Personnage::setAge(int age){
@@ -91,13 +91,14 @@ void Personnage::afficher(){
   _stats.afficher();
 }
 
-void Personnage::defendre(Personnage attaquant){
-  Membre m;
+void Personnage::defendre(Personnage& attaquant){
+  Membre* m;
   //Jet de défense, sur 100
   int def = (rand() %100 + 1);
+  //cout << &_corps;
   cout << "rand def " << def << endl;
   //Si échec critique
-  if (def < 10){
+  if (def < 100){
     //On cherche le membre touché
     int r = (rand() %6);
     cout << "rand membre " << r << endl;
@@ -112,14 +113,14 @@ void Personnage::defendre(Personnage attaquant){
         cout << "rand extremite " << doigt << endl;
         //Si c'est 5, c'est la cheville ou le poignet (donc pied ou main)
         if (doigt == 5){
-          m = this->getCorps().getLMembres().at(r).getMembre(memb);}
+          m = &(_corps.getLMembres().at(r).getMembre(memb));}
         //Sinon c'est un doigt
         else {
-          m = this->getCorps().getLMembres().at(r).getMembre(memb).getMembre(doigt);}
+          m = &(_corps.getLMembres().at(r).getMembre(memb).getMembre(doigt));}
       }
       //Sinon c'est le membre désigné
       else {
-        m = this->getCorps().getLMembres().at(r).getMembre(memb);}
+        m = &(_corps.getLMembres().at(r).getMembre(memb));}
     }
     //Sinon c'est la tête ou le torse
     else {
@@ -129,94 +130,95 @@ void Personnage::defendre(Personnage attaquant){
       //si c'est 7, c'est la gorge pour la tête (donc la tête qui
       //prend), le torse pour le torse
       if (memb == 7){
-        m = this->getCorps().getLMembres().at(r);
+        m = &(_corps.getLMembres().at(r));
       }
       //sinon c'est un "organe"
       else {
-        m = this->getCorps().getLMembres().at(r).getMembre(memb);
+        m = &(_corps.getLMembres().at(r).getMembre(memb));
       }
     }
     //Calcul de dommages de l'échec critique :
     //On cherche maintenant l'armure qui défend cette localisation
-    Armure a;
+    Armure* a;
     //Si c'est une armure qui protège les jambes, on retourne les jambières
     if (r < 2){
-      a = this->getEquipement().getArmure(0);
+      a = &(_equipement.getArmure(0));
     }
     //Sinon si c'est une armure qui protège les bras et le torse, on
     //retourne le plastron
     else if (r < 5){
-      a = this->getEquipement().getArmure(1);
+      a = &(_equipement.getArmure(1));
     }
     //Sinon c'est le heaume
-    else a = this->getEquipement().getArmure(2);
+    else a = &(_equipement.getArmure(2));
     //On teste si l'armure a encore de la durabilité pour savoir si on
     //est protégé
-    if (a.getDura() > 0){
+    if (a->getDura() > 0){
       //Calcul des dommages, avec le coup critique
-      int coup = attaquant.getStats().getForce()+2-a.getScA();
+      int coup = attaquant.getStats().getForce()+2-a->getScA();
       //Jet de sauvegarde
       int sauv = rand() %10 ;
       //Si le score de sauvegarde est plus grand que le rand, seule
       //l'armure prend le coup
-      if (a.getSauv() > sauv && coup > 0){
-        a.changerDura(coup);
-        cout << this->getNom() << " a perdu " << coup << " de durabilité sur " << a.getNom() <<endl;
+      if (a->getSauv() > sauv && coup > 0){
+        a->changerDura(coup);
+        cout << _nom << " a perdu " << coup << " de durabilité sur " << a->getNom() <<endl;
       }
       //Sinon, l'armure et le membre subissent des dommages
       else if (coup >0) {
-        m.changerPv(coup);
-        a.changerDura(coup);
-        cout << this->getNom() << " a perdu " << coup << " de vie sur " << m.getNom() <<endl;
-        cout << this->getNom() << " a perdu " << coup << " de durabilité sur " << a.getNom() <<endl;
+        m->changerPv(coup);
+        a->changerDura(coup);
+        //cout << &m << endl;
+        cout << _nom << " a perdu " << coup << " de vie sur " << m->getNom() <<endl;
+        cout << _nom << " a perdu " << coup << " de durabilité sur " << a->getNom() <<endl;
       }
     }//Fin du calcul de dommages de l'échec critique
   } //Fin de l'échec critique
   //Jet non critique, on vérifie si le coup passe
-  else if (def < attaquant.getStats().getCc() - (this->getStats().getAgi())*10){
+  else if (def < attaquant.getStats().getCc() - (_stats.getAgi())*10){
     //On cherche le membre touché
     int r = (rand() %6);
     cout << "rand membre " << r << endl;
-    m = this->getCorps().getLMembres().at(r);
+    m = &(_corps.getLMembres().at(r));
     //Calcul de dommages de l'échec :
     //On cherche maintenant l'armure qui défend cette localisation
-    Armure a;
+    Armure* a;
     //Si c'est une armure qui protège les jambes, on retourne les jambières
     if (r < 2){
-      a = this->getEquipement().getArmure(0);
+      a = &(_equipement.getArmure(0));
     }
     //Sinon si c'est une armure qui protège les bras et le torse, on
     //retourne le plastron
     else if (r < 5){
-      a = this->getEquipement().getArmure(1);
+      a = &(_equipement.getArmure(1));
     }
     //Sinon c'est le heaume
-    else a = this->getEquipement().getArmure(2);
+    else a = &(_equipement.getArmure(2));
     //On teste si l'armure a encore de la durabilité pour savoir si on
     //est protégé
-    if (a.getDura() > 0){
-      //Calcul des dommages, avec le coup critique
-      int coup = (attaquant.getStats().getForce()-a.getScA());
+    if (a->getDura() > 0){
+      //Calcul des dommages
+      int coup = (attaquant.getStats().getForce()-a->getScA());
       //Jet de sauvegarde
       int sauv = rand() %10 ;
       //Si le score de sauvegarde est plus grand que le rand, seule
       //l'armure prend le coup
-      if (a.getSauv() > sauv && coup > 0){
-        a.changerDura(coup);
-        cout << this->getNom() << " a perdu " << coup << " de durabilité sur " << a.getNom() <<endl;
+      if (a->getSauv() > sauv && coup > 0){
+        a->changerDura(coup);
+        cout << _nom << " a perdu " << coup << " de durabilité sur " << a->getNom() <<endl;
       }
       //Sinon, l'armure et le membre subissent des dommages
       else if (coup > 0) {
-        m.changerPv(coup);
-        a.changerDura(coup);
-        cout << this->getNom() << " a perdu " << coup << " de vie sur " << m.getNom() <<endl;
-        cout << this->getNom() << " a perdu " << coup << " de durabilité sur " << a.getNom() <<endl;
+        m->changerPv(coup);
+        a->changerDura(coup);
+        cout << _nom << " a perdu " << coup << " de vie sur " << m->getNom() <<endl;
+        cout << _nom << " a perdu " << coup << " de durabilité sur " << a->getNom() <<endl;
       }
     }//Fin du calcul de dommages de l'échec
   }//Fin de l'échec
   //Si le jet de défense est réussi, rien ne se passe
 }//Fin de defendre(Personnage attaquant)
 
-void Personnage::attaquer(Personnage defendant){
+void Personnage::attaquer(Personnage& defendant){
   defendant.defendre(*this);
 }

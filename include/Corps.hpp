@@ -13,17 +13,19 @@ private:
   vector<Membre> _corps;
 
 
-
-
 public:
   Corps();
 
-  vector<Membre> getLMembres();
-  void afficher();
+  //Getters
+  vector<Membre>& getLMembres();
   //int getSante();
 
+  //Setters
+  void changerMembre(Membre m, int loca);
 
 
+  //Autre sméthodes
+  void afficher();
 
 
 };

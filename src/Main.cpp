@@ -28,6 +28,7 @@ int main(){
   luigi.getCorps().afficher();
   cout << "Bowser :" << endl;
   bowser.getCorps().afficher();
+  bowser.getEquipement().afficher();
   mario.attaquer(bowser);
   mario.attaquer(bowser);
   mario.attaquer(bowser);

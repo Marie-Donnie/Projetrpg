@@ -37,9 +37,9 @@ public :
   double getTaille();
   double getPoids();
   int getNiveau();
-  Stat getStats();
-  Corps getCorps();
-  Equipement getEquipement();
+  Stat& getStats();
+  Corps& getCorps();
+  Equipement& getEquipement();
   //Setters
   void setAge(int age);
   void setTaille(double taille);
@@ -48,8 +48,8 @@ public :
   void levelUp();
   //Autres méthodes
   void afficher();
-  void defendre(Personnage attaquant);
-  void attaquer(Personnage defendant);
+  void defendre(Personnage& attaquant);
+  void attaquer(Personnage& defendant);
 };
 
 #endif //PERSONNAGE_HPP
