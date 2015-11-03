@@ -1,5 +1,4 @@
 #include <string>
-#include <vector>
 
 #ifndef ARMURE_HPP
 #define ARMURE_HPP

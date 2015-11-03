@@ -32,13 +32,6 @@ int main(){
   mario.attaquer(bowser);
   mario.attaquer(bowser);
   mario.attaquer(bowser);
-  mario.attaquer(bowser);
-  mario.attaquer(bowser);
-  mario.attaquer(bowser);
-  mario.attaquer(bowser);
-  mario.attaquer(bowser);
-  mario.attaquer(bowser);
-  mario.attaquer(bowser);
   bowser.getEquipement().afficher();
   //bowser.getCorps().afficher();
 
