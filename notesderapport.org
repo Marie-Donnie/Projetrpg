@@ -3,15 +3,18 @@
 Personnage :
 - membres
 - stats
+- passage par référence
 Armures
-
-** Not done
-*** TODO Equipement
+*** DONE Equipement
 - faire la classe
   -> trois armures
   -> une arme
   -> afficher, mettre un objet dans un slot (en vérifiant que c’est
   bon), enlever un objet (le mettre dans l’inventaire)
+
+
+** Not done
+*** TODO Refactoring de Personnage::défendre
 *** TODO Inventaire
 - faire la classe
   -> trois vectors (armures armes objets)
@@ -53,7 +56,6 @@ Armures
 | ol |   |                  |
 ####################--#######
 #+END_EXAMPLE
-
 
 *** TODO Sauvegarde
 - note tout dans un fichier et recharge du fichier (position du

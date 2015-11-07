@@ -20,6 +20,7 @@ public:
   //Constructeur
   Arme();
   Arme(string nom, int type, int mains, double vitesse, int dmgmin, int dmgmax, int penetration, bool contondant);
+  Arme(int type, int mains);
 
   //Getters
   string getNom();
