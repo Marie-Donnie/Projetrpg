@@ -7,6 +7,7 @@
 #include "Stat.hpp"
 #include "Corps.hpp"
 #include "Equipement.hpp"
+#include "Arme.hpp"
 
 using namespace std;
 
@@ -14,7 +15,7 @@ int main(){
   /* initialize random seed: */
   srand (time(NULL));
 
-  Personnage mario = Personnage("Mario", 0, 42, 1.45, 90.2, 6);
+  /* Personnage mario = Personnage("Mario", 0, 42, 1.45, 90.2, 6);
   mario.afficher();
   Personnage luigi = Personnage();
   luigi.afficher();
@@ -33,7 +34,19 @@ int main(){
   mario.attaquer(bowser);
   mario.attaquer(bowser);
   bowser.getEquipement().afficher();
-  //bowser.getCorps().afficher();
+  bowser.getCorps().afficher();*/
+  Arme arme1 = Arme(0,2);
+  arme1.afficher();
+  Arme arme2 = Arme(0,1);
+  arme2.afficher();
+  Arme arme3 = Arme(1,2);
+  arme3.afficher();
+  Arme arme4 = Arme(1,1);
+  arme4.afficher();
+  Arme arme5 = Arme(2,2);
+  arme5.afficher();
+  Arme arme6 = Arme(2,1);
+  arme6.afficher();
 
   /*Armure arm = Armure("arm", 20, "Plaque", 3, 2, 25.3, couv);
   arm.afficher();

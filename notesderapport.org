@@ -11,6 +11,14 @@ Armures
   -> une arme
   -> afficher, mettre un objet dans un slot (en vérifiant que c’est
   bon), enlever un objet (le mettre dans l’inventaire)
+*** DONE Armes
+- faire l’interface
+- faire les classes armes au cac (pas distance pour la “démo”)
+  -> attaquer simple et multiple (avec message d’erruer pour distance)
+  -> portée
+  -> dommages
+  -> pénétration
+  -> contondance
 
 
 ** Not done
@@ -24,14 +32,7 @@ Armures
 - faire la classe
   -> transformer un drap en bandage (en le consommant)
   -> un objet a un affichage, un use() et des getters (nom et description)
-*** TODO Armes
-- faire l’interface
-- faire les classes armes au cac (pas distance pour la “démo”)
-  -> attaquer simple et multiple (avec message d’erruer pour distance)
-  -> portée
-  -> dommages
-  -> pénétration
-  -> contondance
+*** TODO Attaques simple et multiple
 *** TODO PNJ
 - faire la classe
   -> état inactif et agressif
