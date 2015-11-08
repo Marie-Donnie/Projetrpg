@@ -1,10 +1,10 @@
 * Planning
 ** Done
-Personnage :
+*** DONE Personnage :
 - membres
 - stats
 - passage par référence
-Armures
+*** DONE Armures
 *** DONE Equipement
 - faire la classe
   -> trois armures

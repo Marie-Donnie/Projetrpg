@@ -18,11 +18,11 @@ int main(){
   /* Personnage mario = Personnage("Mario", 0, 42, 1.45, 90.2, 6);
   mario.afficher();
   Personnage luigi = Personnage();
-  luigi.afficher();
+  luigi.afficher();*/
   Stat bowserstat = Stat(20,20,2,2,4,1,0,0,90,90);
   Corps bowserbody = Corps();
   Equipement bowserstuff = Equipement();
-  Personnage bowser = Personnage("Bowser", 0, 250, 3.55, 680.0, 100, bowserstat, bowserbody, bowserstuff);
+  Personnage bowser = Personnage("Bowser", 0, 250, 3.55, 680.0, 100, bowserstat, bowserbody, bowserstuff);/*
   cout << "Mario :" << endl;
   mario.getCorps().afficher();
   cout << "Luigi :" << endl;
@@ -32,9 +32,9 @@ int main(){
   bowser.getEquipement().afficher();
   mario.attaquer(bowser);
   mario.attaquer(bowser);
-  mario.attaquer(bowser);
+  mario.attaquer(bowser);*/
   bowser.getEquipement().afficher();
-  bowser.getCorps().afficher();*/
+  /* bowser.getCorps().afficher();
   Arme arme1 = Arme(0,2);
   arme1.afficher();
   Arme arme2 = Arme(0,1);
@@ -46,7 +46,7 @@ int main(){
   Arme arme5 = Arme(2,2);
   arme5.afficher();
   Arme arme6 = Arme(2,1);
-  arme6.afficher();
+  arme6.afficher();*/
 
   /*Armure arm = Armure("arm", 20, "Plaque", 3, 2, 25.3, couv);
   arm.afficher();

@@ -6,7 +6,7 @@ using namespace std;
 /*-----Constructeur-----*/
 Drap::Drap(){
   _nom = "Drap";
-  _description = "Un drap en lin. Déchirez pour créer des bandages."
+  _description = "Un drap en lin. Déchirez pour créer des bandages.";
 }
 
 /*-----Constructeur-----*/
@@ -17,20 +17,20 @@ Drap::Drap(string nom, string des){
 
 
 /*-----Getters-----*/
-string getNom(){return _nom;}
-string getDescription(){return _description;}
+string Drap::getNom(){return _nom;}
+string Drap::getDescription(){return _description;}
 
 /*-----Setters-----*/
-void setNom(string nom){_nom = nom;}
-void setDescription(string des){_description = description;}
+void Drap::setNom(string nom){_nom = nom;}
+void Drap::setDescription(string des){_description = des;}
 
 
 /*-----Autres méthodes-----*/
-void afficher(){
+void Drap::afficher(){
   cout << "Nom : " << _nom << endl;
   cout << "Description : " << _description << endl;
 }
 
-void utiliser(Personnage p){
+void Drap::utiliser(Personnage& p){
 
 }

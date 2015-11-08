@@ -58,6 +58,19 @@ Arme::Arme(int type, int mains){
   }
 }
 
+/*-----Constructeur partiel-----*/
+Arme::Arme(string nom){
+  _nom = nom;
+  _type = 5;
+  _mains = 0;
+  _portee = 1;
+  _vitesse = 1;
+  _dmgmin = 0;
+  _dmgmax = 0;
+  _penetration = 0;
+  _contondant = true;
+}
+
 /*-----Constructeur par défaut-----*/
 Arme::Arme(){
   _nom = "lol";

@@ -8,13 +8,14 @@
 using namespace std;
 
 class Objet {
-private :
+protected :
   string _nom;
   string _description;
 
 public:
   //Constructeurs
   Objet(string nom, string des);
+  Objet();
   //Getters
   virtual string getNom();
   virtual string getDescription();
@@ -23,7 +24,7 @@ public:
   virtual void setDescription(string des);
   //Autres méthodes
   virtual void afficher();
-  virtual void utiliser(Personnage p);
+  virtual void utiliser(Personnage& p);
 
 };
 

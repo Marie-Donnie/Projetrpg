@@ -9,21 +9,22 @@ Objet::Objet(string nom, string des){
   _nom = nom;
   _description = des;
 }
+Objet::Objet(){}
 
 
 /*-----Getters-----*/
-virtual string getNom(){return _nom;}
-virtual string getDescription(){return _description;}
+string Objet::getNom(){return _nom;}
+string Objet::getDescription(){return _description;}
 
 /*-----Setters-----*/
-virtual void setNom(string nom){_nom = nom;}
-virtual void setDescription(string des){_description = description;}
+void Objet::setNom(string nom){_nom = nom;}
+void Objet::setDescription(string des){_description = des;}
 
 
 /*-----Autres méthodes-----*/
-virtual void afficher(){
+void Objet::afficher(){
   cout << "Nom : " << _nom << endl;
   cout << "Description : " << _description << endl;
 }
 
-virtual void utiliser(Personnage p){}
+void Objet::utiliser(Personnage& p){}

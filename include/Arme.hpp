@@ -24,6 +24,7 @@ public:
   Arme();
   Arme(string nom, int type, int mains, int portee, double vitesse, int dmgmin, int dmgmax, int penetration, bool contondant);
   Arme(int type, int mains);
+  Arme(string nom);
 
   //Getters
   string getNom();

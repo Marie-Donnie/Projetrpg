@@ -24,7 +24,7 @@ public:
   void setDescription(string des);
   //Autres méthodes
   void afficher();
-  void utiliser(Personnage p);
+  void utiliser(Personnage& p);
 
 };
 

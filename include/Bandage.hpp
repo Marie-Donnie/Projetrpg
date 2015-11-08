@@ -8,7 +8,7 @@
 using namespace std;
 
 class Bandage : public Objet{
-private :
+private:
   string _nom;
   string _description;
 
@@ -24,7 +24,7 @@ public:
   void setDescription(string des);
   //Autres méthodes
   void afficher();
-  void utiliser(Personnage p);
+  void utiliser(Personnage& p);
 
 };
 
