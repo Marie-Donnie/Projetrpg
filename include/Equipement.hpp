@@ -24,10 +24,12 @@ public:
   Arme& getArme();
 
   //Setters
-  void changerArmure(Armure& a, int loca);
-  void changerArme(Arme& a);
 
   //Autres méthodes
+  Armure changerArmure(Armure& a, int loca);
+  Armure changerArmure(Armure& a);
+  Arme changerArme(Arme& a);
+
   void afficher();
 };
 
