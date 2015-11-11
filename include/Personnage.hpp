@@ -1,9 +1,33 @@
+/**
+ * @file Personnage.hpp
+ * @author Marie Delavergne, Robin Wibaux
+ * @date October, 2015
+ * @brief Définition de la classe de personnage
+ **/
+
+  /**
+   * @name  Constructeur complet
+   * @brief Créé un personnage prenant les paramètres donnés.
+   * @param nom le nom qu'on veut donner au personnage
+   * @param sexe le sexe du personnage (0 pour homme et 1 pour femme)
+   * @param age l'âge du personnage
+   * @param taille sa taille (type 1.50, pour 1 mètre et 50 centimètres)
+   * @param poids son poids (type 50.3)
+   * @param niveau son niveau
+   * @param stats les stats qu'on veut lui donner
+   * @param corps le corps du personnage
+   * @param inventaire l'inventaire qu'il aura
+   * @param equipement l'équipement qu'il porte
+   * @return Un personnage tout prêt !
+   */
+
 #include <string>
 #include <iostream>
 #include <stdlib.h>
 #include "Stat.hpp"
 #include "Corps.hpp"
 #include "Equipement.hpp"
+#include "Inventaire.hpp"
 
 
 #ifndef PERSONNAGE_HPP
@@ -21,13 +45,13 @@ private :
   int _niveau;
   Stat _stats;
   Corps _corps;
-  //  Inventaire inventaire;
+  Inventaire _inventaire;
   Equipement _equipement;
 
 
 public :
   //Constructeurs
-  Personnage(string nom, int sexe, int age, double taille, double poids, int niveau, Stat stats, Corps corps, Equipement equipement);
+  Personnage(string nom, int sexe, int age, double taille, double poids, int niveau, Stat stats, Corps corps, Inventaire inventaire, Equipement equipement);
   Personnage(string nom, int sexe, int age, double taille, double poids, int niveau);
   Personnage();
   //Getters
@@ -39,6 +63,7 @@ public :
   int getNiveau();
   Stat& getStats();
   Corps& getCorps();
+  Inventaire& getInventaire();
   Equipement& getEquipement();
   //Setters
   void setAge(int age);

@@ -1,18 +1,10 @@
-/**
- * @file Personnage.cpp
- * @author Marie Delavergne, Robin Wibaux
- * @since 2015
- * @brief Définition de la classe de personnage
- **/
-
-
 #include "Personnage.hpp"
 
 
 using namespace std;
 
 /*-----Constructeur complet-----*/
-Personnage::Personnage(string nom, int sexe, int age, double taille, double poids, int niveau, Stat stats, Corps corps, Equipement equipement){
+Personnage::Personnage(string nom, int sexe, int age, double taille, double poids, int niveau, Stat stats, Corps corps, Inventaire inventaire, Equipement equipement){
     _nom = nom;
     _sexe = sexe;
     _age = age;
@@ -21,6 +13,7 @@ Personnage::Personnage(string nom, int sexe, int age, double taille, double poid
     _niveau = niveau;
     _stats = stats;
     _corps = corps;
+    _inventaire = inventaire;
     _equipement = equipement;
 }
 
@@ -34,6 +27,7 @@ Personnage::Personnage(string nom, int sexe, int age, double taille, double poid
     _niveau = niveau;
     _stats = Stat();
     _corps = Corps();
+    _inventaire = Inventaire();
     _equipement = Equipement();
 }
 
@@ -49,6 +43,7 @@ Personnage::Personnage(){
   _niveau = 1;
   _stats = Stat();
   _corps = Corps();
+  _inventaire = Inventaire();
   _equipement = Equipement("du sanatorium");
 }
 
@@ -62,6 +57,7 @@ double Personnage::getTaille(){return _taille;}
 double Personnage::getPoids(){return _poids;}
 Stat& Personnage::getStats(){return _stats;}
 Corps& Personnage::getCorps(){return _corps;}
+Inventaire& Personnage::getInventaire(){return _inventaire;}
 Equipement& Personnage::getEquipement(){return _equipement;}
 
 //Setters
@@ -174,6 +170,7 @@ void Personnage::defendre(Personnage& attaquant){
       }
     }//Fin du calcul de dommages de l'échec critique
   } //Fin de l'échec critique
+
   //Jet non critique, on vérifie si le coup passe
   else if (def < attaquant.getStats().getCc() - (_stats.getAgi())*10){
     //On cherche le membre touché

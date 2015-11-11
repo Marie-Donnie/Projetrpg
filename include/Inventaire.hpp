@@ -1,10 +1,10 @@
 /**
  * @file  Inventaire.hpp
- * @Author Marie Delavergne et Robin Wibaux
- * @date   Novembre 2015
+ * @Author Marie Delavergne, Robin Wibaux
+ * @date   November, 2015
  * @brief  Définit la classe Inventaire
  *
- * //TODO  Detailed description of file.
+ *
  */
 
 
