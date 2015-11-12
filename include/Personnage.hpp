@@ -21,6 +21,10 @@
    * @return Un personnage tout prêt !
    */
 
+
+#ifndef PERSONNAGE_HPP
+#define PERSONNAGE_HPP
+
 #include <string>
 #include <iostream>
 #include <stdlib.h>
@@ -28,10 +32,6 @@
 #include "Corps.hpp"
 #include "Equipement.hpp"
 #include "Inventaire.hpp"
-
-
-#ifndef PERSONNAGE_HPP
-#define PERSONNAGE_HPP
 
 using namespace std;
 

@@ -1,9 +1,10 @@
+#ifndef ARME_HPP
+#define ARME_HPP
+
 #include <string>
 #include <stdlib.h>
 #include <iostream>
 
-#ifndef ARME_HPP
-#define ARME_HPP
 
 using namespace std;
 

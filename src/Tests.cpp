@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 #include <time.h>
+#include "Membre.hpp"
 #include "Personnage.hpp"
 #include "Armure.hpp"
 #include "Stat.hpp"
@@ -23,7 +24,8 @@ int main(){
   Stat bowserstat = Stat(20,20,2,2,4,1,0,0,90,90);
   Corps bowserbody = Corps();
   Equipement bowserstuff = Equipement();
-  Personnage bowser = Personnage("Bowser", 0, 250, 3.55, 680.0, 100, bowserstat, bowserbody, bowserstuff);/*
+  Inventaire bowserinv = Inventaire();
+  Personnage bowser = Personnage("Bowser", 0, 250, 3.55, 680.0, 100, bowserstat, bowserbody, bowserinv, bowserstuff);/*
   cout << "Mario :" << endl;
   mario.getCorps().afficher();
   cout << "Luigi :" << endl;

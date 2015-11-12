@@ -5,20 +5,23 @@
 using namespace std;
 
 //Constructeur
-Membre::Membre(int pv, string nom, vector<Membre> sousm){
+Membre::Membre(int pv, int pvmax, string nom, vector<Membre> sousm){
   _pv = pv;
+  _pvmax = pvmax;
   _nom = nom;
   _sousMembre = sousm;
 }
 
-Membre::Membre(int pv, string nom){
+Membre::Membre(int pv, int pvmax, string nom){
   _pv = pv;
+  _pvmax = pvmax;
   _nom = nom;
   _sousMembre = vector<Membre>();
 }
 
 Membre::Membre(){
   _pv = 0;
+  _pvmax = 0;
   _nom = "Membre bidon";
   _sousMembre = vector<Membre>();
 }

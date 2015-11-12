@@ -1,3 +1,4 @@
+#include "Membre.hpp"
 #include "Personnage.hpp"
 
 

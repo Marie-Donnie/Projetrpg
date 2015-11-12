@@ -1,11 +1,11 @@
+#ifndef EQUIPEMENT_HPP
+#define EQUIPEMENT_HPP
+
 #include <string>
 #include <vector>
 #include <iostream>
 #include "Armure.hpp"
 #include "Arme.hpp"
-
-#ifndef EQUIPEMENT_HPP
-#define EQUIPEMENT_HPP
 
 using namespace std;
 

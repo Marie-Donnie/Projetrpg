@@ -1,9 +1,9 @@
+#ifndef DRAP_HPP
+#define DRAP_HPP
+
 #include <string>
 #include <iostream>
 #include "Objet.hpp"
-
-#ifndef DRAP_HPP
-#define DRAP_HPP
 
 using namespace std;
 

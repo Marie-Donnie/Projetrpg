@@ -1,9 +1,9 @@
+#ifndef BANDAGE_HPP
+#define BANDAGE_HPP
+
 #include <string>
 #include <iostream>
 #include "Objet.hpp"
-
-#ifndef BANDAGE_HPP
-#define BANDAGE_HPP
 
 using namespace std;
 

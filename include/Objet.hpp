@@ -1,9 +1,11 @@
-#include <string>
-#include <iostream>
-#include "Personnage.hpp"
-
 #ifndef OBJET_HPP
 #define OBJET_HPP
+
+#include <string>
+#include <iostream>
+//#include "Personnage.hpp"
+
+class Personnage;
 
 using namespace std;
 

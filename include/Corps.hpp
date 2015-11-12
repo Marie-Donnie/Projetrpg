@@ -1,9 +1,11 @@
-#include "Membre.hpp"
+#ifndef CORPS_HPP
+#define CORPS_HPP
+
+//#include "Membre.hpp"
 #include <string>
 #include <vector>
 
-#ifndef CORPS_HPP
-#define CORPS_HPP
+class Membre;
 
 using namespace std;
 
