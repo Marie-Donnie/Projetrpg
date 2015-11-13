@@ -1,7 +1,7 @@
 #ifndef CORPS_HPP
 #define CORPS_HPP
 
-//#include "Membre.hpp"
+
 #include <string>
 #include <vector>
 

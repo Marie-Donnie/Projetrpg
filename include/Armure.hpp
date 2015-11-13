@@ -1,7 +1,7 @@
-#include <string>
-
 #ifndef ARMURE_HPP
 #define ARMURE_HPP
+
+#include <string>
 
 using namespace std;
 
