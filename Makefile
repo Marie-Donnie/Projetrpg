@@ -2,12 +2,12 @@
 EXEC=prpg
 
 # Compiler
-IDIR=include
+IDIR=include ../SFML/include
 IDIRFLAG=$(foreach idir, $(IDIR), -I$(idir))
 CXXFLAGS=-std=c++11 -Ofast -W -Wall -Wextra -pedantic -Wno-sign-compare -Wno-unused-parameter $(IDIRFLAG)
 
 # Linker
-LFLAGS=$(IDIRFLAG)
+LFLAGS=$(IDIRFLAG) -L../SFML/lib -lsfml-graphics -lsfml-window -lsfml-system
 
 # Directories
 SRCDIR=src
@@ -27,20 +27,20 @@ vpath %.cpp $(SRCDIR)
 # $< is the first item in the dependencies list
 
 # Rules
-gcc: clean
+#gcc: clean
 gcc: CXX=g++
 gcc: LINKER=g++ -o
 gcc: CXXFLAGS += -DNDEBUG
 gcc: $(BINDIR)/$(EXEC)
 
-gcc-debug: clean
+#gcc-debug: clean
 gcc-debug: CXX=g++
 gcc-debug: LINKER=g++ -o
 gcc-debug: CXXFLAGS += -g
 gcc-debug: $(BINDIR)/$(EXEC)
 
 $(BINDIR)/$(EXEC): $(OBJECTS)
-	@$(LINKER) $@ $(LFLAGS) $^
+	@$(LINKER) $@ $^ $(LFLAGS)
 
 $(OBJDIR)/%.o: %.cpp
 	@$(CXX) $(CXXFLAGS) -c $< -o $@

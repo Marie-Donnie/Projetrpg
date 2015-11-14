@@ -32,6 +32,9 @@
 #include "Corps.hpp"
 #include "Equipement.hpp"
 #include "Inventaire.hpp"
+#include "SFML/Graphics.hpp"
+#include "SFML/Window.hpp"
+
 
 using namespace std;
 
@@ -48,12 +51,22 @@ private :
   Inventaire _inventaire;
   Equipement _equipement;
 
+  sf::Vector2i _location;
+  sf::Vector2f _position;
+  sf::Texture _texture;
+  sf::Sprite _sprite;
+
+  bool _actif;
+  int _action; //0:deplacement, 1:attaqueG, 2:attaqueD, 3:magie, 4:interaction
+  int _direction; //0:haut, 1:bas, 2:gauche, 3:droite
+  sf::Time _tempsAction; //une fois un seuil dépacé, l'action prend fin
 
 public :
   //Constructeurs
-  Personnage(string nom, int sexe, int age, double taille, double poids, int niveau, Stat stats, Corps corps, Inventaire inventaire, Equipement equipement);
+  Personnage(string nom, int sexe, int age, double taille, double poids, int niveau, Stat stats, Corps corps, Inventaire inventaire, Equipement equipement, string texture);
   Personnage(string nom, int sexe, int age, double taille, double poids, int niveau);
   Personnage();
+
   //Getters
   string getNom();
   int getSexe();
@@ -65,12 +78,44 @@ public :
   Corps& getCorps();
   Inventaire& getInventaire();
   Equipement& getEquipement();
+
+  sf::Vector2i getLocation();
+  int getLocalX();
+  int getLocalY();
+  sf::Vector2f getPosition();
+  float getPosX();
+  float getPosY();
+  sf::Texture& getTexture();
+  sf::Sprite& getSprite();
+
+  bool estActif();
+  int getAction();
+  int getDirection();
+
   //Setters
   void setAge(int age);
   void setTaille(double taille);
   void setPoids(double poids);
   void setNiveau(int niveau);
   void levelUp();
+
+  void setLocation(sf::Vector2i loc);
+  void setLocation(int x, int y);
+  void setPosition(sf::Vector2f pos);
+  void setPosition(float x, float y);
+  void setTexture(string texture); //charge directement un fichier png
+  void setSprite(int direction); //0:haut, 1:bas, 2:gauche, 3:droite
+  void setSprite(); //sprite par défaut
+
+  void setDirection(int d);
+
+
+  //Mouvements
+  //>Mises en mouvement
+  void move(int direction);
+  //>Mouvement en cours
+  void move(sf::Time turnTime);
+
   //Autres méthodes
   void afficher();
   void defendre(Personnage& attaquant);
