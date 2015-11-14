@@ -22,10 +22,11 @@
    * @return Un personnage tout prêt !
    */
 
-
+//include guard
 #ifndef PERSONNAGE_HPP
 #define PERSONNAGE_HPP
 
+//included dependencies
 #include <string>
 #include <iostream>
 #include <stdlib.h>

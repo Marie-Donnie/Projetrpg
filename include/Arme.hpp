@@ -1,10 +1,11 @@
+//include guard
 #ifndef ARME_HPP
 #define ARME_HPP
 
+//included dependencies
 #include <string>
 #include <stdlib.h>
 #include <iostream>
-
 
 using namespace std;
 

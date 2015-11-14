@@ -1,8 +1,14 @@
+//include guard
 #ifndef MEMBRE_HPP
 #define MEMBRE_HPP
 
+//forward declared dependencies
+class Observer;
+
+//included dependencies
 #include <string>
 #include <vector>
+
 
 using namespace std;
 
@@ -12,6 +18,7 @@ private :
   int _pvmax;
   string _nom;
   vector<Membre> _sousMembre;
+  Observer* _corps;
 public :
   //Constructeur
   Membre(int pv, int pvmax, string nom, vector<Membre> sousm);

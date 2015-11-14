@@ -1,10 +1,15 @@
+//include guard
 #ifndef OBJET_HPP
 #define OBJET_HPP
 
+// forward declared dependencies
+class Personnage;
+
+//included dependencies
 #include <string>
 #include <iostream>
 
-class Personnage;
+
 
 using namespace std;
 

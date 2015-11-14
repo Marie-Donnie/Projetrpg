@@ -20,10 +20,11 @@
    * @return Une copie de l'élément qu'on veut récupérer
    */
 
-
+//include guard
 #ifndef INVENTAIRE_HPP
 #define INVENTAIRE_HPP
 
+//included dependencies
 #include <string>
 #include <vector>
 #include <iostream>

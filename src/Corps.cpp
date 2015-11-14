@@ -74,11 +74,11 @@ Corps::Corps(){
   //Fin Bras Gauche
 
   //Bras Droit
-  Membre doigt0D = Membre(2, 2, "Auriculaire droite");
-  Membre doigt1D = Membre(2, 2, "Annulaire droite");
-  Membre doigt2D = Membre(2, 2, "Majeur droite");
-  Membre doigt3D = Membre(2, 2, "Index droite");
-  Membre doigt4D = Membre(2, 2, "Pouce droite");
+  Membre doigt0D = Membre(2, 2, "Auriculaire droit");
+  Membre doigt1D = Membre(2, 2, "Annulaire droit");
+  Membre doigt2D = Membre(2, 2, "Majeur droit");
+  Membre doigt3D = Membre(2, 2, "Index droit");
+  Membre doigt4D = Membre(2, 2, "Pouce droit");
   vector<Membre> mD;
   mD.push_back(doigt0D);
   mD.push_back(doigt1D);
@@ -147,6 +147,58 @@ Corps::Corps(){
 /*-----Getters-----*/
 vector<Membre>& Corps::getLMembres(){return _corps;}
 
+int Corps::getPv(){
+  int pv = 0;
+  //On parcourt le corps
+  for (int i=0; i < _corps.size(); ++i){
+    //On récupère la référence vers chaque membre
+    Membre& m = _corps.at(i);
+    //On ajoute ses pvs
+    pv += m.getPv();
+    cout << m.getNom() << " : "<< m.getPv() << endl ;
+    //On récupère ses sous-membres
+    for (int j=0; j < m.getMembres().size(); ++j){
+      Membre& sm = m.getMembres().at(j);
+      //dont on ajoute les pvs
+      pv += sm.getPv();
+      cout << "\t" << sm.getNom() << " : "<< sm.getPv() << endl;
+      if (i < 4 && j == 0) {
+        //et à nouveau si on a affaire à une jambe ou un bras
+        for (int k=0; k<sm.getMembres().size(); ++k){
+          Membre& ssm = sm.getMembres().at(k);
+          pv += ssm.getPv();
+cout << "\t\t" <<ssm.getNom() << " : "<< ssm.getPv() << endl;
+        }
+      }
+    }
+  }
+  return pv;
+}
+
+int Corps::getPvMax(){
+  int pvmax = 0;
+  //On parcourt le corps
+  for (int i=0; i < _corps.size(); ++i){
+    //On récupère la référence vers chaque membre
+    Membre& m = _corps.at(i);
+    //On ajoute ses pvs
+    pvmax += m.getPvMax();
+    //On récupère ses sous-membres
+    for (int j=0; j < m.getMembres().size(); ++j){
+      Membre& sm = m.getMembres().at(j);
+      //dont on ajoute les pvs
+      pvmax += sm.getPvMax();
+      if (i < 4 && j == 0) {
+        //et à nouveau si on a affaire à une jambe ou un bras
+        for (int k=0; k<sm.getMembres().size(); ++k){
+          Membre& ssm = sm.getMembres().at(k);
+          pvmax += ssm.getPvMax();
+        }
+      }
+    }
+  }
+  return pvmax;
+}
 
 /*-----Setters-----*/
 void Corps::changerMembre(Membre m, int loca){

@@ -1,6 +1,8 @@
+//include guard
 #ifndef ARMURE_HPP
 #define ARMURE_HPP
 
+//included dependencies
 #include <string>
 
 using namespace std;

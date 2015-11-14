@@ -1,32 +1,32 @@
+//include guard
 #ifndef CORPS_HPP
 #define CORPS_HPP
 
+//forward declared dependencies
+class Membre;
 
+//included dependencies
 #include <string>
 #include <vector>
 
-class Membre;
-
 using namespace std;
-
 
 class Corps{
 private:
   vector<Membre> _corps;
-
 
 public:
   Corps();
 
   //Getters
   vector<Membre>& getLMembres();
-  //int getSante();
+  int getPv();
+  int getPvMax();
 
   //Setters
   void changerMembre(Membre m, int loca);
 
-
-  //Autre sméthodes
+  //Autres méthodes
   void afficher();
 
 

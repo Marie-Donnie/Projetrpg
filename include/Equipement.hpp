@@ -1,6 +1,8 @@
+//include guard
 #ifndef EQUIPEMENT_HPP
 #define EQUIPEMENT_HPP
 
+//included dependencies
 #include <string>
 #include <vector>
 #include <iostream>

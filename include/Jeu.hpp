@@ -1,6 +1,11 @@
+//include guard
 #ifndef JEU_HPP
 #define JEU_HPP
 
+//Forward declared dependencies
+class PNJ;
+
+//included dependencies
 #include <string>
 #include <stdio.h>				//printf
 #include <iostream>				//cin cout
@@ -9,9 +14,6 @@
 #include "Membre.hpp"
 #include "Personnage.hpp"
 #include "Monde.hpp"
-
-class PNJ;
-
 
 class Jeu {
 	private:

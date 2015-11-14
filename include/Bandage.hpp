@@ -1,6 +1,8 @@
+//include guard
 #ifndef BANDAGE_HPP
 #define BANDAGE_HPP
 
+//included dependencies
 #include <string>
 #include <iostream>
 #include "Objet.hpp"

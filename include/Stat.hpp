@@ -1,3 +1,4 @@
+//include guard
 #ifndef STAT_HPP
 #define STAT_HPP
 
@@ -13,7 +14,6 @@ private :
   int _resiPeste;
   int _capCombat;
   int _capTir;
-
 
 public :
  //Constructeur

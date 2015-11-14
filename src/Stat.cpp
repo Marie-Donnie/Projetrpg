@@ -6,7 +6,7 @@ using namespace std;
 
 /*-----Constructeur par défaut-----*/
 Stat::Stat(){
-  _hitPoint = 10;
+  _hitPoint = 177;
   _mana = 10;
   _endu = 1;
   _intel = 1;

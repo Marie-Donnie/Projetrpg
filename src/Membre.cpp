@@ -27,19 +27,15 @@ Membre::Membre(){
 }
 
 //Setters
-void Membre::setPv(int pv){
-  _pv = pv;
-}
+void Membre::setPv(int pv){_pv = pv;}
+void Membre::setPvMax(int pv){_pvmax = pv;}
 void Membre::setNom(string nom){_nom = nom;}
-void Membre::changerPv(int pv){
-  _pv -= pv;
-}
-void Membre::changerMembre(Membre& m, int loca){
-  _sousMembre[loca] = m;
-}
+void Membre::changerPv(int pv){_pv -= pv;}
+void Membre::changerMembre(Membre& m, int loca){_sousMembre[loca] = m;}
 
 //Getters
 int Membre::getPv(){return _pv;}
+int Membre::getPvMax(){return _pvmax;}
 string Membre::getNom(){return _nom;}
 vector<Membre>& Membre::getMembres(){return _sousMembre;}
 Membre& Membre::getMembre(int loca){return _sousMembre.at(loca);}

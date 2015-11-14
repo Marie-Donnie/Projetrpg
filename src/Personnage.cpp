@@ -60,7 +60,8 @@ Personnage::Personnage(){
 }
 
 
-//Getters
+/*--------Getters--------*/
+
 string Personnage::getNom(){return _nom;}
 int Personnage::getSexe(){return _sexe;}
 int Personnage::getAge(){return _age;}
@@ -87,22 +88,15 @@ bool Personnage::estActif(){return _actif;}
 int Personnage::getAction(){return _action;}
 int Personnage::getDirection(){return _direction;}
 
-//Setters
-void Personnage::setAge(int age){
-  _age = age;
-}
-void Personnage::setTaille(double taille){
-  _taille = taille;
-}
-void Personnage::setPoids(double poids){
-  _poids = poids;
-}
-void Personnage::setNiveau(int niveau){
-  _niveau = niveau;
-}
-void Personnage::levelUp(){
-  ++_niveau;
-}
+
+
+/*--------Setters--------*/
+
+void Personnage::setAge(int age){_age = age;}
+void Personnage::setTaille(double taille){_taille = taille;}
+void Personnage::setPoids(double poids){_poids = poids;}
+void Personnage::setNiveau(int niveau){_niveau = niveau;}
+void Personnage::levelUp(){++_niveau;}
 
 void Personnage::setLocation(sf::Vector2i loc){
 	_location.x = loc.x; _location.y = loc.y;
@@ -132,7 +126,6 @@ void Personnage::setSprite()
 	_sprite.setTexture(_texture);
     _sprite.setTextureRect(sf::IntRect(16, 0, 32, 16)); //pour avoir celui de face
 }
-
 void Personnage::setDirection(int d)
 {
 	_direction = d;

@@ -1,6 +1,8 @@
+//include guard
 #ifndef DRAP_HPP
 #define DRAP_HPP
 
+//included dependencies
 #include <string>
 #include <iostream>
 #include "Objet.hpp"

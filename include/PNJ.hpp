@@ -1,9 +1,12 @@
+//include guard
+#ifndef PNJ_HPP
+#define PNJ_HPP
+
+//included dependencies
 #include "SFML/Graphics.hpp"
 #include <string>
 #include "Stat.hpp"
 
-#ifndef PNJ_HPP
-#define PNJ_HPP
 
 using namespace std;
 

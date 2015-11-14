@@ -1,11 +1,14 @@
+//include guard
+#ifndef MONDE_HPP
+#define MONDE_HPP
+
+//included dependencies
 #include <stdio.h>				//printf
 #include <iostream>				//cin cout
 #include <vector>
 #include <string>
 #include "SFML/Graphics.hpp" //RenderWindow
 
-#ifndef MONDE_HPP
-#define MONDE_HPP
 
 class Monde {
 	private:
