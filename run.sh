@@ -1,1 +1,1 @@
-LD_LIBRARY_PATH=SFML/build/lib ./bin/prpg
+LD_LIBRARY_PATH=SFML/lib:TGUI/lib ./bin/prpg

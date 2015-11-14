@@ -3,3 +3,5 @@ obj/
 src/Tests.cpp
 src/Main.cpp
 SFML/
+TGUI/
+*~
