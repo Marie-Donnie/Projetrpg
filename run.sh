@@ -1,1 +1,1 @@
-LD_LIBRARY_PATH=../SFML/lib ./bin/prpg
+LD_LIBRARY_PATH=SFML/build/lib ./bin/prpg
