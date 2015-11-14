@@ -6,7 +6,7 @@
  **/
 
 
-#include "../include/PNJ.hpp"
+#include "PNJ.hpp"
 #include <iostream>
 
 
@@ -14,28 +14,28 @@ using namespace std;
 
 PNJ::PNJ(string nom){
 	_nom = nom;
-	
+
 	_stats = Stat();
-	
-	
+
+
 	_position = sf::Vector2f(0,0);
 	_actif = false;
 }
 
 PNJ::PNJ(string nom, string texture){
 	_nom = nom;
-	
+
 	_stats = Stat();
-	
+
 	_actif = false; //revoir les attributs...
-    
+
     if(!_texture.loadFromFile(texture)){
 		std::cout << "Erreur lors du chargement de " << texture << std::endl;
 	}
-    
+
     _sprite.setTextureRect(sf::IntRect(0, 0, 32, 32));
     _sprite.setOrigin(15.0,15.0);
-	
+
 	_position = sf::Vector2f(0,0);
 }
 
