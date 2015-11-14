@@ -1,0 +1,34 @@
+
+====================================================
+|___A |________F______P _______F________|_A _+ _A _|
+|D X  |XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX|X  X  X  X|
+|XXXXX|XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX|XXXXXXXXXX|
+|XXXXX;XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX;XXXXXXXXXX|
+|___A |XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX|XXXXXXXXXX|
+|D X  |XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX|XXXXXXXXXX|
+|XXXXX|XXXXX============================|D XXXXXXG |
+|XXXXX;XXXXX|___________________________|XXXXXXXXXX|
+|___A |XXXXX|J                          |D XXXXXXG |
+|D X  |XXXXX|                           |XXXXXXXXXX|
+|XXXXX|XXXXX|                           |D XXXXXXG |
+|XXXXX;XXXXX|                           |XXXXXXXXXX|
+|___A |XXXXX|                           |D XXXXXXG |
+|D X  |XXXXX|                           |XXXXXXXXXX|
+|XXXXX|XXXXX|                           |D XXXXXXG |
+|XXXXX;XXXXX|                           |XXXXXXXXXX|
+|___A |XXXXX|                           |D XXXXXXG |
+|D X  |XXXXX|                           |XXXXXXXXXX|
+|XXXXX|XXXXX|                           |D XXXXXXG |
+|XXXXX;XXXXX|                           |XXXXXXXXXX|
+|___A |XXXXX|                           |D XXXXXXG |
+|D X  |XXXXX|                           |XXXXXXXXXX|
+|XXXXX|XXXXX============================|XXXXXXXXG |
+|XXXXX;XXXXX____________|_______________|>XXXXXXXXX|
+|A A _|XXXXXXXXXXXXXXXXX|D XXXXXXXXXXXX<|XXXXXXXXG |
+|    X|XXXXXT     XXXXXX|XXXXXXXXXXXXXXX_XXXXXXXXXX|
+|XXXXX|XXXXX      XXXXXX_XXXXXXXXXXXXXXXXXXXXXXXXG |
+|XXXXX_XXXXX      XXXXXXXXXXXXXXXXXXXXXX|>XXXXXXXXX|
+|XXXXXXXXXXXXXXXXXXXXXXX|XXXXXXXXXXXXXXX|XXXXXXXXG |
+|XXXXX|XXXXXXXXXXXXXXXXX|>XXXXXXXXXXXXG |>XXXXXXXXX|
+====================================================
+____________________________________________________
