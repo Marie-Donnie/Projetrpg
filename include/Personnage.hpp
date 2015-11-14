@@ -18,6 +18,7 @@
    * @param corps le corps du personnage
    * @param inventaire l'inventaire qu'il aura
    * @param equipement l'équipement qu'il porte
+   * @param texture la texture qu'on va lui appliquer
    * @return Un personnage tout prêt !
    */
 
@@ -50,6 +51,7 @@ private :
   Corps _corps;
   Inventaire _inventaire;
   Equipement _equipement;
+  bool _deuxmains;
 
   sf::Vector2i _location;
   sf::Vector2f _position;

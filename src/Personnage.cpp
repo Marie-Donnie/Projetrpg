@@ -16,7 +16,7 @@ Personnage::Personnage(string nom, int sexe, int age, double taille, double poid
     _corps = corps;
     _inventaire = inventaire;
     _equipement = equipement;
-
+    _deuxmains = true;
     _actif = false; //sauf s'il effectuait une action lors de l'éventuelle sauvegarde ?
 
     if(!_texture.loadFromFile(texture)){
@@ -39,6 +39,7 @@ Personnage::Personnage(string nom, int sexe, int age, double taille, double poid
     _corps = Corps();
     _inventaire = Inventaire();
     _equipement = Equipement();
+    _deuxmains = true;
 }
 
 /*-----Constructeur par défaut-----*/
@@ -55,6 +56,7 @@ Personnage::Personnage(){
   _corps = Corps();
   _inventaire = Inventaire();
   _equipement = Equipement("du sanatorium");
+  _deuxmains = true;
 }
 
 
