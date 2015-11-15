@@ -28,9 +28,11 @@
 #include <string>
 #include <vector>
 #include <iostream>
+#include <boost/ptr_container/ptr_vector.hpp>
 #include "Armure.hpp"
 #include "Arme.hpp"
 #include "Objet.hpp"
+
 
 using namespace std;
 
@@ -38,40 +40,42 @@ class Inventaire {
 private :
   vector<Armure> _armures;
   vector<Arme> _armes;
-  vector<Objet> _objets;
+  boost::ptr_vector<Objet> _objets;
 
 public :
   //Constructeur
   Inventaire();
-  Inventaire(vector<Armure>& armures, vector<Arme>& armes, vector<Objet>& objets);
+Inventaire(vector<Armure>& armures, vector<Arme>& armes, boost::ptr_vector<Objet>& objets);
   //Getters
   vector<Armure>& getArmures();
   Armure& getArmure(int loca);
   vector<Arme>& getArmes();
   Arme& getArme(int loca);
-  vector<Objet>& getObjets();
+boost::ptr_vector<Objet>& getObjets();
   Objet& getObjet(int loca);
+  int trouverObjet(string nom);
   //Setters
   void setArmures(vector<Armure>& armures);
   void setArmure(Armure& armure, int loca);
   void setArmes(vector<Arme>& armes);
   void setArme(Arme& arme, int loca);
-  void setObjets(vector<Objet>& objets);
-  void setObjet(Objet& objet, int loca);
+void setObjets(boost::ptr_vector<Objet>& objets);
   void ajouterArmure(Armure& armure);
   void retirerArmure(int loca);
   void ajouterArme(Arme& arme);
   void retirerArme(int loca);
-  void ajouterObjet(Objet& objet);
+  void ajouterObjet(Objet* objet);
   void retirerObjet(int loca);
   void ajouter(Armure& armure);
   void ajouter(Arme& arme);
-  void ajouter(Objet& objet);
+  void ajouter(Objet* objet);
 
   //Autres méthodes
   Armure prendreArmure(int loca);
   Arme prendreArme(int loca);
   Objet prendreObjet(int loca);
+  void utiliserObjet(Personnage& p, int loca);
+  void utiliserObjet(Personnage& p, int membre, int loca);
   void afficher();
 };
 

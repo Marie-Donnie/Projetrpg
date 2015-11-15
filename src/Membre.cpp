@@ -48,5 +48,11 @@ Membre& Membre::getMembre(int loca){return _sousMembre.at(loca);}
 void Membre::setPv(int pv){_pv = pv;}
 void Membre::setPvMax(int pv){_pvmax = pv;}
 void Membre::setNom(string nom){_nom = nom;}
-void Membre::changerPv(int pv){_pv -= pv;}
+void Membre::changerPv(int pv){
+  int coup = _pv - pv;
+  if (coup > 0){
+    _pv -= pv;
+  }
+  else _pv = 0;
+}
 void Membre::changerMembre(Membre& m, int loca){_sousMembre[loca] = m;}

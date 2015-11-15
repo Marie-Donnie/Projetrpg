@@ -10,9 +10,6 @@
 using namespace std;
 
 class Bandage : public Objet{
-private:
-  string _nom;
-  string _description;
 
 public:
   //Constructeurs
@@ -26,7 +23,7 @@ public:
   void setDescription(string des);
   //Autres méthodes
   void afficher();
-  void utiliser(Personnage& p);
+  void utiliser(Personnage& p, int membre);
 
 };
 

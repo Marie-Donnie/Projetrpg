@@ -1,5 +1,5 @@
 #include "Bandage.hpp"
-
+#include "Personnage.hpp"
 
 using namespace std;
 
@@ -10,10 +10,7 @@ Bandage::Bandage(){
 }
 
 /*-----Constructeur-----*/
-Bandage::Bandage(string nom, string des){
-  _nom = nom;
-  _description = des;
-}
+Bandage::Bandage(string nom, string des): Objet(nom, des){}
 
 
 /*-----Getters-----*/
@@ -31,6 +28,6 @@ void Bandage::afficher(){
   cout << "Description : " << _description << endl;
 }
 
-void Bandage::utiliser(Personnage& p){
-
+void Bandage::utiliser(Personnage& p, int membre){
+  p.bandage(membre);
 }

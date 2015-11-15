@@ -326,3 +326,7 @@ void Personnage::attaquer(Personnage& defendant){
 void Personnage::soin(int membre){
   _corps.soin(membre);
 }
+
+void Personnage::bandage(int membre){
+  _corps.bandage(membre, _niveau);
+}

@@ -1,5 +1,6 @@
 #include "Objet.hpp"
 
+
 using namespace std;
 
 
@@ -26,5 +27,5 @@ void Objet::afficher(){
   cout << "Description : " << _description << endl;
 }
 
-void Objet::utiliser(Personnage& p){
-}
+void Objet::utiliser(Personnage& p){}
+void Objet::utiliser(Personnage& p, int membre){}

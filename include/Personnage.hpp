@@ -124,7 +124,7 @@ public :
   void defendre(Personnage& attaquant);
   void attaquer(Personnage& defendant);
   void soin(int membre);
-
+  void bandage(int membre);
 };
 
 #endif //PERSONNAGE_HPP

@@ -9,8 +9,6 @@ class Personnage;
 #include <string>
 #include <iostream>
 
-
-
 using namespace std;
 
 class Objet {
@@ -31,6 +29,7 @@ public:
   //Autres méthodes
   virtual void afficher();
   virtual void utiliser(Personnage& p);
+  virtual void utiliser(Personnage& p, int membre);
 
 };
 

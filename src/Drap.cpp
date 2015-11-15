@@ -1,5 +1,6 @@
 #include "Drap.hpp"
-
+#include "Personnage.hpp"
+#include "Bandage.hpp"
 
 using namespace std;
 
@@ -10,10 +11,7 @@ Drap::Drap(){
 }
 
 /*-----Constructeur-----*/
-Drap::Drap(string nom, string des){
-  _nom = nom;
-  _description = des;
-}
+Drap::Drap(string nom, string des): Objet(nom, des){}
 
 
 /*-----Getters-----*/
@@ -32,5 +30,7 @@ void Drap::afficher(){
 }
 
 void Drap::utiliser(Personnage& p){
-
-}
+  p.getInventaire().ajouterObjet(new Bandage());
+  p.getInventaire().ajouterObjet(new Bandage());
+  p.getInventaire().ajouterObjet(new Bandage());
+ }

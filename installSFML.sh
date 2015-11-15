@@ -1,3 +1,4 @@
+sudo apt-get install libboost-dev
 wget http://www.sfml-dev.org/files/SFML-2.3.2-sources.zip
 unzip SFML-2.3.2-sources.zip
 mv SFML-2.3.2 SFML

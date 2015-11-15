@@ -10,9 +10,6 @@
 using namespace std;
 
 class Drap : public Objet{
-private :
-  string _nom;
-  string _description;
 
 public:
   //Constructeurs
@@ -27,7 +24,6 @@ public:
   //Autres méthodes
   void afficher();
   void utiliser(Personnage& p);
-
 };
 
 #endif //DRAP_HPP

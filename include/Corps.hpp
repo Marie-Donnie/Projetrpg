@@ -35,6 +35,7 @@ public:
 
   //Autres méthodes
   void soin(int membre);
+  void bandage(int membre, int niveau);
   void afficher();
 
 
