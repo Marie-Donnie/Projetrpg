@@ -21,7 +21,8 @@ private :
   Observer* _corps;
 public :
   //Constructeur
-  Membre(int pv, int pvmax, string nom, vector<Membre> sousm);
+  Membre(int pv, int pvmax, string nom, vector<Membre> sousm, Observer* o);
+  Membre(int pv, int pvmax, string nom, Observer* o);
   Membre(int pv, int pvmax, string nom);
   Membre();
   //Setters

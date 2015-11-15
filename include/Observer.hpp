@@ -7,13 +7,12 @@ class Membre;
 
 class Observer{
 
-private:
-  Observer* _suiv;
-  Observer* _prec;
+protected:
+  Observer* suiv;
 
 public:
-  virtual void traiter(Membre m)=0;
-  virtual void passer(Membre m);
+  virtual void traiter(Membre& m)=0;
+  virtual void passer(Membre& m);
 
 
 };

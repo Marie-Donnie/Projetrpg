@@ -322,3 +322,7 @@ void Personnage::defendre(Personnage& attaquant){
 void Personnage::attaquer(Personnage& defendant){
   defendant.defendre(*this);
 }
+
+void Personnage::soin(int membre){
+  _corps.soin(membre);
+}

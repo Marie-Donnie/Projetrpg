@@ -8,10 +8,11 @@ class Membre;
 //included dependencies
 #include <string>
 #include <vector>
+#include "Observer.hpp"
 
 using namespace std;
 
-class Corps{
+class Corps : public Observer{
 private:
   vector<Membre> _corps;
 
@@ -26,7 +27,14 @@ public:
   //Setters
   void changerMembre(Membre m, int loca);
 
+  //Méthodes de l'observer
+  Observer* getSuiv();
+  void setSuiv(Observer* o);
+  void passer(Membre& m);
+  void traiter(Membre& m);
+
   //Autres méthodes
+  void soin(int membre);
   void afficher();
 
 

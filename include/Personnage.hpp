@@ -123,6 +123,8 @@ public :
   void afficher();
   void defendre(Personnage& attaquant);
   void attaquer(Personnage& defendant);
+  void soin(int membre);
+
 };
 
 #endif //PERSONNAGE_HPP
