@@ -19,7 +19,7 @@ rm v0.6.9.zip
 cd TGUI
 mkdir build
 cd build
-cmake -D 'SFML_ROOT:PATH=../../SFML' -G "Unix Makefiles" ..
+cmake -D 'SFML_ROOT:PATH=../SFML' -G "Unix Makefiles" ..
 make
 cd ..
 ln -s build/lib lib
