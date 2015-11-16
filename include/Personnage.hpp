@@ -95,6 +95,8 @@ public :
   int getAction();
   int getDirection();
 
+  bool estImmobile();
+
   //Setters
   void setAge(int age);
   void setTaille(double taille);

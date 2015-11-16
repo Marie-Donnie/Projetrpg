@@ -88,7 +88,9 @@ bool Personnage::estActif(){return _actif;}
 int Personnage::getAction(){return _action;}
 int Personnage::getDirection(){return _direction;}
 
-
+bool Personnage::estImmobile(){
+	return (_action != 0) or !_actif;
+}
 
 /*--------Setters--------*/
 

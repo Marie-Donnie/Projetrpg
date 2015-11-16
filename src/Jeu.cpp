@@ -10,10 +10,9 @@
 
 
 //CONSTRUCTEUR
-Jeu::Jeu()
+Jeu::Jeu(std::string fic) : _monde(fic)
 {
 	_pnjs = std::vector<PNJ *>();
-
 }
 
 // relevé du temps du tour
@@ -127,7 +126,7 @@ void Jeu::gestionPersonnage()
 	else
 	{
 		//changer la direction et le sprite du personnage selon l'endroit de la souris
-		int sourisX = _posSouris.x - 540;
+		int sourisX = _posSouris.x - 512;
 		int sourisY = _posSouris.y - 384;
 
 		int x2 = sourisX*sourisX;

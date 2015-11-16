@@ -28,7 +28,7 @@ class Jeu {
 
 	public:
 		//CONSTRUCTEUR
-		Jeu();
+		Jeu(std::string fic);
 
 		// gestion des inputs
 		void inputs(bool * in);
