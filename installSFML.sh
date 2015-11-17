@@ -17,7 +17,7 @@ sudo apt-get install libvorbisenc2
 sudo apt-get install libvorbisfile3
 mkdir build
 cd build
-cmake .. -G "Unix Makefiles"
+cmake -G "Unix Makefiles" ..
 make
 cd ..
 ln -s build/lib lib
