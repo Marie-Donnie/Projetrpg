@@ -2,10 +2,15 @@
 #ifndef PNJ_HPP
 #define PNJ_HPP
 
+class Personnage;
+
 //included dependencies
 #include "SFML/Graphics.hpp"
 #include <string>
 #include "Stat.hpp"
+#include "Equipement.hpp"
+#include "Corps.hpp"
+
 
 
 using namespace std;
@@ -13,7 +18,9 @@ using namespace std;
 class PNJ {
 private :
 	string _nom;
+  Corps _corps;
 	Stat _stats;
+  Equipement _equi;
 	//focus : ce que suit le PNJ -> rien, une entité, une position
 	//state : l'action en cours du PNJ <- PATERN STATE ! (Patern ou pattern ? Gggnnnh!)
 	bool _actif;
@@ -31,6 +38,10 @@ public :
 	void afficher();
 
 	//getters
+  string getNom();
+  Stat& getStats();
+  Corps& getCorps();
+  Equipement& getEquipement();
 	sf::Vector2i getLocation();
 	sf::Vector2f getPosition();
 	sf::Texture& getTexture();
@@ -56,7 +67,7 @@ public :
 	void setActivity(bool activity);
 	void switchActivity();
 
-
+  void defendre(Personnage& attaquant);
 };
 
 #endif //truc_HPP
