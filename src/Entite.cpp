@@ -15,7 +15,7 @@ Entite::Entite(){}
 
 Entite::Entite(sf::Texture &texture){
 	_texture = texture;
-	
+
 	_sprite.setTexture(_texture);
     _sprite.setTextureRect(sf::IntRect(0, 0, 16, 16));
 }
@@ -23,7 +23,7 @@ Entite::Entite(sf::Texture &texture){
 //getters
 int Entite::getHauteur(){return _hauteur;}
 sf::Texture& Entite::getTexture(){return _texture;}
-sf::Sprite& getSprite();
+sf::Sprite& Entite::getSprite(){return _sprite;}
 
 //setters
 void Entite::setHauteur(int h){_hauteur = h;}
