@@ -5,24 +5,47 @@
  * @brief Définition de la gestion du jeu
  **/
 
-#include "PNJ.hpp"
 #include "Jeu.hpp"
-
+#include <string>
 
 //CONSTRUCTEUR
 Jeu::Jeu(std::string fic) : _monde(fic)
 {
-	_pnjs = std::vector<PNJ *>();
+	//_pnjs = std::vector<PNJ>;
 }
 
-// relevé du temps du tour
+//CREATION DES ENTITES MOUVANTES
+//>Personnage
+void Jeu::creerPersonnage(int x, int y)
+{
+	std::string texture = "./data/sprites/homme.ase";
+	
+	_personnage = Personnage();
+	
+	if(_personnage.getSexe()%2 == 0)
+		_personnage.setTexture("./data/sprites/homme.ase");
+	else
+		_personnage.setTexture("./data/sprites/femme.ase");
+	
+	_personnage.setSprite();
+	
+	_personnage.setLocation(x,y);
+	_personnage.setPosition(16*x,16*y);
+}
+//>PNJ
+void Jeu::creerPNJ()
+{
+	
+}
+
+//GESTION DES ENTREES
+//> relevé du temps du tour
 void Jeu::takeTurnTime(sf::Time turnTime)
 {
 	_turnTime = turnTime;
 }
 
-
-// gestion des inputs
+//> gestion des inputs
 void Jeu::inputs(bool * in)
 {
 	//mettre en priorité les inputs liés à l'interface, au menu ?
@@ -80,19 +103,21 @@ void Jeu::inputs(bool * in)
 	}
 }
 
+//relevé de la position de la souris
 void Jeu::setPosSouris(sf::Vector2i posSouris)
 {
 	_posSouris = posSouris;
 }
 
-
+//GESTION DU JEU
 void Jeu::gestion()
 {
 	gestionPersonnage();
-
-
+	
+	gestionPNJ();
 }
 
+//>Gestion du Personnage
 void Jeu::gestionPersonnage()
 {
 	if(_personnage.estActif())
@@ -161,7 +186,63 @@ void Jeu::gestionPersonnage()
 	}
 }
 
-void draw(sf::RenderWindow & window)
+//>Gestion des PNJ
+void Jeu::gestionPNJ()
 {
+	//Pour chaque PNJ:
+	//>Si en jeu
+	//>>Check données entrantes :
+	//>> Interactions, dégâts reçus, vie restante
+	//>> Voit personnage ?
+	//>>> Si oui: Distance == 1 ?
+	//>>Check état:
+	//>> Si 
+	
+	for(PNJ& pnj : _pnjs)
+	{
+		if(pnj.estEnJeu()) //pnj mort : false
+		{
+			if(pnj.estActif())
+			{	//action en cours
+				switch(pnj.getAction())
+				{
+					case 0 :{ //deplacement
+						pnj.move(_turnTime);
 
+						break;
+					}
+					case 1 :{ //attaque
+						//personnage.attaque(direction)
+						
+					}
+				}
+			}
+			else
+			{	//Peut démarrer une nouvelle action
+				
+			}
+		}
+	}
+}
+
+
+void Jeu::draw(sf::RenderWindow & window)
+{
+	//monde -> personnage & PNJ -> HUD
+	//>Monde
+	_monde.centrerSur(_personnage.getPosition());
+	_monde.draw(window);
+	
+	//>PNJ
+	for(PNJ pnj : _pnjs)
+	{
+		if(pnj.estEnJeu())
+			window.draw(pnj.getSprite());
+	}
+	
+	//>Personnage
+	window.draw(_personnage.getSprite());
+	
+	//>HUD
+	
 }

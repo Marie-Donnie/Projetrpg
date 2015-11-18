@@ -2,6 +2,8 @@
 #ifndef PNJ_HPP
 #define PNJ_HPP
 
+//Forward declared dependencies
+class Monde;
 class Personnage;
 
 //included dependencies
@@ -12,19 +14,26 @@ class Personnage;
 #include "Corps.hpp"
 
 
-
 using namespace std;
 
 class PNJ {
 private :
 	string _nom;
-  Corps _corps;
 	Stat _stats;
-  Equipement _equi;
-	//focus : ce que suit le PNJ -> rien, une entité, une position
-	//state : l'action en cours du PNJ <- PATERN STATE ! (Patern ou pattern ? Gggnnnh!)
+	Equipement _equi;
+	Corps _corps;
+	
+	int _state;	//state : l'action en cours du PNJ <- PATERN STATE ! (Patern ou pattern ? Gggnnnh!)
+	sf::Vector2i _destination;	//si _destinnation == _location : reste sur place
+	int _focus;	//-1: rien, 0: personnage, 1..n: pnj de 0 à n-1
+	
+	bool _enJeu; //un pnj pourrait pop ou depop
+	
 	bool _actif;
-
+	int _action;
+	int _direction;
+	sf::Time _tempsAction;
+  
 	sf::Vector2i _location;
 	sf::Vector2f _position;
 	sf::Texture _texture;
@@ -34,19 +43,26 @@ private :
 public :
 	PNJ(string nom); //Constructeur sans texture
 	PNJ(string nom, string texture); //Constructeur
-
+	
 	void afficher();
 
 	//getters
-  string getNom();
-  Stat& getStats();
-  Corps& getCorps();
-  Equipement& getEquipement();
+	string getNom();
+	Stat& getStats();
+	Corps& getCorps();
+	Equipement& getEquipement();
+	
 	sf::Vector2i getLocation();
 	sf::Vector2f getPosition();
 	sf::Texture& getTexture();
 	sf::Sprite& getSprite();
-
+	
+	bool estActif();
+	int getAction();
+	int getDirection();
+	
+	bool estImmobile();
+	
 	//setters
 	void setLocation(sf::Vector2i loc);
 	void setLocation(int x, int y);
@@ -55,19 +71,21 @@ public :
 	void setTexture(string texture);
 	void setSprite(int x, int y); //le sprite se sert dans la texture
 	void setSprite(); //sprite par défaut
-
+	
 	//Mouvements
-	void moveUp();
-	void moveDown();
-	void moveRight();
-	void moveLeft();
-
+	void move(int direction);
+	void move(sf::Time turnTime);
+  
 	//activité
-	bool isActif();
-	void setActivity(bool activity);
-	void switchActivity();
-
-  void defendre(Personnage& attaquant);
+	bool estEnJeu();
+	void setEnJeu(bool set);
+	
+	//vision
+	bool voitCase(sf::Vector2i loc, Monde & monde);
+	bool voitCase(int i, int j, Monde & monde);
+	
+	//combat
+	void defendre(Personnage& attaquant);
 };
 
 #endif //truc_HPP

@@ -14,6 +14,7 @@ class Case : public Entite {
 		int _occupant;
 		int _textX;
 		int _textY;
+		bool _transparent;
 		
 	public:
 		//constructeur
@@ -22,11 +23,13 @@ class Case : public Entite {
 		//getters
 		bool estAccessible();
 		int getOccupant();
+		bool estTransparent();
 		
 		sf::Vector2f getPosition();
 		
 		//setters
 		void setOccupant(int occ);
+		void setTransparent(bool t);
 		
 		void setPosition(sf::Vector2f pos);
 		void setPosition(float x, float y);

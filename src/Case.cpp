@@ -19,6 +19,10 @@ bool Case::estAccessible()
 {
 	return true;
 }
+bool Case::estTransparent()
+{
+	return _transparent;
+}
 
 int Case::getOccupant(){return _occupant;}
 
@@ -30,6 +34,9 @@ void Case::setOccupant(int occ){
 	_occupant = occ;
 }
 
+void Case::setTransparent(bool t){
+	_transparent = t;
+}
 
 void Case::setPosition(sf::Vector2f pos){Entite::_sprite.setPosition(pos);}
 void Case::setPosition(float x, float y){Entite::_sprite.setPosition(x,y);}

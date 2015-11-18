@@ -38,6 +38,8 @@ class Monde {
 		
 		void centrerSur(sf::Vector2f point);
 		void centrerSur(float x, float y);
+		
+		void draw(sf::RenderWindow & window);
 };
 
 #endif

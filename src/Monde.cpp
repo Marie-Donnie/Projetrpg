@@ -125,31 +125,31 @@ Monde::Monde(std::string fic)
 				}
 				case '=' :{ //1: hautmur
 					_map[i].setTexture(*_textures[1]);
-					_map[i].setHauteur(2);
+					_map[i].setHauteur(1);
 					
 					break;
 				}
 				case '|' :{ //2: hautmur2
 					_map[i].setTexture(*_textures[2]);
-					_map[i].setHauteur(2);
+					_map[i].setHauteur(1);
 					
 					break;
 				}
 				case '_' :{ //3: mur
 					_map[i].setTexture(*_textures[3]);
-					_map[i].setHauteur(2);
+					_map[i].setHauteur(1);
 					
 					break;
 				}
 				case 'F' :{ //4: murfenetre
 					_map[i].setTexture(*_textures[4]);
-					_map[i].setHauteur(2);
+					_map[i].setHauteur(1);
 					
 					break;
 				}
 				case ';' :{ //5: portehaut l'haut-porte sunniste
 					_map[i].setTexture(*_textures[5]);
-					_map[i].setHauteur(2); //tombe à 0 si porte ouverte
+					_map[i].setHauteur(1); //tombe à 0 si porte ouverte
 					
 					break;
 				}
@@ -196,13 +196,13 @@ Monde::Monde(std::string fic)
 				}
 				case '>' :{	//9: comd
 					_map[i].setTexture(*_textures[9]);
-					_map[i].setHauteur(2);
+					_map[i].setHauteur(1);
 					
 					break;
 				}
 				case '<' :{ //10: comg
 					_map[i].setTexture(*_textures[10]);
-					_map[i].setHauteur(2);
+					_map[i].setHauteur(1);
 					
 					break;
 				}
@@ -242,7 +242,6 @@ Monde::Monde(std::string fic)
 //getters
 bool Monde::estAccessible(int i, int j){return _map[i+(_y*j)].estAccessible();}
 int Monde::getOccupant(int i, int j){return _map[i+(_y*j)].getOccupant();}
-//int Monde::getObjet(int i, int j){return _map[i+(_y*j)].objet;}
 int Monde::getX(){return _x;}
 int Monde::getY(){return _y;}
 		
@@ -310,5 +309,13 @@ void Monde::centrerSur(float x, float y)
 		y2 = _map[i].getPosition().y;
 		
 		_map[i].setPosition(x2-x, y2-y);
+	}
+}
+
+void Monde::draw(sf::RenderWindow & window)
+{
+	for(int i=0; i<(_x*_y); ++i)
+	{
+		window.draw(_map[i].getSprite());
 	}
 }
