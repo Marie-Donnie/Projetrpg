@@ -20,84 +20,84 @@ Monde::Monde(std::string fic)
 	//chargement de toutes les textures
 	//>0: floor
 	sf::Texture * texture = new sf::Texture();
-	if(!texture->loadFromFile("data/sprites/floor2.ase")){
+	if(!texture->loadFromFile("data/sprites/floor2.png")){
 		std::cout << "Erreur lors du chargement de " << texture << std::endl;
 	}
 	_textures.push_back(texture);
 
 	//>1: hautmur
 	texture = new sf::Texture();
-	if(!texture->loadFromFile("data/sprites/hautmur.ase")){
+	if(!texture->loadFromFile("data/sprites/hautmur.png")){
 		std::cout << "Erreur lors du chargement de " << texture << std::endl;
 	}
 	_textures.push_back(texture);
 
 	//>2: hautmur2
 	texture = new sf::Texture();
-	if(!texture->loadFromFile("data/sprites/hautmur2.ase")){
+	if(!texture->loadFromFile("data/sprites/hautmur2.png")){
 		std::cout << "Erreur lors du chargement de " << texture << std::endl;
 	}
 	_textures.push_back(texture);
 
 	//>3: mur
 	texture = new sf::Texture();
-	if(!texture->loadFromFile("data/sprites/mur.ase")){
+	if(!texture->loadFromFile("data/sprites/mur.png")){
 		std::cout << "Erreur lors du chargement de " << texture << std::endl;
 	}
 	_textures.push_back(texture);
 
 	//>4: murfenetre
 	texture = new sf::Texture();
-	if(!texture->loadFromFile("data/sprites/murfenetre.ase")){
+	if(!texture->loadFromFile("data/sprites/murfenetre.png")){
 		std::cout << "Erreur lors du chargement de " << texture << std::endl;
 	}
 	_textures.push_back(texture);
 
 	//>5: portehaut
 	texture = new sf::Texture();
-	if(!texture->loadFromFile("data/sprites/portehaut.ase")){
+	if(!texture->loadFromFile("data/sprites/portehaut.png")){
 		std::cout << "Erreur lors du chargement de " << texture << std::endl;
 	}
 	_textures.push_back(texture);
 
 	//>6: armoire
 	texture = new sf::Texture();
-	if(!texture->loadFromFile("data/sprites/armoire.ase")){
+	if(!texture->loadFromFile("data/sprites/armoire.png")){
 		std::cout << "Erreur lors du chargement de " << texture << std::endl;
 	}
 	_textures.push_back(texture);
 
 	//>7: litd
 	texture = new sf::Texture();
-	if(!texture->loadFromFile("data/sprites/litd.ase")){
+	if(!texture->loadFromFile("data/sprites/litd.png")){
 		std::cout << "Erreur lors du chargement de " << texture << std::endl;
 	}
 	_textures.push_back(texture);
 
 	//>8: litg
 	texture = new sf::Texture();
-	if(!texture->loadFromFile("data/sprites/litg.ase")){
+	if(!texture->loadFromFile("data/sprites/litg.png")){
 		std::cout << "Erreur lors du chargement de " << texture << std::endl;
 	}
 	_textures.push_back(texture);
 
 	//>9: comd
 	texture = new sf::Texture();
-	if(!texture->loadFromFile("data/sprites/comd.ase")){
+	if(!texture->loadFromFile("data/sprites/comd.png")){
 		std::cout << "Erreur lors du chargement de " << texture << std::endl;
 	}
 	_textures.push_back(texture);
 
 	//>10: comg
 	texture = new sf::Texture();
-	if(!texture->loadFromFile("data/sprites/comg.ase")){
+	if(!texture->loadFromFile("data/sprites/comg.png")){
 		std::cout << "Erreur lors du chargement de " << texture << std::endl;
 	}
 	_textures.push_back(texture);
 
 	//>11: table
 	texture = new sf::Texture();
-	if(!texture->loadFromFile("data/sprites/table.ase")){
+	if(!texture->loadFromFile("data/sprites/table.png")){
 		std::cout << "Erreur lors du chargement de " << texture << std::endl;
 	}
 	_textures.push_back(texture);
