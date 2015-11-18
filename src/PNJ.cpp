@@ -17,26 +17,26 @@ using namespace std;
 //CONSTRUCTEUR
 PNJ::PNJ(string nom){
 	_nom = nom;
-    _equi = Equipement();
+        _equi = Equipement();
 	_stats = Stat();
-    _corps = Corps();
-	
+        _corps = Corps();
+
 	_actif = false;
 	_direction = 1;
 }
 
 PNJ::PNJ(string nom, string texture){
 	_nom = nom;
-    _equi = Equipement();
+        _equi = Equipement();
 	_stats = Stat();
-    _corps = Corps();
-	 
+        _corps = Corps();
+
     if(!_texture.loadFromFile(texture)){
 		std::cout << "Erreur lors du chargement de " << texture << std::endl;
 	}
-    
+
     _sprite.setTextureRect(sf::IntRect(0, 0, 16, 16));
-	
+
 	_actif = false; //revoir les attributs...
 	_direction = 1;
 }
@@ -159,26 +159,26 @@ bool PNJ::voitCase(int i, int j, Monde & monde)
 {
 	int dI = i - _location.x;
 	int dJ = j - _location.y;
-	
+
 	if( dI == 0 )
 	{ //ligne verticale
 		for( int k = 1 ; k < dJ ; ++k )
 		{
-			
+
 		}
 	}
 	else if ( dJ == 0 )
 	{ //ligne horizontale
 		for( int k = 1 ; k < dI ; ++k )
 		{
-			
+
 		}
 	}
 	else if ( (dI*dI) == (dJ*dJ) )
 	{ //diagonale
 		for( int k = 1 ; k < dI ; ++k )
 		{
-			
+
 		}
 	}
 	else if ( (dI*dI) > (dJ*dJ) )
@@ -186,17 +186,17 @@ bool PNJ::voitCase(int i, int j, Monde & monde)
 		double rapport = (double)(dJ) / (double)(dI);
 		double somme = 0;
 		double fraction;
-		
+
 		int lookI, lookJ;
-		
+
 		for( int k = 1 ; k < dI ; ++k )
 		{
 			lookI = _location.x + k;
-			
+
 			somme += rapport;
 			lookJ = _location.y + int(somme + 0.5); //
-			
-			
+
+
 		}
 	}
 	else
@@ -204,20 +204,20 @@ bool PNJ::voitCase(int i, int j, Monde & monde)
 		double rapport = (double)(dI) / (double)(dJ);
 		double somme = 0;
 		double fraction;
-		
+
 		int lookI, lookJ;
-		
+
 		for( int k = 1 ; k < dI ; ++k )
 		{
 			lookJ = _location.y + k;
-			
+
 			somme += rapport;
 			lookI = _location.x + int(somme + 0.5); //
-			
-			
+
+
 		}
 	}
-	
+
 	return true;
 }
 bool PNJ::voitCase(sf::Vector2i loc, Monde & monde)

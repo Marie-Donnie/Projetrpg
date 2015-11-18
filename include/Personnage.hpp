@@ -26,6 +26,8 @@
 #ifndef PERSONNAGE_HPP
 #define PERSONNAGE_HPP
 
+class PNJ;
+
 //included dependencies
 #include <string>
 #include <iostream>
@@ -124,7 +126,7 @@ public :
   //Autres méthodes
   void afficher();
   void defendre(Personnage& attaquant);
-  void attaquer(Personnage& defendant);
+  void attaquer(PNJ& defendant);
   void soin(int membre);
   void bandage(int membre);
 };

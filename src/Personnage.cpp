@@ -1,5 +1,7 @@
-#include "Membre.hpp"
 #include "Personnage.hpp"
+#include "PNJ.hpp"
+#include "Membre.hpp"
+
 
 
 using namespace std;
@@ -199,7 +201,7 @@ void Personnage::defendre(Personnage& attaquant){
   //cout << &_corps;
   cout << "rand def " << def << endl;
   //Si échec critique
-  if (def < 100){
+  if (def < 4){
     //On cherche le membre touché
     int r = (rand() %6);
     cout << "rand membre " << r << endl;
@@ -321,7 +323,7 @@ void Personnage::defendre(Personnage& attaquant){
   //Si le jet de défense est réussi, rien ne se passe
 }//Fin de defendre(Personnage attaquant)
 
-void Personnage::attaquer(Personnage& defendant){
+void Personnage::attaquer(PNJ& defendant){
   defendant.defendre(*this);
 }
 
