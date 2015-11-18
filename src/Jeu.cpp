@@ -18,24 +18,24 @@ Jeu::Jeu(std::string fic) : _monde(fic)
 //>Personnage
 void Jeu::creerPersonnage(int x, int y)
 {
-	std::string texture = "./data/sprites/homme.ase";
-	
+	std::string texture = "data/sprites/homme.png";
+
 	_personnage = Personnage();
-	
-	if(_personnage.getSexe()%2 == 0)
-		_personnage.setTexture("./data/sprites/homme.ase");
+
+	if(_personnage.getSexe() == 0)
+		_personnage.setTexture("data/sprites/homme.png");
 	else
-		_personnage.setTexture("./data/sprites/femme.ase");
-	
+		_personnage.setTexture("data/sprites/femme.png");
+
 	_personnage.setSprite();
-	
+
 	_personnage.setLocation(x,y);
 	_personnage.setPosition(16*x,16*y);
 }
 //>PNJ
 void Jeu::creerPNJ()
 {
-	
+
 }
 
 //GESTION DES ENTREES
@@ -113,7 +113,7 @@ void Jeu::setPosSouris(sf::Vector2i posSouris)
 void Jeu::gestion()
 {
 	gestionPersonnage();
-	
+
 	gestionPNJ();
 }
 
@@ -196,8 +196,8 @@ void Jeu::gestionPNJ()
 	//>> Voit personnage ?
 	//>>> Si oui: Distance == 1 ?
 	//>>Check état:
-	//>> Si 
-	
+	//>> Si
+
 	for(PNJ& pnj : _pnjs)
 	{
 		if(pnj.estEnJeu()) //pnj mort : false
@@ -213,13 +213,13 @@ void Jeu::gestionPNJ()
 					}
 					case 1 :{ //attaque
 						//personnage.attaque(direction)
-						
+
 					}
 				}
 			}
 			else
 			{	//Peut démarrer une nouvelle action
-				
+
 			}
 		}
 	}
@@ -232,17 +232,17 @@ void Jeu::draw(sf::RenderWindow & window)
 	//>Monde
 	_monde.centrerSur(_personnage.getPosition());
 	_monde.draw(window);
-	
+
 	//>PNJ
 	for(PNJ pnj : _pnjs)
 	{
 		if(pnj.estEnJeu())
 			window.draw(pnj.getSprite());
 	}
-	
+
 	//>Personnage
 	window.draw(_personnage.getSprite());
-	
+
 	//>HUD
-	
+
 }
