@@ -56,47 +56,47 @@ void Jeu::inputs(bool * in)
 	{	//choisir les priorités : deplacement - attaque - interaction
 		if(in[0])
 		{ //haut
-			int x = _personnage.getPosX();
-			int y1 = _personnage.getPosY();
-			int y2 = _personnage.getPosY() - 1;
-			//if( (y2 >= 0) and (_monde.estAccessible(x,y2)) and (_monde.getOccupant(x,y2)==-1) )
-			//{
+			int x = _personnage.getLocX();
+			int y1 = _personnage.getLocY();
+			int y2 = _personnage.getLocY() - 1;
+			if( (y2 >= 0) and (_monde.estAccessible(x,y2)) and (_monde.getOccupant(x,y2)==-1) )
+			{
 				_personnage.move(0);
-			//	_monde.moveOccupant(x, y1, x, y2);
-			//}
+				_monde.moveOccupant(x, y1, x, y2);
+			}
 		}
 		else if(in[1])
 		{ //bas
-			int x = _personnage.getPosX();
-			int y1 = _personnage.getPosY();
-			int y2 = _personnage.getPosY() + 1;
-			//if( (y2 < _monde.getY()) and (_monde.estAccessible(x,y2)) and (_monde.getOccupant(x,y2)==-1) )
-			//{
+			int x = _personnage.getLocX();
+			int y1 = _personnage.getLocY();
+			int y2 = _personnage.getLocY() + 1;
+			if( (y2 < _monde.getY()) and (_monde.estAccessible(x,y2)) and (_monde.getOccupant(x,y2)==-1) )
+			{
 				_personnage.move(1);
-			//	_monde.moveOccupant(x, y1, x, y2);
-			//}
+				_monde.moveOccupant(x, y1, x, y2);
+			}
 		}
 		else if(in[2])
 		{ //gauche
-			int x1 = _personnage.getPosX();
-			int x2 = _personnage.getPosX() - 1;
-			int y = _personnage.getPosY();
-			//if( (x2 >= 0) and (_monde.estAccessible(x2,y)) and (_monde.getOccupant(x2,y)==-1) )
-			//{
+			int x1 = _personnage.getLocX();
+			int x2 = _personnage.getLocX() - 1;
+			int y = _personnage.getLocY();
+			if( (x2 >= 0) and (_monde.estAccessible(x2,y)) and (_monde.getOccupant(x2,y)==-1) )
+			{
 				_personnage.move(2);
-			//	_monde.moveOccupant(x1, y, x2, y);
-			//}
+				_monde.moveOccupant(x1, y, x2, y);
+			}
 		}
 		else if(in[3])
 		{ //droite
-			int x1 = _personnage.getPosX();
-			int x2 = _personnage.getPosX() + 1;
-			int y = _personnage.getPosY();
-			//if( (x2 < _monde.getX()) and (_monde.estAccessible(x2,y)) and (_monde.getOccupant(x2,y)==-1) )
-			//{
+			int x1 = _personnage.getLocX();
+			int x2 = _personnage.getLocX() + 1;
+			int y = _personnage.getLocY();
+			if( (x2 < _monde.getX()) and (_monde.estAccessible(x2,y)) and (_monde.getOccupant(x2,y)==-1) )
+			{
 				_personnage.move(3);
-			//	_monde.moveOccupant(x1, y, x2, y);
-			//}
+				_monde.moveOccupant(x1, y, x2, y);
+			}
 		}
 		else if(false)
 		{

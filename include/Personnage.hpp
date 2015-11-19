@@ -85,8 +85,8 @@ public :
   Equipement& getEquipement();
 
   sf::Vector2i getLocation();
-  int getLocalX();
-  int getLocalY();
+  int getLocX();
+  int getLocY();
   sf::Vector2f getPosition();
   float getPosX();
   float getPosY();
