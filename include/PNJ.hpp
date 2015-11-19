@@ -69,7 +69,7 @@ public :
 	void setPosition(sf::Vector2f pos);
 	void setPosition(float x, float y);
 	void setTexture(string texture);
-	void setSprite(int x, int y); //le sprite se sert dans la texture
+	void setSprite(int x, int y);  //à actualiser !
 	void setSprite(); //sprite par défaut
 	
 	//Mouvements

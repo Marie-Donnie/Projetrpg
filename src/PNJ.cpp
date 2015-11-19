@@ -85,10 +85,10 @@ void PNJ::setTexture(string texture)
 		std::cout << "Erreur lors du chargement de " << texture << std::endl;
 	}
 }
-void PNJ::setSprite(int x, int y)
+void PNJ::setSprite(int x, int y) //à actualiser !
 {
 	_sprite.setTexture(_texture);
-    _sprite.setTextureRect(sf::IntRect(x, y, x+16, y+16));
+    _sprite.setTextureRect(sf::IntRect(x*16, y*16, 16, 16));
 }
 void PNJ::setSprite()
 {

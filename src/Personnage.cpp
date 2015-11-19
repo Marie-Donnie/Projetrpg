@@ -25,8 +25,9 @@ Personnage::Personnage(string nom, int sexe, int age, double taille, double poid
 		std::cout << "Erreur lors du chargement de " << texture << std::endl;
 	}
 
+    _sprite.setPosition(504,376); //le centre de l'écran est : (512,384)
     _sprite.setTexture(_texture);
-    _sprite.setTextureRect(sf::IntRect(0, 0, 16, 16));
+    _sprite.setTextureRect(sf::IntRect(16, 0, 16, 16));
 }
 
 /*-----Constructeur partiel-----*/
@@ -42,6 +43,7 @@ Personnage::Personnage(string nom, int sexe, int age, double taille, double poid
     _inventaire = Inventaire();
     _equipement = Equipement();
     _deuxmains = true;
+    _sprite.setPosition(504,376); //le centre de l'écran est : (512,384)
 }
 
 /*-----Constructeur par défaut-----*/
@@ -59,6 +61,7 @@ Personnage::Personnage(){
   _inventaire = Inventaire();
   _equipement = Equipement("du sanatorium");
   _deuxmains = true;
+  _sprite.setPosition(504,376); //le centre de l'écran est : (512,384)
 }
 
 
@@ -119,16 +122,16 @@ void Personnage::setTexture(string texture)
 	if(!_texture.loadFromFile(texture)){
 		std::cout << "Erreur lors du chargement de " << texture << std::endl;
 	}
+	_sprite.setTexture(_texture);
+	setSprite();
 }
 void Personnage::setSprite(int d) //direction haut, bas, gauche, droite
 {
-	_sprite.setTexture(_texture);
-    _sprite.setTextureRect(sf::IntRect((d*16), 0, 16+(d*16), 16));
+	_sprite.setTextureRect(sf::IntRect((d*16), 0, 16, 16));
 }
 void Personnage::setSprite()
 {
-	_sprite.setTexture(_texture);
-    _sprite.setTextureRect(sf::IntRect(16, 0, 32, 16)); //pour avoir celui de face
+	_sprite.setTextureRect(sf::IntRect(16, 0, 16, 16)); //pour avoir celui de face
 }
 void Personnage::setDirection(int d)
 {

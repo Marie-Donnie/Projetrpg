@@ -160,12 +160,12 @@ void Jeu::gestionPersonnage()
 		if(x2 > y2)
 		{
 			if(sourisX < 0)
-			{
+			{	//gauche
 				_personnage.setDirection(2);
 				_personnage.setSprite(2);
 			}
 			else
-			{
+			{	//droite
 				_personnage.setDirection(3);
 				_personnage.setSprite(3);
 			}
@@ -173,12 +173,12 @@ void Jeu::gestionPersonnage()
 		else
 		{
 			if(sourisY < 0)
-			{
+			{	//haut
 				_personnage.setDirection(0);
 				_personnage.setSprite(0);
 			}
 			else
-			{
+			{	//bas
 				_personnage.setDirection(1);
 				_personnage.setSprite(1);
 			}

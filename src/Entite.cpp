@@ -27,10 +27,13 @@ sf::Sprite& Entite::getSprite(){return _sprite;}
 
 //setters
 void Entite::setHauteur(int h){_hauteur = h;}
-void Entite::setTexture(sf::Texture & t){_texture = t;}
+void Entite::setTexture(sf::Texture & t){
+	_texture = t;
+	_sprite.setTexture(_texture);
+}
 
 //choix de la zone de texture que prend le sprite
 void Entite::setSprite(int i, int j)
 {
-	_sprite.setTextureRect(sf::IntRect(16*i, 16*j, 16+(16*i), 16+(16*j)));
+	_sprite.setTextureRect(sf::IntRect(16*i, 16*j, 16, 16));
 }
