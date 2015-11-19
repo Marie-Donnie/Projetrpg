@@ -31,6 +31,8 @@ void Jeu::creerPersonnage(int x, int y)
 
 	_personnage.setLocation(x,y);
 	_personnage.setPosition(16*x,16*y);
+	
+	_monde.setOccupant(x,y,0); //occupant 0 : Personnage
 }
 //>PNJ
 void Jeu::creerPNJ()

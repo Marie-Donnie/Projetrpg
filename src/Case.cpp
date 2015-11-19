@@ -17,7 +17,7 @@ Case::Case(){}
 //getters
 bool Case::estAccessible()
 {
-	return true;
+	return (_hauteur == 0) and (_occupant == -1);
 }
 bool Case::estTransparent()
 {
