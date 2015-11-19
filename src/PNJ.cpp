@@ -157,7 +157,7 @@ void PNJ::setEnJeu(bool set)
 //vision
 bool PNJ::voitCase(int i, int j, Monde & monde)
 {
-	int dI = i - _location.x;
+	/*int dI = i - _location.x;
 	int dJ = j - _location.y;
 
 	if( dI == 0 )
@@ -216,7 +216,7 @@ bool PNJ::voitCase(int i, int j, Monde & monde)
 
 
 		}
-	}
+	}*/
 
 	return true;
 }

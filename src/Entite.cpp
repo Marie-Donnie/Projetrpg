@@ -30,6 +30,7 @@ void Entite::setHauteur(int h){_hauteur = h;}
 void Entite::setTexture(sf::Texture & t){
 	_texture = t;
 	_sprite.setTexture(_texture);
+	_sprite.setTextureRect(sf::IntRect(0, 0, 16, 16));
 }
 
 //choix de la zone de texture que prend le sprite
