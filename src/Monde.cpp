@@ -59,7 +59,7 @@ Monde::Monde(std::string fic)
 		std::cout << "Erreur lors du chargement de " << texture << std::endl;
 	}
 	_textures.push_back(texture);
-	
+
 	//>6: armoire
 	texture = new sf::Texture();
 	if(!texture->loadFromFile("data/sprites/armoire.png")){
@@ -110,59 +110,58 @@ Monde::Monde(std::string fic)
 		char c;
 		int i = 0;
 
-		while( !fichier.eof() )
-        {
+		while( !fichier.eof() ) {
 			fichier.get(c);
 
-			if( (c != '\n' ){
+			if (c != '\n' ){
 				switch(c)
 				{
 					case ' ' :{break;}
 					case 'X' :{ //0: floor2
 						_map[i].setTexture(*_textures[0]);
 						_map[i].setHauteur(0);
-						
+
 						break;
 					}
 					case '=' :{ //1: hautmur
 						_map[i].setTexture(*_textures[1]);
 						_map[i].setHauteur(1);
-						
+
 						break;
 					}
 					case '|' :{ //2: hautmur2
 						_map[i].setTexture(*_textures[2]);
 						_map[i].setHauteur(1);
-						
+
 						break;
 					}
 					case '_' :{ //3: mur
 						_map[i].setTexture(*_textures[3]);
 						_map[i].setHauteur(1);
-						
+
 						break;
 					}
 					case 'F' :{ //4: murfenetre
 						_map[i].setTexture(*_textures[4]);
 						_map[i].setHauteur(1);
-						
+
 						break;
 					}
 					case ';' :{ //5: portehaut l'haut-porte sunniste
 						_map[i].setTexture(*_textures[5]);
 						_map[i].setHauteur(1); //tombe à 0 si porte ouverte
-						
+
 						break;
 					}
 					case 'P' :{ //porte ?
 						_map[i].setTexture(*_textures[7]); //sprite provisoire de mêmes dimensions
 						_map[i].setHauteur(1);
-						
+
 						_map[i+1].setTexture(*_textures[7]);
 						_map[i+1].setHauteur(1);
 						_map[i + 1].setSprite(1,0);
-						
-						
+
+
 						break;
 					}
 					case 'A' :{ //6: armoire, 2x2
@@ -170,11 +169,11 @@ Monde::Monde(std::string fic)
 							for(int b=0; b<2; ++b){
 								_map[i + a + (_x*b)].setTexture(*_textures[6]);
 								_map[i + a + (_x*b)].setHauteur(1);
-								
+
 								_map[i + a + (_x*b)].setSprite(a,b);
 							}
 						}
-						
+
 						break;
 					}
 					case '+' :{ //6: armoire spéciale
@@ -182,66 +181,66 @@ Monde::Monde(std::string fic)
 							for(int b=0; b<2; ++b){
 								_map[i + a + (_x*b)].setTexture(*_textures[6]);
 								_map[i + a + (_x*b)].setHauteur(1);
-								
+
 								_map[i + a + (_x*b)].setSprite(a,b);
 							}
 						}
-						
+
 						break;
 					}
 					case 'D' :{ //la réponde D, 2x1
 						_map[i].setTexture(*_textures[7]);
 						_map[i].setHauteur(1);
-						
+
 						_map[i+1].setTexture(*_textures[7]);
 						_map[i+1].setHauteur(1);
 						_map[i + 1].setSprite(1,0);
-						
+
 						break;	//euh... non, en fait c'était 7: litd. 'Fin, tu vois l'idée...
 					}
 					case 'G' :{	//8: litg, 2x1
 						_map[i].setTexture(*_textures[8]);
 						_map[i].setHauteur(1);
-						
+
 						_map[i+1].setTexture(*_textures[8]);
 						_map[i+1].setHauteur(1);
 						_map[i + 1].setSprite(1,0);
-						
+
 						break;
 					}
 					case '>' :{	//9: comd
 						_map[i].setTexture(*_textures[9]);
 						_map[i].setHauteur(1);
-						
+
 						break;
 					}
 					case '<' :{ //10: comg
 						_map[i].setTexture(*_textures[10]);
 						_map[i].setHauteur(1);
-						
+
 						break;
 					}
 					case 'T' :{ //11: table pleine de sang dégueulasse, 6x3
 						_map[i].setTexture(*_textures[11]);
 						_map[i].setHauteur(1);
-						
+
 						for(int a=0; a<6; ++a){
 							for(int b=0; b<3; ++b){
 								_map[i + a + (_x*b)].setTexture(*_textures[11]);
 								_map[i + a + (_x*b)].setHauteur(2);
-								
+
 								_map[i + a + (_x*b)].setSprite(a,b);
 							}
 						}
-						
+
 						break;
 					}
 					case 'J' :{ //jardin je suppose, 27x14 le bourrin
-						
+
 						break;
 					}
 				}
-				
+
 				++i;
 			}
 		}
@@ -313,7 +312,7 @@ void Monde::centrerSur(float x, float y)
 	{
 		x2 = _map[i].getPosition().x;
 		y2 = _map[i].getPosition().y;
-		
+
 		_map[i].setPosition(x2-x + 504, y2-y + 386);
 	}
 }
