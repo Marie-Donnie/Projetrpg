@@ -19,7 +19,7 @@ Personnage::Personnage(string nom, int sexe, int age, double taille, double poid
     _inventaire = inventaire;
     _equipement = equipement;
     _deuxmains = true;
-    _actif = false; //sauf s'il effectuait une action lors de l'éventuelle sauvegarde ?
+    _actif = false;
 
     if(!_texture.loadFromFile(texture)){
 		std::cout << "Erreur lors du chargement de " << texture << std::endl;
@@ -43,6 +43,7 @@ Personnage::Personnage(string nom, int sexe, int age, double taille, double poid
     _inventaire = Inventaire();
     _equipement = Equipement();
     _deuxmains = true;
+    _actif = false;
     _sprite.setPosition(504,376); //le centre de l'écran est : (512,384)
 }
 
@@ -61,6 +62,7 @@ Personnage::Personnage(){
   _inventaire = Inventaire();
   _equipement = Equipement("du sanatorium");
   _deuxmains = true;
+    _actif = false;
   _sprite.setPosition(504,376); //le centre de l'écran est : (512,384)
 }
 
