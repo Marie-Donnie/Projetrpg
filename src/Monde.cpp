@@ -263,6 +263,8 @@ Monde::Monde(std::string fic)
 					}
 				}
 				
+				_map[i].setOccupant(-1);
+				
 				++i;
 			}
 		}
