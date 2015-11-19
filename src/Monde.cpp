@@ -108,6 +108,13 @@ Monde::Monde(std::string fic)
 		std::cout << "Erreur lors du chargement de " << texture << std::endl;
 	}
 	_textures.push_back(texture);
+	
+	//>13: jardin
+	texture = new sf::Texture();
+	if(!texture->loadFromFile("data/sprites/jardin.png")){
+		std::cout << "Erreur lors du chargement de " << texture << std::endl;
+	}
+	_textures.push_back(texture);
 
 	//Lecture de map.txt, construction de la _map
 	std::ifstream fichier(fic, std::ios::in);
@@ -243,17 +250,15 @@ Monde::Monde(std::string fic)
 						
 						break;
 					}
-					case 'J' :{ //jardin je suppose, 27x14 le bourrin
+					case 'J' :{ //jardin tout joli
 						
 						for(int a=0; a<27; ++a){
 							for(int b=0; b<14; ++b){
-								_map[i + a + (_x*b)].setTexture(*_textures[0]); //c'provisoire
+								_map[i + a + (_x*b)].setTexture(*_textures[13]);
 								
 								_map[i + a + (_x*b)].setHauteur(1);
 							}
 						}
-						
-						break;
 					}
 				}
 				
@@ -323,11 +328,15 @@ void Monde::centrerSur(sf::Vector2f point)
 }
 void Monde::centrerSur(float x, float y)
 {
-	float x2, y2;
+	float x2, y2;	//coordonnées des cases du décor
+	int i2,j2;		//indices des cases du décor
 	for(int i=0 ; i<(_x*_y) ; ++i)
 	{
-		x2 = _map[i].getPosition().x;
-		y2 = _map[i].getPosition().y;
+		i2 = i%_x;
+		j2 = i/_x;
+		
+		x2 = i2*16;
+		y2 = j2*16;
 		
 		_map[i].setPosition(x2-x + 504, y2-y + 386);
 	}
