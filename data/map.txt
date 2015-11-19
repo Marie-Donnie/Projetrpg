@@ -6,7 +6,7 @@
 |___A |XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX|XXXXXXXXXX|
 |D X  |XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX|XXXXXXXXXX|
 |XXXXX|XXXXX============================|D XXXXXXG |
-|XXXXX;XXXXX|___________________________|XXXXXXXXXX|
+|XXXXX;XXXXX|______F_____________F______|XXXXXXXXXX|
 |___A |XXXXX|J                          |D XXXXXXG |
 |D X  |XXXXX|                           |XXXXXXXXXX|
 |XXXXX|XXXXX|                           |D XXXXXXG |
@@ -22,7 +22,7 @@
 |___A |XXXXX|                           |D XXXXXXG |
 |D X  |XXXXX|                           |XXXXXXXXXX|
 |XXXXX|XXXXX============================|XXXXXXXXG |
-|XXXXX;XXXXX____________|_______________|>XXXXXXXXX|
+|XXXXX;XXXXX______F_____|____P ___F_____|>XXXXXXXXX|
 |A A _|XXXXXXXXXXXXXXXXX|D XXXXXXXXXXXX<|XXXXXXXXG |
 |    X|XXXXXT     XXXXXX|XXXXXXXXXXXXXXX_XXXXXXXXXX|
 |XXXXX|XXXXX      XXXXXX_XXXXXXXXXXXXXXXXXXXXXXXXG |
