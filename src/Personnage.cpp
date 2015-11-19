@@ -164,7 +164,7 @@ void Personnage::move(int direction)
 void Personnage::move(sf::Time turnTime)
 {
 	_tempsAction += turnTime;
-	sf::Time duree = sf::seconds(0.33);
+	sf::Time duree = sf::seconds(2.0);
 
 	if(_tempsAction >= duree)
 	{
