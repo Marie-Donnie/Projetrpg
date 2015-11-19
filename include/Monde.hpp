@@ -29,10 +29,8 @@ class Monde {
 		
 		//setters
 		void setOccupant(int x, int y, int occ);
-		void setObjet(int x, int y, int obj);
 		
 		void moveOccupant(int x, int y, int x2, int y2);
-		void moveObjet(int x, int y, int x2, int y2);
 		
 		//void setSprite(int x, int y, int textX, int textY);
 		

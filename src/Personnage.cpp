@@ -81,8 +81,8 @@ Inventaire& Personnage::getInventaire(){return _inventaire;}
 Equipement& Personnage::getEquipement(){return _equipement;}
 
 sf::Vector2i Personnage::getLocation(){return _location;}
-int Personnage::getLocalX(){return _location.x;}
-int Personnage::getLocalY(){return _location.y;}
+int Personnage::getLocX(){return _location.x;}
+int Personnage::getLocY(){return _location.y;}
 
 sf::Vector2f Personnage::getPosition(){return _position;}
 float Personnage::getPosX(){return _position.x;}
@@ -164,19 +164,19 @@ void Personnage::move(int direction)
 void Personnage::move(sf::Time turnTime)
 {
 	_tempsAction += turnTime;
-	sf::Time duree = sf::seconds(1.5);
+	sf::Time duree = sf::seconds(0.33);
 
 	if(_tempsAction < duree)
 	{
 		float rapport = _tempsAction.asSeconds() / duree.asSeconds();
 		if(_direction==0)
-			_position.y = (float)(_location.y * 16) + (16*rapport);
+			_position.y = (float)(_location.y * 16) + 16 - (16*rapport);
 		else if(_direction==1)
-			_position.y = (float)(_location.y * 16) - (16*rapport);
+			_position.y = (float)(_location.y * 16) - 16 + (16*rapport);
 		else if(_direction==2)
-			_position.x = (float)(_location.x * 16) + (16*rapport);
+			_position.x = (float)(_location.x * 16) + 16 - (16*rapport);
 		else if(_direction==3)
-			_position.x = (float)(_location.x * 16) - (16*rapport);
+			_position.x = (float)(_location.x * 16) - 16 + (16*rapport);
 
 	}
 	else

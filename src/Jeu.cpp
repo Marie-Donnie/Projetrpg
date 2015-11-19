@@ -59,7 +59,7 @@ void Jeu::inputs(bool * in)
 			int x = _personnage.getLocX();
 			int y1 = _personnage.getLocY();
 			int y2 = _personnage.getLocY() - 1;
-			if( (y2 >= 0) and (_monde.estAccessible(x,y2)) and (_monde.getOccupant(x,y2)==-1) )
+			if( (y2 >= 0) and (_monde.estAccessible(x,y2)) )
 			{
 				_personnage.move(0);
 				_monde.moveOccupant(x, y1, x, y2);
@@ -70,7 +70,7 @@ void Jeu::inputs(bool * in)
 			int x = _personnage.getLocX();
 			int y1 = _personnage.getLocY();
 			int y2 = _personnage.getLocY() + 1;
-			if( (y2 < _monde.getY()) and (_monde.estAccessible(x,y2)) and (_monde.getOccupant(x,y2)==-1) )
+			if( (y2 < _monde.getY()) and (_monde.estAccessible(x,y2)) )
 			{
 				_personnage.move(1);
 				_monde.moveOccupant(x, y1, x, y2);
@@ -81,7 +81,7 @@ void Jeu::inputs(bool * in)
 			int x1 = _personnage.getLocX();
 			int x2 = _personnage.getLocX() - 1;
 			int y = _personnage.getLocY();
-			if( (x2 >= 0) and (_monde.estAccessible(x2,y)) and (_monde.getOccupant(x2,y)==-1) )
+			if( (x2 >= 0) and (_monde.estAccessible(x2,y)) )
 			{
 				_personnage.move(2);
 				_monde.moveOccupant(x1, y, x2, y);
@@ -92,7 +92,7 @@ void Jeu::inputs(bool * in)
 			int x1 = _personnage.getLocX();
 			int x2 = _personnage.getLocX() + 1;
 			int y = _personnage.getLocY();
-			if( (x2 < _monde.getX()) and (_monde.estAccessible(x2,y)) and (_monde.getOccupant(x2,y)==-1) )
+			if( (x2 < _monde.getX()) and (_monde.estAccessible(x2,y)) )
 			{
 				_personnage.move(3);
 				_monde.moveOccupant(x1, y, x2, y);
@@ -101,6 +101,43 @@ void Jeu::inputs(bool * in)
 		else if(false)
 		{
 
+		}
+		
+		if(in[0] or in[1] or in[2] or in[3])
+		{	//provisoire, juste pour que ça soit plus sympa
+			//changer la direction et le sprite du personnage selon l'endroit de la souris
+			int sourisX = _posSouris.x - 512;
+			int sourisY = _posSouris.y - 384;
+
+			int x2 = sourisX*sourisX;
+			int y2 = sourisY*sourisY;
+
+			if(x2 > y2)
+			{
+				if(sourisX < 0)
+				{	//gauche
+					_personnage.setDirection(2);
+					_personnage.setSprite(2);
+				}
+				else
+				{	//droite
+					_personnage.setDirection(3);
+					_personnage.setSprite(3);
+				}
+			}
+			else
+			{
+				if(sourisY < 0)
+				{	//haut
+					_personnage.setDirection(0);
+					_personnage.setSprite(0);
+				}
+				else
+				{	//bas
+					_personnage.setDirection(1);
+					_personnage.setSprite(1);
+				}
+			}
 		}
 	}
 }

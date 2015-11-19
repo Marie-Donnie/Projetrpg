@@ -255,8 +255,9 @@ Monde::Monde(std::string fic)
 						for(int a=0; a<27; ++a){
 							for(int b=0; b<14; ++b){
 								_map[i + a + (_x*b)].setTexture(*_textures[13]);
-								
 								_map[i + a + (_x*b)].setHauteur(1);
+								
+								_map[i + a + (_x*b)].setSprite(a,b);
 							}
 						}
 					}
@@ -276,50 +277,33 @@ Monde::Monde(std::string fic)
 
 
 //getters
-bool Monde::estAccessible(int i, int j){return _map[i+(_y*j)].estAccessible();}
-int Monde::getOccupant(int i, int j){return _map[i+(_y*j)].getOccupant();}
+bool Monde::estAccessible(int i, int j){return _map[i+(_x*j)].estAccessible();}
+int Monde::getOccupant(int i, int j){return _map[i+(_x*j)].getOccupant();}
 int Monde::getX(){return _x;}
 int Monde::getY(){return _y;}
 
-//setters
-/*void Monde::setAccess(int i, int j, bool access){
-	_map[i+(_y*j)].accessibilite = access;
-}
-void Monde::switchAccess(int i, int j){
-	_map[i+(_y*j)].accessibilite = !(_map[i+(_y*j)].accessibilite);
-}*/
 
 void Monde::setOccupant(int i, int j, int occ){
-	_map[i+(_y*j)].setOccupant(occ);
-}
-void Monde::setObjet(int i, int j, int obj){
-	//_map[i+(_y*j)].objet = obj;
+	_map[i+(_x*j)].setOccupant(occ);
 }
 
 void Monde::moveOccupant(int x, int y, int x2, int y2)
 {
-	bool encadrement = (x >= 0) && (x < _x) && (y >= 0) && (y < _y);
-	bool encadrement2 = (x2 >= 0) && (x2 < _x) && (y2 >= 0) && (y2 < _y);
-	bool occupant = (_map[x+(_y*y)].getOccupant() != -1);
-	bool libre = (_map[x2+(_y*y2)].getOccupant() == -1);
-
-	if( encadrement && encadrement2 && occupant && libre )
+	bool encadrement = (x >= 0) and (x < _x) and (y >= 0) and (y < _y);
+	bool encadrement2 = (x2 >= 0) and (x2 < _x) and (y2 >= 0) and (y2 < _y);
+	
+	if(encadrement and encadrement2)
 	{
-		_map[x2+(_y*y2)].setOccupant( _map[x+(_y*y)].getOccupant() );
-		_map[x+(_y*y)].setOccupant(-1);
+		bool occupant = (_map[x+(_x*y)].getOccupant() != -1);
+		bool libre = (_map[x2+(_x*y2)].getOccupant() == -1);
+
+		if( occupant and libre )
+		{
+			_map[x2+(_x*y2)].setOccupant( _map[x+(_x*y)].getOccupant() );
+			_map[x+(_x*y)].setOccupant(-1);
+		}
 	}
 }
-void Monde::moveObjet(int x, int y, int x2, int y2)
-{
-
-}
-/* NOTE:
- * Les mobiliers de plus d'une case lanceront autant de fois cette méthode qu'il le faudra
- */
-
-/*void Monde::setSprite(int i, int j, int textX, int textY){
-	_map[i + j*_y].setTexture(...
-}*/
 
 // centrer le tableau de vertex sur un point
 void Monde::centrerSur(sf::Vector2f point)
