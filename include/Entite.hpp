@@ -10,25 +10,54 @@
 
 class Entite {
 	protected:
-		sf::Sprite _sprite;
+		sf::Vector2i _location;
+		sf::Vector2f _position;
 		sf::Texture _texture;
-		int _hauteur;
+		sf::Sprite _sprite;
+
+		bool _actif;
+		int _action; //0:deplacement, 1:attaqueG, 2:attaqueD, 3:magie, 4:interaction
+		int _direction; //0:haut, 1:bas, 2:gauche, 3:droite
+		sf::Time _tempsAction; //une fois un seuil dépacé, l'action prend fin
 		
 	public:
+		//Constructeur
 		Entite();
-		Entite(sf::Texture & texture);
+		Entite(std::string texture);
 		
-		//getters
-		int getHauteur();
+		//Getters
+		sf::Vector2i getLocation();
+		int getLocX();
+		int getLocY();
+		sf::Vector2f getPosition();
+		float getPosX();
+		float getPosY();
 		sf::Texture& getTexture();
 		sf::Sprite& getSprite();
 		
-		//setters
-		void setHauteur(int h);
-		void setTexture(sf::Texture & t);
+		bool estActif();
+		int getAction();
+		int getDirection();
 		
+		bool estImmobile();
 		
-		void setSprite(int i, int j);
+		//Setters
+		void setLocation(sf::Vector2i loc);
+		void setLocation(int x, int y);
+		void setPosition(sf::Vector2f pos);
+		void setPosition(float x, float y);
+		void setTexture(std::string texture); //charge directement un fichier png
+		void setSprite(int direction); //0:haut, 1:bas, 2:gauche, 3:droite
+		void setSprite(); //sprite par défaut
+		
+		void setDirection(int d);
+	
+		//Mouvements
+		//>Mises en mouvement
+		void move(int direction);
+		//>Mouvement en cours
+		void move(sf::Time turnTime);
+		
 };
 
 #endif

@@ -39,10 +39,11 @@ class PNJ;
 #include "SFML/Graphics.hpp"
 #include "SFML/Window.hpp"
 #include "Observer.hpp"
+#include "Entite.hpp"
 
 using namespace std;
 
-class Personnage : public Observer {
+class Personnage : public Observer, public Entite {
 private :
   string _nom;
   int _sexe;
@@ -55,16 +56,6 @@ private :
   Inventaire _inventaire;
   Equipement _equipement;
   bool _deuxmains;
-
-  sf::Vector2i _location;
-  sf::Vector2f _position;
-  sf::Texture _texture;
-  sf::Sprite _sprite;
-
-  bool _actif;
-  int _action; //0:deplacement, 1:attaqueG, 2:attaqueD, 3:magie, 4:interaction
-  int _direction; //0:haut, 1:bas, 2:gauche, 3:droite
-  sf::Time _tempsAction; //une fois un seuil dépacé, l'action prend fin
 
 public :
   //Constructeurs
@@ -84,21 +75,6 @@ public :
   Inventaire& getInventaire();
   Equipement& getEquipement();
 
-  sf::Vector2i getLocation();
-  int getLocX();
-  int getLocY();
-  sf::Vector2f getPosition();
-  float getPosX();
-  float getPosY();
-  sf::Texture& getTexture();
-  sf::Sprite& getSprite();
-
-  bool estActif();
-  int getAction();
-  int getDirection();
-
-  bool estImmobile();
-
   //Setters
   void setAge(int age);
   void setTaille(double taille);
@@ -106,27 +82,11 @@ public :
   void setNiveau(int niveau);
   void levelUp();
 
-  void setLocation(sf::Vector2i loc);
-  void setLocation(int x, int y);
-  void setPosition(sf::Vector2f pos);
-  void setPosition(float x, float y);
-  void setTexture(string texture); //charge directement un fichier png
-  void setSprite(int direction); //0:haut, 1:bas, 2:gauche, 3:droite
-  void setSprite(); //sprite par défaut
-
-  void setDirection(int d);
-
   //Methodes de l'Observer
   Observer* getSuiv();
   void setSuiv(Observer* o);
   virtual void traiter(Membre& m, int pv);
   virtual void passer(Membre& m);
-
-  //Mouvements
-  //>Mises en mouvement
-  void move(int direction);
-  //>Mouvement en cours
-  void move(sf::Time turnTime);
 
   //Autres méthodes
   void afficher();

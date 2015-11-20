@@ -7,7 +7,7 @@
 using namespace std;
 
 /*-----Constructeur complet-----*/
-Personnage::Personnage(string nom, int sexe, int age, double taille, double poids, int niveau, Stat stats, Corps corps, Inventaire inventaire, Equipement equipement, string texture){
+Personnage::Personnage(string nom, int sexe, int age, double taille, double poids, int niveau, Stat stats, Corps corps, Inventaire inventaire, Equipement equipement, string texture) : Entite(texture){
     _nom = nom;
     _sexe = sexe;
     _age = age;
@@ -20,16 +20,7 @@ Personnage::Personnage(string nom, int sexe, int age, double taille, double poid
     _inventaire = inventaire;
     _equipement = equipement;
     _deuxmains = true;
-    _actif = false;
     suiv = NULL;
-
-    if(!_texture.loadFromFile(texture)){
-		std::cout << "Erreur lors du chargement de " << texture << std::endl;
-	}
-
-    _sprite.setPosition(504,376); //le centre de l'écran est : (512,384)
-    _sprite.setTexture(_texture);
-    _sprite.setTextureRect(sf::IntRect(16, 0, 16, 16));
 }
 
 /*-----Constructeur partiel-----*/
@@ -46,9 +37,7 @@ Personnage::Personnage(string nom, int sexe, int age, double taille, double poid
     _inventaire = Inventaire();
     _equipement = Equipement();
     _deuxmains = true;
-    _actif = false;
     suiv = NULL;
-    _sprite.setPosition(504,376); //le centre de l'écran est : (512,384)
 }
 
 /*-----Constructeur par défaut-----*/
@@ -67,9 +56,7 @@ Personnage::Personnage(){
   _inventaire = Inventaire();
   _equipement = Equipement("du sanatorium");
   _deuxmains = true;
-    _actif = false;
     suiv = NULL;
-  _sprite.setPosition(504,376); //le centre de l'écran est : (512,384)
 }
 
 
@@ -86,24 +73,6 @@ Corps& Personnage::getCorps(){return _corps;}
 Inventaire& Personnage::getInventaire(){return _inventaire;}
 Equipement& Personnage::getEquipement(){return _equipement;}
 
-sf::Vector2i Personnage::getLocation(){return _location;}
-int Personnage::getLocX(){return _location.x;}
-int Personnage::getLocY(){return _location.y;}
-
-sf::Vector2f Personnage::getPosition(){return _position;}
-float Personnage::getPosX(){return _position.x;}
-float Personnage::getPosY(){return _position.y;}
-
-sf::Texture& Personnage::getTexture(){return _texture;}
-sf::Sprite& Personnage::getSprite(){return _sprite;}
-
-bool Personnage::estActif(){return _actif;}
-int Personnage::getAction(){return _action;}
-int Personnage::getDirection(){return _direction;}
-
-bool Personnage::estImmobile(){
-	return (_action != 0) or !_actif;
-}
 
 /*--------Setters--------*/
 
@@ -112,39 +81,6 @@ void Personnage::setTaille(double taille){_taille = taille;}
 void Personnage::setPoids(double poids){_poids = poids;}
 void Personnage::setNiveau(int niveau){_niveau = niveau;}
 void Personnage::levelUp(){++_niveau;}
-
-void Personnage::setLocation(sf::Vector2i loc){
-	_location.x = loc.x; _location.y = loc.y;
-}
-void Personnage::setLocation(int x, int y){
-	_location.x = x; _location.y = y;
-}
-void Personnage::setPosition(sf::Vector2f pos){
-	_position.x = pos.x; _position.y = pos.y;
-}
-void Personnage::setPosition(float x, float y){
-	_position.x = x; _position.y = y;
-}
-void Personnage::setTexture(string texture)
-{
-	if(!_texture.loadFromFile(texture)){
-		std::cout << "Erreur lors du chargement de " << texture << std::endl;
-	}
-	_sprite.setTexture(_texture);
-	setSprite();
-}
-void Personnage::setSprite(int d) //direction haut, bas, gauche, droite
-{
-	_sprite.setTextureRect(sf::IntRect((d*16), 0, 16, 16));
-}
-void Personnage::setSprite()
-{
-	_sprite.setTextureRect(sf::IntRect(16, 0, 16, 16)); //pour avoir celui de face
-}
-void Personnage::setDirection(int d)
-{
-	_direction = d;
-}
 
 
   //Methodes de l'Observer
@@ -190,57 +126,6 @@ void Personnage::traiter(Membre& m, int pv){
   }
   _stats.setHP(_corps.getPv());
   passer(m);
-}
-
-
-
-//mouvements
-//>Mises en mouvement
-void Personnage::move(int direction)
-{
-	_actif = true;
-	_direction = direction;
-	_action = 0; //0: déplacement
-	_tempsAction = sf::Time::Zero;
-
-	if(_direction == 0)
-		_location.y -= 1;
-	else if (_direction == 1)
-		_location.y += 1;
-	else if (_direction == 2)
-		_location.x -= 1;
-	else if (_direction == 3)
-		_location.x += 1;
-
-
-}
-
-//>Mouvement en cours
-void Personnage::move(sf::Time turnTime)
-{
-	_tempsAction += turnTime;
-	sf::Time duree = sf::seconds(0.33);
-
-	if(_tempsAction < duree)
-	{
-		float rapport = _tempsAction.asSeconds() / duree.asSeconds();
-		if(_direction==0)
-			_position.y = (float)(_location.y * 16) + 16 - (16*rapport);
-		else if(_direction==1)
-			_position.y = (float)(_location.y * 16) - 16 + (16*rapport);
-		else if(_direction==2)
-			_position.x = (float)(_location.x * 16) + 16 - (16*rapport);
-		else if(_direction==3)
-			_position.x = (float)(_location.x * 16) - 16 + (16*rapport);
-
-	}
-	else
-	{
-		_position.x = (float)(_location.x * 16);
-		_position.y = (float)(_location.y * 16);
-
-		_actif = false;
-	}
 }
 
 
