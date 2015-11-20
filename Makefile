@@ -36,14 +36,14 @@ gcc: $(BINDIR)/$(EXEC)
 #gcc-debug: clean
 gcc-debug: CXX=g++
 gcc-debug: LINKER=g++ -o
-gcc-debug: CXXFLAGS += -g
+gcc-debug: CXXFLAGS += -ggdb
 gcc-debug: $(BINDIR)/$(EXEC)
 
 $(BINDIR)/$(EXEC): $(OBJECTS)
-	@$(LINKER) $@ $^ $(LFLAGS)
+	$(LINKER) $@ $^ $(LFLAGS)
 
 $(OBJDIR)/%.o: %.cpp
-	@$(CXX) $(CXXFLAGS) -c $< -o $@
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 .PHONY: gcc gcc-debug clang clang-debug clean
 

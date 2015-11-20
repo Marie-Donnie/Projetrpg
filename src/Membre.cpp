@@ -59,5 +59,8 @@ void Membre::changerMembre(Membre& m, int loca){_sousMembre[loca] = m;}
 
 
 void Membre::checkPv(){
-  _corps->traiter(*(this), _pv);
+  if (_corps)
+  _corps->traiter(*this, _pv);
+  else
+    cout << "HUHO" << endl;
 }

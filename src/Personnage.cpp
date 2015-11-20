@@ -40,6 +40,22 @@ Personnage::Personnage(string nom, int sexe, int age, double taille, double poid
     suiv = NULL;
 }
 
+Personnage::Personnage(string nom, int sexe){
+  _sexe = sexe;
+  _nom = nom;
+  _age = (rand() % 35 + 18);
+  _taille = ((rand() % 150 + 70)/100.0);
+  _poids = (rand() % 50 + 100);
+  _niveau = 1;
+  _stats = Stat();
+  _corps = Corps();
+  _corps.setSuiv(this);
+  _inventaire = Inventaire();
+  _equipement = Equipement("du sanatorium");
+  _deuxmains = true;
+    suiv = NULL;
+}
+
 /*-----Constructeur par défaut-----*/
 Personnage::Personnage(){
   _sexe = (rand() % 2);

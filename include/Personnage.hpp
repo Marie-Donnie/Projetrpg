@@ -61,6 +61,7 @@ public :
   //Constructeurs
   Personnage(string nom, int sexe, int age, double taille, double poids, int niveau, Stat stats, Corps corps, Inventaire inventaire, Equipement equipement, string texture);
   Personnage(string nom, int sexe, int age, double taille, double poids, int niveau);
+  Personnage(string nom, int sexe)
   Personnage();
 
   //Getters
