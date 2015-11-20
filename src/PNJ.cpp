@@ -20,7 +20,8 @@ PNJ::PNJ(string nom){
         _equi = Equipement();
 	_stats = Stat();
         _corps = Corps();
-
+        _corps.setSuiv(this);
+        suiv = NULL;
 	_actif = false;
 	_direction = 1;
 }
@@ -30,6 +31,8 @@ PNJ::PNJ(string nom, string texture){
         _equi = Equipement();
 	_stats = Stat();
         _corps = Corps();
+        _corps.setSuiv(this);
+        suiv = NULL;
 
     if(!_texture.loadFromFile(texture)){
 		std::cout << "Erreur lors du chargement de " << texture << std::endl;
@@ -95,6 +98,31 @@ void PNJ::setSprite()
 	_sprite.setTexture(_texture);
     _sprite.setTextureRect(sf::IntRect(0, 0, 16, 16));
 }
+
+//Observer
+Observer* PNJ::getSuiv(){return suiv;}
+void PNJ::setSuiv(Observer* o){suiv = o;}
+void PNJ::passer(Membre& m){
+  if (suiv)
+    suiv->traiter(m, m.getPv());
+}
+void PNJ::traiter(Membre& m, int pv){
+  if (pv == 0){
+    if (m.getNom().find("Bras")!=string::npos || m.getNom().find("Coude")!=string::npos || m.getNom().find("Epaule")!=string::npos || m.getNom().find("Main")!=string::npos){
+      _stats.baisserCc();
+      }
+      else if (m.getNom().find("Jambe")!=string::npos || m.getNom().find("Genou")!=string::npos || m.getNom().find("Cuisse")!=string::npos || m.getNom().find("Pied")!=string::npos){
+          _stats.baisserVitesse();
+        }
+      else if (m.getNom().compare("Tête") || m.getNom().compare("Coeur")){
+        cout << "Le zombie est mort" << endl;
+      }
+  }
+  _stats.setHP(_corps.getPv());
+  passer(m);
+}
+
+
 
 //mouvements
 //>Mises en mouvement
@@ -225,7 +253,7 @@ bool PNJ::voitCase(sf::Vector2i loc, Monde & monde)
 	return voitCase(loc.x, loc.y, monde);
 }
 
-//Attaque/Defence
+//Attaque/Defense
 void PNJ::defendre(Personnage& attaquant){
   Membre* m;
   //Jet de défense, sur 100
@@ -271,6 +299,7 @@ void PNJ::defendre(Personnage& attaquant){
       //Sinon, l'armure et le membre subissent des dommages
       else if (coup > 0) {
         m->changerPv(coup);
+        m->checkPv();
         a->changerDura(coup);
         cout << _nom << " a perdu " << coup << " de vie sur " << m->getNom() <<endl;
         cout << _nom << " a perdu " << coup << " de durabilité sur " << a->getNom() <<endl;

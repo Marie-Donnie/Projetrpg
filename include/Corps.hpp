@@ -31,7 +31,7 @@ public:
   Observer* getSuiv();
   void setSuiv(Observer* o);
   void passer(Membre& m);
-  void traiter(Membre& m);
+  void traiter(Membre& m, int pv);
 
   //Autres méthodes
   void soin(int membre);

@@ -1,6 +1,6 @@
-#include "Membre.hpp"
 #include <iostream>
-
+#include "Membre.hpp"
+#include "Observer.hpp"
 
 using namespace std;
 
@@ -56,3 +56,8 @@ void Membre::changerPv(int pv){
   else _pv = 0;
 }
 void Membre::changerMembre(Membre& m, int loca){_sousMembre[loca] = m;}
+
+
+void Membre::checkPv(){
+  _corps->traiter(*(this), _pv);
+}

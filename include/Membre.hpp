@@ -25,18 +25,20 @@ public :
   Membre(int pv, int pvmax, string nom, Observer* o);
   Membre(int pv, int pvmax, string nom);
   Membre();
-  //Setters
-  void setPv(int pv);
-  void setPvMax(int pv);
-  void setNom(string nom);
-  void changerPv(int pv);
-  void changerMembre(Membre& m, int loca);
   //Getters
   int getPv();
   int getPvMax();
   string getNom();
   vector<Membre>& getMembres();
   Membre& getMembre(int loca);
+  //Setters
+  void setPv(int pv);
+  void setPvMax(int pv);
+  void setNom(string nom);
+  void changerPv(int pv);
+  void changerMembre(Membre& m, int loca);
+
+  void checkPv();
 };
 
 #endif //MEMBRE_HPP

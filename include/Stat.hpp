@@ -14,11 +14,12 @@ private :
   int _resiPeste;
   int _capCombat;
   int _capTir;
+  int _vitesse;
 
 public :
  //Constructeur
   Stat();
-  Stat(int hp, int mana, int endu, int intel, int force, int agi, int esprit, int rP, int cc, int ct);
+  Stat(int hp, int mana, int endu, int intel, int force, int agi, int esprit, int rP, int cc, int ct, int vitesse);
   /*-----Getters-----*/
   int getHP();
   int getMana();
@@ -30,6 +31,7 @@ public :
   int getRP();
   int getCc();
   int getCt();
+  int getVitesse();
 
   /*-----Setters-----*/
   void setHP(int hp);
@@ -41,7 +43,11 @@ public :
   void setEsprit(int esprit);
   void setRP(int rP);
   void setCc(int cc);
+  void baisserCc();
+  void monterCc();
   void setCt(int ct);
+  void baisserVitesse();
+  void monterVitesse();
 
   void afficher();
 };

@@ -12,28 +12,28 @@ class Personnage;
 #include "Stat.hpp"
 #include "Equipement.hpp"
 #include "Corps.hpp"
-
+#include "Observer.hpp"
 
 using namespace std;
 
-class PNJ {
+class PNJ : public Observer{
 private :
 	string _nom;
 	Stat _stats;
 	Equipement _equi;
 	Corps _corps;
-	
+
 	int _state;	//state : l'action en cours du PNJ <- PATERN STATE ! (Patern ou pattern ? Gggnnnh!)
 	sf::Vector2i _destination;	//si _destinnation == _location : reste sur place
 	int _focus;	//-1: rien, 0: personnage, 1..n: pnj de 0 à n-1
-	
+
 	bool _enJeu; //un pnj pourrait pop ou depop
-	
+
 	bool _actif;
 	int _action;
 	int _direction;
 	sf::Time _tempsAction;
-  
+
 	sf::Vector2i _location;
 	sf::Vector2f _position;
 	sf::Texture _texture;
@@ -43,7 +43,7 @@ private :
 public :
 	PNJ(string nom); //Constructeur sans texture
 	PNJ(string nom, string texture); //Constructeur
-	
+
 	void afficher();
 
 	//getters
@@ -51,18 +51,18 @@ public :
 	Stat& getStats();
 	Corps& getCorps();
 	Equipement& getEquipement();
-	
+
 	sf::Vector2i getLocation();
 	sf::Vector2f getPosition();
 	sf::Texture& getTexture();
 	sf::Sprite& getSprite();
-	
+
 	bool estActif();
 	int getAction();
 	int getDirection();
-	
+
 	bool estImmobile();
-	
+
 	//setters
 	void setLocation(sf::Vector2i loc);
 	void setLocation(int x, int y);
@@ -71,19 +71,25 @@ public :
 	void setTexture(string texture);
 	void setSprite(int x, int y);  //à actualiser !
 	void setSprite(); //sprite par défaut
-	
+
+  //Methodes de l'Observer
+  Observer* getSuiv();
+  void setSuiv(Observer* o);
+  virtual void traiter(Membre& m, int pv);
+  virtual void passer(Membre& m);
+
 	//Mouvements
 	void move(int direction);
 	void move(sf::Time turnTime);
-  
+
 	//activité
 	bool estEnJeu();
 	void setEnJeu(bool set);
-	
+
 	//vision
 	bool voitCase(sf::Vector2i loc, Monde & monde);
 	bool voitCase(int i, int j, Monde & monde);
-	
+
 	//combat
 	void defendre(Personnage& attaquant);
 };

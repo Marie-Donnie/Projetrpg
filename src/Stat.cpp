@@ -16,10 +16,11 @@ Stat::Stat(){
   _resiPeste = 1;
   _capCombat = 80;
   _capTir = 80;
+  _vitesse = 2;
 }
 
 /*-----Constructeur complet-----*/
-Stat::Stat(int hp, int mana, int endu, int intel, int force, int agi, int esprit, int rP, int cc, int ct){
+Stat::Stat(int hp, int mana, int endu, int intel, int force, int agi, int esprit, int rP, int cc, int ct, int vitesse){
   _hitPoint = hp;
   _mana = mana;
   _endu = endu;
@@ -30,6 +31,7 @@ Stat::Stat(int hp, int mana, int endu, int intel, int force, int agi, int esprit
   _resiPeste = rP;
   _capCombat = cc;
   _capTir = ct;
+  _vitesse = vitesse;
 }
 
 /*-----Getters-----*/
@@ -43,6 +45,7 @@ int Stat::getEsprit(){return _esprit;}
 int Stat::getRP(){return _resiPeste;}
 int Stat::getCc(){return _capCombat;}
 int Stat::getCt(){return _capTir;}
+int Stat::getVitesse(){return _vitesse;}
 
 /*-----Setters-----*/
 void Stat::setHP(int hp){_hitPoint = hp;}
@@ -54,7 +57,11 @@ void Stat::setAgi(int agi){_agi = agi;}
 void Stat::setEsprit(int esprit){_esprit = esprit;}
 void Stat::setRP(int rP){_resiPeste = rP;}
 void Stat::setCc(int cc){_capCombat = cc;}
+void Stat::baisserCc(){_capCombat -= 20;}
+void Stat::monterCc(){_capCombat += 20;}
 void Stat::setCt(int ct){_capTir = ct;}
+void Stat::baisserVitesse(){--_vitesse;}
+void Stat::monterVitesse(){++_vitesse;}
 
 
 void Stat::afficher(){
@@ -68,4 +75,5 @@ void Stat::afficher(){
   cout << "Résistance à la peste : " << _resiPeste << endl;
   cout << "Capacité de combat : " << _capCombat << endl;
   cout << "Capacité de tir : " << _capTir  << endl;
+  cout << "Vitesse : " << _vitesse << endl;
 }

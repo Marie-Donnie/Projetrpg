@@ -208,10 +208,22 @@ Observer* Corps::getSuiv(){return suiv;}
 void Corps::setSuiv(Observer* o){suiv = o;}
 void Corps::passer(Membre& m){
   if (suiv)
-    suiv->traiter(m);
+    suiv->traiter(m, m.getPv());
 }
-void Corps::traiter(Membre& m){
-  //à traiter ?
+void Corps::traiter(Membre& m, int pv){
+  //si le membre n'est plus là et a des sous-membres, on met tous les
+  //sous-membres à 0
+  if (pv == 0 && !m.getMembres().empty()){
+    for (int i=0; i < m.getMembres().size(); ++i){
+      Membre& sm = m.getMembres().at(i);
+      sm.setPv(0);
+      if (!sm.getMembres().empty()) {
+        for (int j=0; j<sm.getMembres().size(); ++j){
+          sm.getMembres().at(j).setPv(0);
+        }
+      }
+    }
+  }
   passer(m);
 }
 

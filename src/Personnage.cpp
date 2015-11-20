@@ -16,10 +16,12 @@ Personnage::Personnage(string nom, int sexe, int age, double taille, double poid
     _niveau = niveau;
     _stats = stats;
     _corps = corps;
+    _corps.setSuiv(this);
     _inventaire = inventaire;
     _equipement = equipement;
     _deuxmains = true;
     _actif = false;
+    suiv = NULL;
 
     if(!_texture.loadFromFile(texture)){
 		std::cout << "Erreur lors du chargement de " << texture << std::endl;
@@ -40,10 +42,12 @@ Personnage::Personnage(string nom, int sexe, int age, double taille, double poid
     _niveau = niveau;
     _stats = Stat();
     _corps = Corps();
+    _corps.setSuiv(this);
     _inventaire = Inventaire();
     _equipement = Equipement();
     _deuxmains = true;
     _actif = false;
+    suiv = NULL;
     _sprite.setPosition(504,376); //le centre de l'écran est : (512,384)
 }
 
@@ -59,10 +63,12 @@ Personnage::Personnage(){
   _niveau = 1;
   _stats = Stat();
   _corps = Corps();
+  _corps.setSuiv(this);
   _inventaire = Inventaire();
   _equipement = Equipement("du sanatorium");
   _deuxmains = true;
     _actif = false;
+    suiv = NULL;
   _sprite.setPosition(504,376); //le centre de l'écran est : (512,384)
 }
 
@@ -140,6 +146,54 @@ void Personnage::setDirection(int d)
 	_direction = d;
 }
 
+
+  //Methodes de l'Observer
+Observer* Personnage::getSuiv(){return suiv;}
+void Personnage::setSuiv(Observer* o){suiv = o;}
+void Personnage::passer(Membre& m){
+  if (suiv)
+    suiv->traiter(m, m.getPv());
+}
+void Personnage::traiter(Membre& m, int pv){
+  //si le membre n'a plus de point de vie
+  if (pv == 0){
+    //et que c'est une des partie du bras
+    if (m.getNom().find("Bras")!=string::npos || m.getNom().find("Coude")!=string::npos || m.getNom().find("Epaule")!=string::npos || m.getNom().find("Main")!=string::npos){
+      //s'il ne lui manquait pas de main
+      if (_deuxmains){
+        //il lui en manque une
+        _deuxmains = false;
+        _stats.baisserCc();
+        //on retire son arme si c'est une qui nécessite deux mains
+        if (_equipement.getArme().getMains() == 2){
+          Arme a = Arme("Mains nues");
+          Arme b = _equipement.changerArme(a);
+          _inventaire.ajouterArme(b);
+        }
+      }
+      //sinon il n'a plus de bras
+      else {
+        Arme a = Arme("Plus de bras, plus d'armes");
+        Arme b = _equipement.changerArme(a);
+        _inventaire.ajouterArme(b);
+        _stats.baisserCc();
+      }
+    }
+    //si c'est une partie d'une jambe
+    else if (m.getNom().find("Jambe")!=string::npos || m.getNom().find("Genou")!=string::npos || m.getNom().find("Cuisse")!=string::npos || m.getNom().find("Pied")!=string::npos){
+      _stats.baisserVitesse();
+    }
+    //si c'est la tête ou le coeur
+    else if (m.getNom().compare("Tête") || m.getNom().compare("Coeur")){
+        cout << "Le personnage est mort" << endl;
+      }
+  }
+  _stats.setHP(_corps.getPv());
+  passer(m);
+}
+
+
+
 //mouvements
 //>Mises en mouvement
 void Personnage::move(int direction)
@@ -160,6 +214,7 @@ void Personnage::move(int direction)
 
 
 }
+
 //>Mouvement en cours
 void Personnage::move(sf::Time turnTime)
 {
@@ -275,6 +330,7 @@ void Personnage::defendre(Personnage& attaquant){
       //Sinon, l'armure et le membre subissent des dommages
       else if (coup >0) {
         m->changerPv(coup);
+        m->checkPv();
         a->changerDura(coup);
         //cout << &m << endl;
         cout << _nom << " a perdu " << coup << " de vie sur " << m->getNom() <<endl;
@@ -319,6 +375,7 @@ void Personnage::defendre(Personnage& attaquant){
       //Sinon, l'armure et le membre subissent des dommages
       else if (coup > 0) {
         m->changerPv(coup);
+        m->checkPv();
         a->changerDura(coup);
         cout << _nom << " a perdu " << coup << " de vie sur " << m->getNom() <<endl;
         cout << _nom << " a perdu " << coup << " de durabilité sur " << a->getNom() <<endl;

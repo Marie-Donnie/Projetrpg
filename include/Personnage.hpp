@@ -38,11 +38,11 @@ class PNJ;
 #include "Inventaire.hpp"
 #include "SFML/Graphics.hpp"
 #include "SFML/Window.hpp"
-
+#include "Observer.hpp"
 
 using namespace std;
 
-class Personnage {
+class Personnage : public Observer {
 private :
   string _nom;
   int _sexe;
@@ -116,6 +116,11 @@ public :
 
   void setDirection(int d);
 
+  //Methodes de l'Observer
+  Observer* getSuiv();
+  void setSuiv(Observer* o);
+  virtual void traiter(Membre& m, int pv);
+  virtual void passer(Membre& m);
 
   //Mouvements
   //>Mises en mouvement
