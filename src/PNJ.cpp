@@ -256,8 +256,9 @@ void PNJ::defendre(Personnage& attaquant){
     //est protégé
     if (a->getDura() > 0){
       //Calcul des dommages
-      Arme* armeattaq = attaquant.getEquipement().getArme();
+      Arme* armeattaq = &(attaquant.getEquipement().getArme());
       int dmgarme = (rand()% (armeattaq->getDmgmax()- armeattaq->getDmgmin()+1)+armeattaq->getDmgmin());
+      cout << dmgarme << endl;
       int coup = ((attaquant.getStats().getForce()+dmgarme)-a->getScA());
       //Jet de sauvegarde
       int sauv = rand() %10 ;

@@ -8,7 +8,7 @@ using namespace std;
 /*-----Constructeur par défaut-----*/
 Corps::Corps(){
   //Jambe Gauche
-  Membre orteil0G = Membre(2, 2, "Quintus gauche)", this);
+  Membre orteil0G = Membre(2, 2, "Quintus gauche", this);
   Membre orteil1G = Membre(2, 2, "Quartus gauche", this);
   Membre orteil2G = Membre(2, 2, "Tertius gauche", this);
   Membre orteil3G = Membre(2, 2, "Secundus gauche", this);
