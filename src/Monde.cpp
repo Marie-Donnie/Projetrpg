@@ -324,7 +324,7 @@ void Monde::centrerSur(float x, float y)
 		x2 = i2*16;
 		y2 = j2*16;
 		
-		_map[i].setPosition(x2-x + 504, y2-y + 386);
+		_map[i].setPosition(x2-x + 504, y2-y + 376);
 	}
 }
 
