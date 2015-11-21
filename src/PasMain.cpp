@@ -13,22 +13,42 @@ int main(){
   /* initialize random seed: */
 	srand (time(NULL));
 
-	//avec RenderWindow
-	int X = 1024, Y = 768;
-	std::string name = "Game";
-	sf::RenderWindow window(sf::VideoMode(X, Y), name);
-
 	//Boutons (reste à en rajouter)
-	bool input[8] = {0,0,0,0,0,0,0,0}; //boutons 0:haut, 1:bas, 2:gauche, 3:droite, 4:clicD, 5:clicG, 6:E, 7:F
+	//0:haut, 1:bas, 2:gauche, 3:droite,
+	//4:clicG, 5:clicD,
+	//6:E, 7:F, 8:I
+	//9-18:0-9
+	bool input[19];
+	for(int i=0; i<19; ++i){
+		input[i]=false;
+	} 
 
 	//Coordonnées de la souris
 	sf::Vector2i sourisInt;
 	sf::Vector2f sourisFloat;
-
+	
+	//Création du personnage
+	int sexe;
+	string nom;
+	cout << "Saisissez votre sexe puis votre nom :\n(0:homme, 1:femme)" << endl;
+	cin >> sexe;
+	while( sexe!=0 and sexe!=1 )
+	{
+		cout << "Saisie invalide, choisissez 0 (homme) ou 1 (femme)" << endl;
+		cin >> sexe;
+	}
+	cout << "Votre nom :" << endl;
+	cin >> nom;
+	
+	//Création de la fenêtre
+	int X = 800, Y = 600;
+	std::string name = "Game";
+	sf::RenderWindow window(sf::VideoMode(X, Y), name);
+	
 	//Création du jeu
-	Jeu jeu = Jeu("./data/map.txt");
+	Jeu jeu = Jeu("./data/map.txt", nom, sexe);
 
-	jeu.creerPersonnage(22,3, "lol", 1);
+	jeu.popPersonnage(22,3);
 
 	string text = "./data/sprites/zombie.png";
 	jeu.ajouterTexture("./data/sprites/zombie.png");

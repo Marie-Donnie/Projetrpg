@@ -51,6 +51,7 @@ class Entite {
 		void setSprite(); //sprite par défaut
 		
 		void setDirection(int d);
+		void setAction(int a);
 	
 		//Mouvements
 		//>Mises en mouvement

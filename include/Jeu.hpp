@@ -32,10 +32,12 @@ private:
   void gestionPNJ();
 
   void setTexturePNJ(int num);
+		
+  void setTexturePNJ(int num);
 
 public:
   //CONSTRUCTEUR
-  Jeu(string fic);
+  Jeu(string fic, std::string nom, int sexe);
 
   //Getters
   Personnage& getPerso();
@@ -45,12 +47,12 @@ public:
 
 
   //Création des entités mouvantes
-  void creerPersonnage(int x, int y, string nom, int sexe);
+  //void creerPersonnage(int x, int y, string nom, int sexe);
   //void supprimerPersonnage();
+  void popPersonnage(int x, int y);
 
   void creerPNJ(string nom, int text);
   void creerPNJ(string nom, string text);
-  //void supprimerPNJ(int num);
   void ajouterTexture(string texture);
   void popPNJ(int num, int x, int y);
 

@@ -18,7 +18,7 @@ Entite::Entite(){
 	_direction = 1;
 	_actif = false;
 	
-    _sprite.setPosition(504,376); //le centre de l'écran est : (512,384)
+    _sprite.setPosition(392,292); //le centre de l'écran : (400,300) moins une demi case de 16px
 }
 
 Entite::Entite(string texture)
@@ -30,7 +30,7 @@ Entite::Entite(string texture)
 		std::cout << "Erreur lors du chargement de " << texture << std::endl;
 	}
 
-    _sprite.setPosition(504,376); //le centre de l'écran est : (512,384)
+    _sprite.setPosition(392,292); //le centre de l'écran est : (400,300)
     _sprite.setTexture(_texture);
     _sprite.setTextureRect(sf::IntRect(16, 0, 16, 16));
 }
@@ -88,6 +88,10 @@ void Entite::setSprite()
 void Entite::setDirection(int d)
 {
 	_direction = d;
+}
+void Entite::setAction(int a)
+{
+	_action = a;
 }
 
 //mouvements

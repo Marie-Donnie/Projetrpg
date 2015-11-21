@@ -24,20 +24,11 @@ Monde& Jeu::getMonde(){return _monde;}
 
 //CREATION DES ENTITES MOUVANTES
 //>Personnage
-void Jeu::creerPersonnage(int x, int y, string nom, int sexe)
+void Jeu::popPersonnage(int x, int y)
 {
-  _personnage = Personnage(nom, sexe);
-
-	if(sexe == 0)
-		_personnage.setTexture("data/sprites/homme.png");
-	else
-		_personnage.setTexture("data/sprites/femme.png");
-
-	_personnage.setSprite();
-
 	_personnage.setLocation(x,y);
 	_personnage.setPosition(16*x,16*y);
-
+	
 	_monde.setOccupant(x,y,0); //occupant 0 : Personnage
 }
 //>PNJ
@@ -57,16 +48,16 @@ void Jeu::ajouterTexture(string text)
 	if(!(*texture).loadFromFile(text)){
 		std::cout << "Erreur lors du chargement de " << texture << std::endl;
 	}
-
+	
 	_pnjTextures.push_back(texture);
 }
 void Jeu::popPNJ(int num, int x, int y)
 {
 	_pnjs[num].setEnJeu(true);
-
+	
 	_pnjs[num].setLocation(x,y);
 	_pnjs[num].setPosition(16*x,16*y);
-
+	
 	_monde.setOccupant(x,y,num+1);
 }
 
@@ -87,6 +78,7 @@ void Jeu::takeTurnTime(sf::Time turnTime)
 void Jeu::inputs(bool * in)
 {
 	//mettre en priorité les inputs liés à l'interface, au menu ?
+	int dir = directionSouris();
 
 	if(!_personnage.estActif())
 	{	//choisir les priorités : deplacement - attaque - interaction
@@ -134,43 +126,143 @@ void Jeu::inputs(bool * in)
 				_monde.moveOccupant(x1, y, x2, y);
 			}
 		}
-		else if(false)
-		{
-
-		}
-
-		if(in[0] or in[1] or in[2] or in[3])
-		{	//provisoire, juste pour que ça soit plus sympa
-			//changer la direction et le sprite du personnage selon l'endroit de la souris
-			int sourisX = _posSouris.x - 512;
-			int sourisY = _posSouris.y - 384;
-
-			int x2 = sourisX*sourisX;
-			int y2 = sourisY*sourisY;
-
-			if(x2 > y2)
+		else if(in[4])
+		{ //clicG
+			int x = _personnage.getLocX();
+			int y = _personnage.getLocY();
+			
+			//Determination de la direction
+			if(dir == 0)
+				y-=1;
+			else if(dir == 1)
+				y+=1;
+			else if(dir == 2)
+				x-=1;
+			else
+				x+=1;
+			
+			if(_monde.getOccupant(x,y)!=-1)
 			{
-				if(sourisX < 0)
-				{	//gauche
-					_personnage.setSprite(2);
-				}
-				else
-				{	//droite
-					_personnage.setSprite(3);
-				}
+				_personnage.attaquer(_pnjs[_monde.getOccupant(x,y)-1]);
+				//les indices de pnjs vont de 0 à n, ceux de getOccupant vont de 1 à n+1 pour les pnj
+				_personnage.setDirection(dir);
+				_personnage.setAction(1);
+				_personnage.setSprite(dir);
 			}
 			else
 			{
-				if(sourisY < 0)
-				{	//haut
-					_personnage.setSprite(0);
-				}
-				else
-				{	//bas
-					_personnage.setSprite(1);
-				}
+				//blanchir la case momentannément
 			}
 		}
+		else if(in[5])
+		{ //clicD
+			int x = _personnage.getLocX();
+			int y = _personnage.getLocY();
+			
+			//Determination de la direction
+			if(dir == 0)
+			{
+				if( _monde.estPlat(x-1,y-1) and
+					_monde.estPlat(x  ,y-1) and
+					_monde.estPlat(x+1,y-1) )
+				{
+					for(int i=-1; i<2; ++i)
+					{
+						if(_monde.getOccupant(x+i,y-1)!=-1)
+							_personnage.attaquer(_pnjs[_monde.getOccupant(x+i,y-1)-1]);
+					}
+				}
+				
+				_personnage.setDirection(dir);
+				_personnage.setAction(1);
+				_personnage.setSprite(dir);
+			}
+			else if(dir==1)
+			{
+				if( _monde.estPlat(x-1,y+1) and
+					_monde.estPlat(x  ,y+1) and
+					_monde.estPlat(x+1,y+1) )
+				{
+					for(int i=-1; i<2; ++i)
+					{
+						if(_monde.getOccupant(x+i,y+1)!=-1)
+							_personnage.attaquer(_pnjs[_monde.getOccupant(x+i,y+1)-1]);
+					}
+				}
+				
+				_personnage.setDirection(dir);
+				_personnage.setAction(1);
+				_personnage.setSprite(dir);
+			}
+			else if(dir==2)
+			{
+				if( _monde.estPlat(x-1,y-1) and
+					_monde.estPlat(x-1,y  ) and
+					_monde.estPlat(x-1,y+1) )
+				{
+					for(int i=-1; i<2; ++i)
+					{
+						if(_monde.getOccupant(x-1,y+i)!=-1)
+							_personnage.attaquer(_pnjs[_monde.getOccupant(x-1,y+i)-1]);
+					}
+				}
+				
+				_personnage.setDirection(dir);
+				_personnage.setAction(1);
+				_personnage.setSprite(dir);
+			}
+			else if(dir==3)
+			{
+				if( _monde.estPlat(x+1,y-1) and
+					_monde.estPlat(x+1,y  ) and
+					_monde.estPlat(x+1,y+1) )
+				{
+					for(int i=-1; i<2; ++i)
+					{
+						if(_monde.getOccupant(x+1,y+i)!=-1)
+							_personnage.attaquer(_pnjs[_monde.getOccupant(x+1,y+i)-1]);
+					}
+				}
+				
+				_personnage.setDirection(dir);
+				_personnage.setAction(1);
+				_personnage.setSprite(dir);
+			}
+		}
+		
+		/*if(in[0] or in[1] or in[2] or in[3])
+		{	//provisoire, juste pour que ça soit plus sympa
+			//changer la direction et le sprite du personnage selon l'endroit de la souris
+			_personnage.setSprite(directionSouris());
+		}*/
+	}
+}
+
+//>> Méthode privée, direction de la souris
+int Jeu::directionSouris()
+{
+	int cX = _personnage.getSprite().getPosition().x +1; //centre X
+	int cY = _personnage.getSprite().getPosition().y +1;
+	
+	int sourisX = _posSouris.x - 400 ;
+	int sourisY = _posSouris.y - 300 ;
+
+	int x2 = sourisX*sourisX;
+	int y2 = sourisY*sourisY;
+	
+	if(x2 > y2)
+	{
+		if(sourisX < 0) //gauche
+			return 2;
+		else 			//droite
+			return 3;
+	}
+	else
+	{
+		if(sourisY < 0) //haut
+			return 0;
+		else 			//bas
+			return 1;
 	}
 }
 
@@ -194,20 +286,21 @@ void Jeu::gestionPersonnage(){
 		switch(_personnage.getAction())	{
 			case 0 :{ //deplacement
 				_personnage.move(_turnTime);
+				_personnage.setSprite(_personnage.getDirection());
 
 				break;
 			}
 			case 1 :{ //attaqueG
 				//personnage.attaque(direction)
-
+				_personnage.action(_turnTime);
 				break;
 			}
 			case 2 :{ //attaqueD
 				//personnage.attaque(direction)
-
+				_personnage.action(_turnTime);
 				break;
 			}
-			case 3 :{ //magie
+			case 3 :{ //soin
 
 				break;
 			}
@@ -219,38 +312,10 @@ void Jeu::gestionPersonnage(){
 	else
 	{
 		//changer la direction et le sprite du personnage selon l'endroit de la souris
-		int sourisX = _posSouris.x - 512;
-		int sourisY = _posSouris.y - 384;
+		int dir = directionSouris();
 
-		int x2 = sourisX*sourisX;
-		int y2 = sourisY*sourisY;
-
-		if(x2 > y2)
-		{
-			if(sourisX < 0)
-			{	//gauche
-				_personnage.setDirection(2);
-				_personnage.setSprite(2);
-			}
-			else
-			{	//droite
-				_personnage.setDirection(3);
-				_personnage.setSprite(3);
-			}
-		}
-		else
-		{
-			if(sourisY < 0)
-			{	//haut
-				_personnage.setDirection(0);
-				_personnage.setSprite(0);
-			}
-			else
-			{	//bas
-				_personnage.setDirection(1);
-				_personnage.setSprite(1);
-			}
-		}
+		_personnage.setDirection(dir);
+		_personnage.setSprite(dir);
 	}
 }
 
@@ -270,6 +335,10 @@ void Jeu::gestionPNJ()
 
 	for(PNJ& pnj : _pnjs)
 	{
+		if(pnj.getCorps().getPv() <= 0)
+		{
+			pnj.setEnJeu(false);
+		}
 		if(pnj.estEnJeu()) //pnj mort : false
 		{
 			if(pnj.estActif())
@@ -295,7 +364,7 @@ void Jeu::gestionPNJ()
 					dJ = pnj.getLocY()-_personnage.getLocY();
 					signeI = (dI<0)?-1:1;
 					signeJ = (dJ<0)?-1:1;
-
+					
 					if( (dI*dI)+(dJ*dJ) <= 1 ) //à 1 de distance... ou 0.
 					{}	//attaque!
 					else
@@ -304,16 +373,16 @@ void Jeu::gestionPNJ()
 						{ //déplacement sur l'axe x
 							_monde.moveOccupant(pnj.getLocX(), pnj.getLocY(), pnj.getLocX()-signeI, pnj.getLocY());
 							pnj.move( (signeI>0)?2:3 ); //signeI positif -> personnage à gauche -> move(2), sinon move(3)
-
+							
 							pnj.setSprite(pnj.getDirection());
 						}
 						else if( (pnj.getLocY() != _personnage.getLocY()) and _monde.estAccessible(pnj.getLocX(), pnj.getLocY()) - signeJ)
 						{ //déplacement sur l'axe y
 							_monde.moveOccupant(pnj.getLocX(), pnj.getLocY(), pnj.getLocX(), pnj.getLocY()-signeJ);
 							pnj.move( (signeJ>0)?0:1 ); //signeJ positif -> personnage au dessus -> move(0), sinon move(1)
-
+							
 							pnj.setSprite(pnj.getDirection());
-
+							
 						}
 						//else : bloqué ! C'est con un zombie
 					}
@@ -338,8 +407,8 @@ void Jeu::draw(sf::RenderWindow & window)
 	{
 		if(pnj.estEnJeu())
 		{
-			x = pnj.getPosX() - _personnage.getPosX() + 504;
-			y = pnj.getPosY() - _personnage.getPosY() + 376;
+			x = pnj.getPosX() - _personnage.getPosX() + 392;
+			y = pnj.getPosY() - _personnage.getPosY() + 292;
 
 			pnj.getSprite().setPosition(x,y);
 

@@ -279,6 +279,7 @@ Monde::Monde(std::string fic)
 
 
 //getters
+bool Monde::estPlat(int i, int j){return (_map[i+(_x*j)].getHauteur()==0)?true:false;}
 bool Monde::estAccessible(int i, int j){return _map[i+(_x*j)].estAccessible();}
 bool Monde::estTransparent(int i, int j){return _map[i+(_x*j)].estTransparent();}
 int Monde::getOccupant(int i, int j){return _map[i+(_x*j)].getOccupant();}
@@ -292,19 +293,13 @@ void Monde::setOccupant(int i, int j, int occ){
 
 void Monde::moveOccupant(int x, int y, int x2, int y2)
 {
-	bool encadrement = (x >= 0) and (x < _x) and (y >= 0) and (y < _y);
-	bool encadrement2 = (x2 >= 0) and (x2 < _x) and (y2 >= 0) and (y2 < _y);
-	
-	if(encadrement and encadrement2)
-	{
-		bool occupant = (_map[x+(_x*y)].getOccupant() != -1);
-		bool libre = (_map[x2+(_x*y2)].getOccupant() == -1);
+	bool occupant = (_map[x+(_x*y)].getOccupant() != -1);
+	bool libre = (_map[x2+(_x*y2)].getOccupant() == -1);
 
-		if( occupant and libre )
-		{
-			_map[x2+(_x*y2)].setOccupant( _map[x+(_x*y)].getOccupant() );
-			_map[x+(_x*y)].setOccupant(-1);
-		}
+	if( occupant and libre )
+	{
+		_map[x2+(_x*y2)].setOccupant( _map[x+(_x*y)].getOccupant() );
+		_map[x+(_x*y)].setOccupant(-1);
 	}
 }
 
@@ -325,7 +320,7 @@ void Monde::centrerSur(float x, float y)
 		x2 = i2*16;
 		y2 = j2*16;
 		
-		_map[i].setPosition(x2-x + 504, y2-y + 376);
+		_map[i].setPosition(x2-x + 392, y2-y + 292);
 	}
 }
 

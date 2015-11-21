@@ -95,6 +95,8 @@ public :
   void attaquer(PNJ& defendant);
   void soin();
   void bandage();
+  
+  void action(sf::Time turnTime);
 };
 
 #endif //PERSONNAGE_HPP

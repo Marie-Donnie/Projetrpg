@@ -18,6 +18,8 @@ Personnage::Personnage(string nom, int sexe, int age, double taille, double poid
     _corps.setSuiv(this);
     _deuxmains = true;
     suiv = NULL;
+    
+    setTexture((sexe==0)?"./data/sprites/homme.png":"./data/sprites/femme.png");
 }
 
 /*-----Constructeur partiel-----*/
@@ -31,6 +33,8 @@ Personnage::Personnage(string nom, int sexe, int age, double taille, double poid
     _corps.setSuiv(this);
     _deuxmains = true;
     suiv = NULL;
+    
+    setTexture((sexe==0)?"./data/sprites/homme.png":"./data/sprites/femme.png");
 }
 
 Personnage::Personnage(string nom, int sexe) : _equipement(Equipement("du sanatorium")){
@@ -43,6 +47,8 @@ Personnage::Personnage(string nom, int sexe) : _equipement(Equipement("du sanato
   _corps.setSuiv(this);
   _deuxmains = true;
     suiv = NULL;
+    
+    setTexture((sexe==0)?"./data/sprites/homme.png":"./data/sprites/femme.png");
 }
 
 /*-----Constructeur par défaut-----*/
@@ -273,6 +279,9 @@ void Personnage::defendre(PNJ& attaquant){
 }//Fin de defendre(Personnage attaquant)
 
 void Personnage::attaquer(PNJ& defendant){
+  _actif = true;
+  _tempsAction = sf::Time::Zero;
+	
   defendant.defendre(*this);
 }
 
@@ -282,4 +291,17 @@ void Personnage::soin(){
 
 void Personnage::bandage(){
   _corps.bandage(_niveau);
+}
+
+void Personnage::action(sf::Time turnTime){
+	_tempsAction += turnTime;
+	sf::Time duree;
+	
+	if(_action == 1)
+		duree = sf::seconds(0.33)*float(_equipement.getArme().getVitesse());
+	else if (_action == 2)
+		duree = sf::seconds(0.80)*float(_equipement.getArme().getVitesse());
+	
+	if(_tempsAction >= duree)
+		_actif = false;
 }
