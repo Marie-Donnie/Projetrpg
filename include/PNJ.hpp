@@ -24,7 +24,7 @@ private :
 	Equipement _equi;
 	Corps _corps;
 
-	int _state;	//state : l'action en cours du PNJ <- PATERN STATE ! (Patern ou pattern ? Gggnnnh!)
+	int _state;	//state : à définir
 	sf::Vector2i _destination;	//si _destinnation == _location : reste sur place
 	int _focus;	//-1: rien, 0: personnage, 1..n: pnj de 0 à n-1
 
@@ -43,17 +43,18 @@ public :
 	Corps& getCorps();
 	Equipement& getEquipement();
 
+	bool estEnJeu();
+	
 	//setters
-
+	void setTexture(sf::Texture & texture);
+	void setTexture(string texture);
+	void setEnJeu(bool set);
+	
   //Methodes de l'Observer
   Observer* getSuiv();
   void setSuiv(Observer* o);
   virtual void traiter(Membre& m, int pv);
   virtual void passer(Membre& m);
-
-	//activité
-	bool estEnJeu();
-	void setEnJeu(bool set);
 
 	//vision
 	bool voitCase(sf::Vector2i loc, Monde & monde);

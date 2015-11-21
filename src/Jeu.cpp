@@ -18,8 +18,6 @@ Jeu::Jeu(std::string fic) : _monde(fic)
 //>Personnage
 void Jeu::creerPersonnage(int x, int y)
 {
-	std::string texture = "data/sprites/homme.png";
-
 	_personnage = Personnage();
 
 	if(_personnage.getSexe() == 0)
@@ -35,9 +33,35 @@ void Jeu::creerPersonnage(int x, int y)
 	_monde.setOccupant(x,y,0); //occupant 0 : Personnage
 }
 //>PNJ
-void Jeu::creerPNJ()
+void Jeu::creerPNJ(std::string nom, int text)
 {
+	_pnjs.push_back(PNJ(nom));
+	_pnjs.back().setTexture(*_pnjTextures[text]);
+    _pnjs.back().setSprite();
+}
+void Jeu::ajouterTexture(std::string text)
+{
+	sf::Texture * texture = new sf::Texture();
+	if(!(*texture).loadFromFile(text)){
+		std::cout << "Erreur lors du chargement de " << texture << std::endl;
+	}
+	
+	_pnjTextures.push_back(texture);
+}
+void Jeu::popPNJ(int num, int x, int y)
+{
+	_pnjs[num].setEnJeu(true);
+	
+	_pnjs[num].setLocation(x,y);
+	_pnjs[num].setPosition(16*x,16*y);
+	
+	_monde.setOccupant(x,y,num+1);
+}
 
+//>>méthode privée
+void Jeu::setTexturePNJ(int num)
+{
+	
 }
 
 //GESTION DES ENTREES
@@ -263,6 +287,8 @@ void Jeu::gestionPNJ()
 
 void Jeu::draw(sf::RenderWindow & window)
 {
+	float x, y;
+	
 	//monde -> personnage & PNJ -> HUD
 	//>Monde
 	_monde.centrerSur(_personnage.getPosition());
@@ -272,7 +298,14 @@ void Jeu::draw(sf::RenderWindow & window)
 	for(PNJ pnj : _pnjs)
 	{
 		if(pnj.estEnJeu())
+		{
+			x = pnj.getPosX() - _personnage.getPosX() + 504;
+			y = pnj.getPosY() - _personnage.getPosY() + 376;
+			
+			pnj.getSprite().setPosition(x,y);
+			
 			window.draw(pnj.getSprite());
+		}
 	}
 
 	//>Personnage

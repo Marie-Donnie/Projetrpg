@@ -19,7 +19,8 @@
 class Jeu {
 	private:
 		Personnage _personnage;
-		std::vector<PNJ> _pnjs; //plutôt un simple tableau ?
+		std::vector<PNJ> _pnjs;
+		std::vector<sf::Texture *> _pnjTextures;
 		Monde _monde;
 		sf::Time _turnTime;			//temps du précédent tour de la boucle while principale
 		sf::Vector2i _posSouris;	//position de la souris
@@ -27,6 +28,8 @@ class Jeu {
 		//méthodes internes
 		void gestionPersonnage(); //appelée par : void gestion()
 		void gestionPNJ();
+		
+		void setTexturePNJ(int num);
 
 	public:
 		//CONSTRUCTEUR
@@ -36,11 +39,10 @@ class Jeu {
 		void creerPersonnage(int x, int y);
 		//void supprimerPersonnage();
 
-		void creerPNJ();
+		void creerPNJ(std::string nom, int text);
 		//void supprimerPNJ(int num);
-
-		//void popPersonnage(int num, float x, float y);
-		//void popPNJ(int num, float x, float y);
+		void ajouterTexture(std::string texture);
+		void popPNJ(int num, int x, int y);
 		
 		// gestion des entrées
 		//>inputs

@@ -7,9 +7,12 @@
 
 
 #include <iostream>
+#include <string>
+#include "SFML/Graphics.hpp"
 #include "PNJ.hpp"
 #include "Membre.hpp"
 #include "Personnage.hpp"
+#include "Entite.hpp"
 
 
 using namespace std;
@@ -22,15 +25,9 @@ PNJ::PNJ(string nom){
         _corps = Corps();
         _corps.setSuiv(this);
         suiv = NULL;
-}
-
-PNJ::PNJ(string nom, string texture) : Entite(texture){
-	_nom = nom;
-        _equi = Equipement();
-	_stats = Stat();
-        _corps = Corps();
-        _corps.setSuiv(this);
-        suiv = NULL;
+        
+        _focus = -1;
+        _enJeu = false;
 }
 
 void PNJ::afficher(){
@@ -45,7 +42,29 @@ Stat& PNJ::getStats(){return _stats;}
 Corps& PNJ::getCorps(){return _corps;}
 Equipement& PNJ::getEquipement(){return _equi;}
 
+bool PNJ::estEnJeu()
+{
+	return _enJeu;
+}
+
 //setters
+void PNJ::setTexture(sf::Texture & texture)
+{
+	Entite::_texture = texture;
+	Entite::_sprite.setTexture(_texture);
+}
+void PNJ::setTexture(string text)
+{
+	if(!(Entite::_texture).loadFromFile(text)){
+		std::cout << "Erreur lors du chargement de " << text << std::endl;
+	}
+	Entite::_sprite.setTexture(_texture);
+}
+
+void PNJ::setEnJeu(bool set)
+{
+	_enJeu = set;
+}
 
 //Observer
 Observer* PNJ::getSuiv(){return suiv;}
@@ -70,16 +89,6 @@ void PNJ::traiter(Membre& m, int pv){
   passer(m);
 }
 
-
-//activité
-bool PNJ::estEnJeu()
-{
-	return _enJeu;
-}
-void PNJ::setEnJeu(bool set)
-{
-	_enJeu = set;
-}
 
 //vision
 bool PNJ::voitCase(int i, int j, Monde & monde)
