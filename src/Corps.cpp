@@ -245,52 +245,56 @@ void Corps::updateObs(){
 
 
 /*--------Autres méthodes--------*/
-void Corps::soin(int membre){
-  Membre& m = _corps.at(membre);
-  //Le soin rend tous les pv
-  m.setPv(m.getPvMax());
-  for (int j=0; j < m.getMembres().size(); ++j){
-    Membre& sm = m.getMembres().at(j);
-    sm.setPv(sm.getPvMax());
-    if (membre < 4 && j == 0) {
-      for (int k=0; k<sm.getMembres().size(); ++k){
-        Membre& ssm = sm.getMembres().at(k);
-        ssm.setPv(ssm.getPvMax());
-      }
-    }
-  }
-}//fin soin(int membre)
-
-
-void Corps::bandage(int membre, int niveau){
-  Membre& m = _corps.at(membre);
-  int add = m.getPv() + niveau;
-  //Si les pvs actuels plus le soin sont inférieurs aux points de vie
-  //maximum, on applique le soin, sinon on remet seulement le membre à
-  //ses points de vie maximum
-  if (add < m.getPvMax()){
-    m.setPv(add);
-  }
-  else {m.setPv(m.getPvMax());}
-  for (int j=0; j < m.getMembres().size(); ++j){
-    Membre& sm = m.getMembres().at(j);
-    add = sm.getPv() + niveau;
-    if (add < sm.getPvMax()){
-      sm.setPv(add);
-    }
-    else {sm.setPv(sm.getPvMax());}
-    if (membre < 4 && j == 0) {
-      for (int k=0; k<sm.getMembres().size(); ++k){
-        Membre& ssm = sm.getMembres().at(k);
-        add = ssm.getPv() + niveau;
-        if (add < ssm.getPvMax()){
-          ssm.setPv(add);
+void Corps::soin(){
+  for (int i=0; i < _corps.size(); ++i){
+    Membre& m = _corps.at(i);
+    //Le soin rend tous les pv
+    m.setPv(m.getPvMax());
+    for (int j=0; j < m.getMembres().size(); ++j){
+      Membre& sm = m.getMembres().at(j);
+      sm.setPv(sm.getPvMax());
+      if (i < 4 && j == 0) {
+        for (int k=0; k<sm.getMembres().size(); ++k){
+          Membre& ssm = sm.getMembres().at(k);
+          ssm.setPv(ssm.getPvMax());
         }
-        else {ssm.setPv(ssm.getPvMax());}
       }
     }
   }
-}//fin bandage(int membre, int niveau)
+}//fin soin()
+
+
+void Corps::bandage(int niveau){
+  for (int i=0; i < _corps.size(); ++i){
+    Membre& m = _corps.at(i);
+    int add = m.getPv() + niveau;
+    //Si les pvs actuels plus le soin sont inférieurs aux points de vie
+    //maximum, on applique le soin, sinon on remet seulement le membre à
+    //ses points de vie maximum
+    if (add < m.getPvMax()){
+      m.setPv(add);
+    }
+    else {m.setPv(m.getPvMax());}
+    for (int j=0; j < m.getMembres().size(); ++j){
+      Membre& sm = m.getMembres().at(j);
+      add = sm.getPv() + niveau;
+      if (add < sm.getPvMax()){
+        sm.setPv(add);
+      }
+      else {sm.setPv(sm.getPvMax());}
+      if (i < 4 && j == 0) {
+        for (int k=0; k<sm.getMembres().size(); ++k){
+          Membre& ssm = sm.getMembres().at(k);
+          add = ssm.getPv() + niveau;
+          if (add < ssm.getPvMax()){
+            ssm.setPv(add);
+          }
+          else {ssm.setPv(ssm.getPvMax());}
+        }
+      }
+    }
+  }
+}//fin bandage(int niveau)
 
 
 void Corps::afficher(){

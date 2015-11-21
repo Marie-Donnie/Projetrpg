@@ -93,8 +93,8 @@ public :
   void afficher();
   void defendre(PNJ& attaquant);
   void attaquer(PNJ& defendant);
-  void soin(int membre);
-  void bandage(int membre);
+  void soin();
+  void bandage();
 };
 
 #endif //PERSONNAGE_HPP

@@ -74,10 +74,6 @@ void Inventaire::utiliserObjet(Personnage& p, int loca){
    _objets.erase(_objets.begin() + loca);
 }
 
-void Inventaire::utiliserObjet(Personnage& p, int membre, int loca){
-   _objets.at(loca).utiliser(p, membre);
-   _objets.erase(_objets.begin() + loca);
-}
 
 
 

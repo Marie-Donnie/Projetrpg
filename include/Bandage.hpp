@@ -23,7 +23,7 @@ public:
   void setDescription(string des);
   //Autres méthodes
   void afficher();
-  void utiliser(Personnage& p, int membre);
+  void utiliser(Personnage& p);
 
 };
 

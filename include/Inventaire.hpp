@@ -75,7 +75,6 @@ void setObjets(boost::ptr_vector<Objet>& objets);
   Arme prendreArme(int loca);
   Objet prendreObjet(int loca);
   void utiliserObjet(Personnage& p, int loca);
-  void utiliserObjet(Personnage& p, int membre, int loca);
   void afficher();
 };
 

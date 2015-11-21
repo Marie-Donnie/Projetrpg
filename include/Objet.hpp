@@ -29,7 +29,6 @@ public:
   //Autres méthodes
   virtual void afficher();
   virtual void utiliser(Personnage& p);
-  virtual void utiliser(Personnage& p, int membre);
 
 };
 

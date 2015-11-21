@@ -276,10 +276,10 @@ void Personnage::attaquer(PNJ& defendant){
   defendant.defendre(*this);
 }
 
-void Personnage::soin(int membre){
-  _corps.soin(membre);
+void Personnage::soin(){
+  _corps.soin();
 }
 
-void Personnage::bandage(int membre){
-  _corps.bandage(membre, _niveau);
+void Personnage::bandage(){
+  _corps.bandage(_niveau);
 }

@@ -28,4 +28,3 @@ void Objet::afficher(){
 }
 
 void Objet::utiliser(Personnage& p){}
-void Objet::utiliser(Personnage& p, int membre){}

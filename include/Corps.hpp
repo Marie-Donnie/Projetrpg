@@ -35,8 +35,8 @@ public:
   void updateObs();
 
   //Autres méthodes
-  void soin(int membre);
-  void bandage(int membre, int niveau);
+  void soin();
+  void bandage(int niveau);
   void afficher();
 
 

@@ -28,6 +28,6 @@ void Bandage::afficher(){
   cout << "Description : " << _description << endl;
 }
 
-void Bandage::utiliser(Personnage& p, int membre){
-  p.bandage(membre);
+void Bandage::utiliser(Personnage& p){
+  p.bandage();
 }
