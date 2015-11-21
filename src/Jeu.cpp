@@ -11,7 +11,7 @@
 using namespace std;
 
 //CONSTRUCTEUR
-Jeu::Jeu(string fic) : _monde(fic)
+Jeu::Jeu(string fic, string nom, int sexe) :  _personnage(nom,sexe), _monde(fic)
 {
 	//_pnjs = std::vector<PNJ>;
 }
@@ -241,9 +241,6 @@ void Jeu::inputs(bool * in)
 //>> Méthode privée, direction de la souris
 int Jeu::directionSouris()
 {
-	int cX = _personnage.getSprite().getPosition().x +1; //centre X
-	int cY = _personnage.getSprite().getPosition().y +1;
-	
 	int sourisX = _posSouris.x - 400 ;
 	int sourisY = _posSouris.y - 300 ;
 
@@ -331,7 +328,7 @@ void Jeu::gestionPNJ()
 	//>>Check état:
 	//>> Si
 
-	int i,j,dI,dJ,signeI,signeJ;
+	int dI,dJ,signeI,signeJ;
 
 	for(PNJ& pnj : _pnjs)
 	{

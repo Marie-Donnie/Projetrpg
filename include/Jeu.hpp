@@ -32,8 +32,8 @@ private:
   void gestionPNJ();
 
   void setTexturePNJ(int num);
-		
-  void setTexturePNJ(int num);
+  
+  int directionSouris();
 
 public:
   //CONSTRUCTEUR
