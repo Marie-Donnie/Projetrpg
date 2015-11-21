@@ -59,7 +59,7 @@ Armure::Armure(){
 Armure::Armure(string piece, string suff){
   _matiere = "tissu";
   _piece = piece;
-  _nom = _piece + " en " + _matiere + suff;
+  _nom = _piece + " en " + _matiere + " "+ suff;
   _durabilite = 100;
   _scoreArmure = 0;
   _mallusAgi = 0;
