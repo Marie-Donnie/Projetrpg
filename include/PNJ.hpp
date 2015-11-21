@@ -32,29 +32,32 @@ private :
 
 
 public :
-	PNJ(string nom); //Constructeur sans texture
-	PNJ(string nom, string texture); //Constructeur
+  PNJ(string nom); //Constructeur sans texture
+  PNJ(string nom, string texture); //Constructeur
 
-	void afficher();
+  PNJ(const PNJ& lautre);
+  PNJ& operator=(const PNJ& lautre);
 
-	//getters
-	string getNom();
-	Stat& getStats();
-	Corps& getCorps();
-	Equipement& getEquipement();
+  void afficher();
 
-	bool estEnJeu();
-	
-	//setters
-	void setTexture(sf::Texture & texture);
-	void setTexture(string texture);
-	void setEnJeu(bool set);
-	
+  //getters
+  string getNom();
+  Stat& getStats();
+  Corps& getCorps();
+  Equipement& getEquipement();
+
+  bool estEnJeu();
+
+  //setters
+  void setTexture(sf::Texture & texture);
+  void setTexture(string texture);
+  void setEnJeu(bool set);
+
   //Methodes de l'Observer
   Observer* getSuiv();
   void setSuiv(Observer* o);
-  virtual void traiter(Membre& m, int pv);
-  virtual void passer(Membre& m);
+  void traiter(Membre& m, int pv);
+  void passer(Membre& m);
 
 	//vision
 	bool voitCase(sf::Vector2i loc, Monde & monde);

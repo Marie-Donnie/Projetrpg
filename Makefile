@@ -4,7 +4,7 @@ EXEC=prpg
 # Compiler
 IDIR=include SFML/include TGUI/include
 IDIRFLAG=$(foreach idir, $(IDIR), -I$(idir))
-CXXFLAGS=-std=c++11 -Ofast -W -Wall -Wextra -pedantic -Wno-sign-compare -Wno-unused-parameter $(IDIRFLAG)
+CXXFLAGS=-std=c++11 -W -Wall -Wextra -pedantic -Wno-sign-compare -Wno-unused-parameter $(IDIRFLAG)
 
 # Linker
 LFLAGS=$(IDIRFLAG) -LSFML/lib -LTGUI/lib -ltgui -lsfml-graphics -lsfml-window -lsfml-system
@@ -30,13 +30,13 @@ vpath %.cpp $(SRCDIR)
 #gcc: clean
 gcc: CXX=g++
 gcc: LINKER=g++ -o
-gcc: CXXFLAGS += -DNDEBUG
+gcc: CXXFLAGS += -DNDEBUG -Ofast
 gcc: $(BINDIR)/$(EXEC)
 
 #gcc-debug: clean
 gcc-debug: CXX=g++
 gcc-debug: LINKER=g++ -o
-gcc-debug: CXXFLAGS += -ggdb
+gcc-debug: CXXFLAGS += -ggdb -O0
 gcc-debug: $(BINDIR)/$(EXEC)
 
 $(BINDIR)/$(EXEC): $(OBJECTS)

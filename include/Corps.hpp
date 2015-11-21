@@ -19,6 +19,9 @@ private:
 public:
   Corps();
 
+  Corps(const Corps& lautre);
+  Corps& operator=(const Corps& lautre);
+
   //Getters
   vector<Membre>& getLMembres();
   int getPv();

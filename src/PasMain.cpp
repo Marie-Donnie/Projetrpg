@@ -21,12 +21,12 @@ int main(){
 	bool input[19];
 	for(int i=0; i<19; ++i){
 		input[i]=false;
-	} 
+	}
 
 	//Coordonnées de la souris
 	sf::Vector2i sourisInt;
 	sf::Vector2f sourisFloat;
-	
+
 	//Création du personnage
 	int sexe;
 	string nom;
@@ -39,12 +39,12 @@ int main(){
 	}
 	cout << "Votre nom :" << endl;
 	cin >> nom;
-	
+
 	//Création de la fenêtre
 	int X = 800, Y = 600;
 	std::string name = "Game";
 	sf::RenderWindow window(sf::VideoMode(X, Y), name);
-	
+
 	//Création du jeu
 	Jeu jeu = Jeu("./data/map.txt", nom, sexe);
 
@@ -55,7 +55,7 @@ int main(){
 	jeu.ajouterTexture("./data/sprites/cadavre.png");
 
 	jeu.creerPNJ("Bob", text);
-	jeu.creerPNJ("Désiré", text);
+	jeu.creerPNJ("Desire", text);
 	jeu.creerPNJ("Francis", text);
 	jeu.creerPNJ("Michel(le)", text);
 	jeu.creerPNJ("Modeste", text);

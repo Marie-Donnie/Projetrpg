@@ -144,6 +144,14 @@ Corps::Corps(){
 }
 /*-----Fin du constructeur par défaut-----*/
 
+Corps::Corps(const Corps& lautre): _corps(lautre._corps){
+  updateObs();
+}
+Corps& Corps::operator=(const Corps& lautre){
+  _corps=(lautre._corps);
+  updateObs();
+  return *this;
+}
 
 /*-----Getters-----*/
 vector<Membre>& Corps::getLMembres(){return _corps;}

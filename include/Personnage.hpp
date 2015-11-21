@@ -64,6 +64,9 @@ public :
   Personnage(string nom, int sexe);
   Personnage();
 
+  Personnage(const Personnage& lautre);
+  Personnage& operator=(const Personnage& lautre);
+
   //Getters
   string getNom();
   int getSexe();
@@ -86,8 +89,8 @@ public :
   //Methodes de l'Observer
   Observer* getSuiv();
   void setSuiv(Observer* o);
-  virtual void traiter(Membre& m, int pv);
-  virtual void passer(Membre& m);
+  void traiter(Membre& m, int pv);
+  void passer(Membre& m);
 
   //Autres méthodes
   void afficher();
@@ -95,7 +98,7 @@ public :
   void attaquer(PNJ& defendant);
   void soin();
   void bandage();
-  
+
   void action(sf::Time turnTime);
 };
 

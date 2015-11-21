@@ -18,7 +18,7 @@ Personnage::Personnage(string nom, int sexe, int age, double taille, double poid
     _corps.setSuiv(this);
     _deuxmains = true;
     suiv = NULL;
-    
+
     setTexture((sexe==0)?"./data/sprites/homme.png":"./data/sprites/femme.png");
 }
 
@@ -33,7 +33,7 @@ Personnage::Personnage(string nom, int sexe, int age, double taille, double poid
     _corps.setSuiv(this);
     _deuxmains = true;
     suiv = NULL;
-    
+
     setTexture((sexe==0)?"./data/sprites/homme.png":"./data/sprites/femme.png");
 }
 
@@ -47,7 +47,7 @@ Personnage::Personnage(string nom, int sexe) : _equipement(Equipement("du sanato
   _corps.setSuiv(this);
   _deuxmains = true;
     suiv = NULL;
-    
+
     setTexture((sexe==0)?"./data/sprites/homme.png":"./data/sprites/femme.png");
 }
 
@@ -66,6 +66,39 @@ Personnage::Personnage(){
   _deuxmains = true;
     suiv = NULL;
 }
+
+Personnage::Personnage(const Personnage& lautre)
+  : Entite(lautre),
+    _nom(lautre._nom),
+    _sexe(lautre._sexe),
+    _age(lautre._age),
+    _taille(lautre._taille),
+    _poids(lautre._poids),
+    _niveau(lautre._niveau),
+    _stats(lautre._stats),
+    _corps(lautre._corps),
+    _inventaire(lautre._inventaire),
+    _equipement(lautre._equipement),
+    _deuxmains(lautre._deuxmains)
+{
+  _corps.setSuiv(this);
+}
+Personnage& Personnage::operator=(const Personnage& lautre){
+  _nom=(lautre._nom);
+  _sexe=(lautre._sexe);
+  _age=(lautre._age);
+  _taille=(lautre._taille);
+  _poids=(lautre._poids);
+  _niveau=(lautre._niveau);
+  _stats=(lautre._stats);
+  _corps=(lautre._corps);
+  _corps.setSuiv(this);
+  _inventaire=(lautre._inventaire);
+  _equipement=(lautre._equipement);
+  _deuxmains=(lautre._deuxmains);
+   return *this;
+}
+
 
 
 /*--------Getters--------*/
@@ -133,7 +166,7 @@ void Personnage::traiter(Membre& m, int pv){
     }
   }
   _stats.setHP(_corps.getPv());
-  passer(m);
+  //passer(m);
 }
 
 
@@ -281,7 +314,7 @@ void Personnage::defendre(PNJ& attaquant){
 void Personnage::attaquer(PNJ& defendant){
   _actif = true;
   _tempsAction = sf::Time::Zero;
-	
+
   defendant.defendre(*this);
 }
 
@@ -296,12 +329,12 @@ void Personnage::bandage(){
 void Personnage::action(sf::Time turnTime){
 	_tempsAction += turnTime;
 	sf::Time duree;
-	
+
 	if(_action == 1)
 		duree = sf::seconds(0.33)*float(_equipement.getArme().getVitesse());
 	else if (_action == 2)
 		duree = sf::seconds(0.80)*float(_equipement.getArme().getVitesse());
-	
+
 	if(_tempsAction >= duree)
 		_actif = false;
 }

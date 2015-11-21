@@ -29,14 +29,36 @@ PNJ::PNJ(string nom, string texture) : Entite(texture){
 	_nom = nom;
         _equi = Equipement();
 	_stats = Stat();
-        _corps = Corps();
         _corps.setSuiv(this);
         suiv = NULL;
-        
         _focus = -1;
         _enJeu = false;
 }
 
+PNJ::PNJ(const PNJ& lautre)
+  : Entite(lautre),
+    _nom(lautre._nom),
+    _stats(lautre._stats),
+    _equi(lautre._equi),
+    _corps(lautre._corps),
+    _destination(lautre._destination),
+    _focus(lautre._focus),
+    _enJeu(lautre._enJeu)
+ {
+   _corps.setSuiv(this);
+}
+
+PNJ& PNJ::operator=(const PNJ& lautre){
+  _nom=(lautre._nom);
+  _stats=(lautre._stats);
+  _equi=(lautre._equi);
+  _corps=(lautre._corps);
+  _destination=(lautre._destination);
+  _focus=(lautre._focus);
+  _enJeu=(lautre._enJeu);
+   _corps.setSuiv(this);
+   return *this;
+}
 
 void PNJ::afficher(){
 	cout << "Salut je suis " << _nom << ", Nyark nyark !" << endl;
@@ -94,7 +116,7 @@ void PNJ::traiter(Membre& m, int pv){
       }
   }
   _stats.setHP(_corps.getPv());
-  passer(m);
+  //passer(m);
 }
 
 
@@ -227,8 +249,7 @@ void PNJ::defendre(Personnage& attaquant){
       //Calcul des dommages
       Arme* armeattaq = &(attaquant.getEquipement().getArme());
       int dmgarme = (rand()% (armeattaq->getDmgmax()- armeattaq->getDmgmin()+1)+armeattaq->getDmgmin());
-      cout << dmgarme << endl;
-      int coup = ((attaquant.getStats().getForce()+dmgarme)-a->getScA());
+      int coup = ((attaquant.getStats().getForce()+dmgarme+10)-a->getScA());
       //Jet de sauvegarde
       int sauv = rand() %10 ;
       //Si le score de sauvegarde est plus grand que le rand, seule
