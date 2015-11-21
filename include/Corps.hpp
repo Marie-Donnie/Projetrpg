@@ -32,6 +32,7 @@ public:
   void setSuiv(Observer* o);
   void passer(Membre& m);
   void traiter(Membre& m, int pv);
+  void updateObs();
 
   //Autres méthodes
   void soin(int membre);

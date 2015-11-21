@@ -35,6 +35,7 @@ public :
   void setPv(int pv);
   void setPvMax(int pv);
   void setNom(string nom);
+  void setObs(Observer* o);
   void changerPv(int pv);
   void changerMembre(Membre& m, int loca);
 

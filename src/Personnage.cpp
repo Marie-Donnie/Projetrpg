@@ -7,18 +7,15 @@
 using namespace std;
 
 /*-----Constructeur complet-----*/
-Personnage::Personnage(string nom, int sexe, int age, double taille, double poids, int niveau, Stat stats, Corps corps, Inventaire inventaire, Equipement equipement, string texture) : Entite(texture){
+Personnage::Personnage(string nom, int sexe, int age, double taille, double poids, int niveau, Stat stats, Corps corps, Inventaire inventaire, Equipement equipement, string texture) : Entite(texture), _stats(stats), _corps(corps), _inventaire(inventaire), _equipement(equipement){
     _nom = nom;
     _sexe = sexe;
     _age = age;
     _taille = taille;
     _poids = poids;
     _niveau = niveau;
-    _stats = stats;
-    _corps = corps;
+    _corps.updateObs();
     _corps.setSuiv(this);
-    _inventaire = inventaire;
-    _equipement = equipement;
     _deuxmains = true;
     suiv = NULL;
 }
@@ -31,27 +28,19 @@ Personnage::Personnage(string nom, int sexe, int age, double taille, double poid
     _taille = taille;
     _poids = poids;
     _niveau = niveau;
-    _stats = Stat();
-    _corps = Corps();
     _corps.setSuiv(this);
-    _inventaire = Inventaire();
-    _equipement = Equipement();
     _deuxmains = true;
     suiv = NULL;
 }
 
-Personnage::Personnage(string nom, int sexe){
+Personnage::Personnage(string nom, int sexe) : _equipement(Equipement("du sanatorium")){
   _sexe = sexe;
   _nom = nom;
   _age = (rand() % 35 + 18);
   _taille = ((rand() % 150 + 70)/100.0);
   _poids = (rand() % 50 + 100);
   _niveau = 1;
-  _stats = Stat();
-  _corps = Corps();
   _corps.setSuiv(this);
-  _inventaire = Inventaire();
-  _equipement = Equipement("du sanatorium");
   _deuxmains = true;
     suiv = NULL;
 }
@@ -66,10 +55,7 @@ Personnage::Personnage(){
   _taille = ((rand() % 150 + 70)/100.0);
   _poids = (rand() % 50 + 100);
   _niveau = 1;
-  _stats = Stat();
-  _corps = Corps();
   _corps.setSuiv(this);
-  _inventaire = Inventaire();
   _equipement = Equipement("du sanatorium");
   _deuxmains = true;
     suiv = NULL;
@@ -136,9 +122,9 @@ void Personnage::traiter(Membre& m, int pv){
       _stats.baisserVitesse();
     }
     //si c'est la tête ou le coeur
-    else if (m.getNom().compare("Tête") || m.getNom().compare("Coeur")){
-        cout << "Le personnage est mort" << endl;
-      }
+    else if (m.getNom().compare("Tête") == 0 || m.getNom().compare("Coeur") == 0){
+      cout << "Le personnage est mort" << endl;
+    }
   }
   _stats.setHP(_corps.getPv());
   passer(m);
@@ -155,7 +141,7 @@ void Personnage::afficher(){
   _stats.afficher();
 }
 
-void Personnage::defendre(Personnage& attaquant){
+void Personnage::defendre(PNJ& attaquant){
   Membre* m;
   //Jet de défense, sur 100
   int def = (rand() %100 + 1);
@@ -219,7 +205,7 @@ void Personnage::defendre(Personnage& attaquant){
     //est protégé
     if (a->getDura() > 0){
       //Calcul des dommages, avec le coup critique
-      int coup = attaquant.getStats().getForce()+2-a->getScA();
+      int coup = attaquant.getStats().getForce()+3-a->getScA();
       //Jet de sauvegarde
       int sauv = rand() %10 ;
       //Si le score de sauvegarde est plus grand que le rand, seule
@@ -264,7 +250,7 @@ void Personnage::defendre(Personnage& attaquant){
     //est protégé
     if (a->getDura() > 0){
       //Calcul des dommages
-      int coup = (attaquant.getStats().getForce()-a->getScA());
+      int coup = (attaquant.getStats().getForce()+1-a->getScA());
       //Jet de sauvegarde
       int sauv = rand() %10 ;
       //Si le score de sauvegarde est plus grand que le rand, seule

@@ -27,7 +27,7 @@ Armure::Armure(string piece){
   _matiere = matieres[mat];
   _nom = _piece + " en " + _matiere;
   _durabilite = (rand() % 20 + 40);
-  _scoreArmure = 2*(mat)+1;
+  _scoreArmure = 2*(mat);
   _mallusAgi = 1*(mat-1);
   _scoreSauvegarde = mat;
   _poids = 0.75+(pow(mat,2));
@@ -50,7 +50,7 @@ Armure::Armure(){
   _matiere = matieres[mat];
   _nom = _piece + " en " + _matiere;
   _durabilite = (rand() % 20 + 40);
-  _scoreArmure = 2*(mat)+1;
+  _scoreArmure = 2*(mat);
   _mallusAgi = 1*(mat-1);
   _scoreSauvegarde = mat;
   _poids = 0.75+(pow(mat,2));

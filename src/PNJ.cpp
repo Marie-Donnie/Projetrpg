@@ -20,15 +20,12 @@ using namespace std;
 //CONSTRUCTEUR
 PNJ::PNJ(string nom){
 	_nom = nom;
-        _equi = Equipement();
-	_stats = Stat();
-        _corps = Corps();
         _corps.setSuiv(this);
         suiv = NULL;
-        
         _focus = -1;
         _enJeu = false;
 }
+
 
 void PNJ::afficher(){
 	cout << "Salut je suis " << _nom << ", Nyark nyark !" << endl;
@@ -215,3 +212,7 @@ void PNJ::defendre(Personnage& attaquant){
     }//Fin du calcul de dommages de l'échec
   }//Fin de l'échec
 }//Fin de defendre(PNJ attaquant)
+
+void PNJ::attaquer(Personnage& defendant){
+  defendant.defendre(*this);
+}

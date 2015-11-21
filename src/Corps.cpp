@@ -226,6 +226,22 @@ void Corps::traiter(Membre& m, int pv){
   }
   passer(m);
 }
+void Corps::updateObs(){
+  for (int i=0; i < _corps.size(); ++i){
+    Membre& m = _corps.at(i);
+    m.setObs(this);
+    for (int j=0; j < m.getMembres().size(); ++j){
+      Membre& sm = m.getMembres().at(j);
+      sm.setObs(this);
+      if (i < 4 && j == 0) {
+        for (int k=0; k<sm.getMembres().size(); ++k){
+          Membre& ssm = sm.getMembres().at(k);
+          ssm.setObs(this);
+        }
+      }
+    }
+  }
+}// fin updateObs()
 
 
 /*--------Autres méthodes--------*/
@@ -278,7 +294,6 @@ void Corps::bandage(int membre, int niveau){
 
 
 void Corps::afficher(){
-  //cout << &_corps;
   cout << "-----------------Corps-----------------" << endl;
   for (int i=0; i < _corps.size(); ++i){
     Membre& m = _corps.at(i);

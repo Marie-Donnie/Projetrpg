@@ -62,6 +62,7 @@ public :
 
 	//combat
 	void defendre(Personnage& attaquant);
+  void attaquer(Personnage& defendant);
 };
 
 #endif //truc_HPP
