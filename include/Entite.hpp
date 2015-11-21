@@ -56,7 +56,8 @@ class Entite {
 		//>Mises en mouvement
 		void move(int direction);
 		//>Mouvement en cours
-		void move(sf::Time turnTime);
+		void move(sf::Time turnTime, sf::Time duree);
+		void move(sf::Time turnTime); //prend une durée par défaut
 		
 };
 

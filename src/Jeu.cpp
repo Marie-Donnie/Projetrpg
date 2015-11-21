@@ -261,6 +261,8 @@ void Jeu::gestionPNJ()
 	//>>Check état:
 	//>> Si
 
+	int i,j,dI,dJ,signeI,signeJ;
+
 	for(PNJ& pnj : _pnjs)
 	{
 		if(pnj.estEnJeu()) //pnj mort : false
@@ -282,7 +284,35 @@ void Jeu::gestionPNJ()
 			}
 			else
 			{	//Peut démarrer une nouvelle action
-
+				if( pnj.detecteCase(_personnage.getLocation()) and pnj.voitCase(_personnage.getLocation(), _monde) )
+				{
+					dI = pnj.getLocX()-_personnage.getLocX();
+					dJ = pnj.getLocY()-_personnage.getLocY();
+					signeI = (dI<0)?-1:1;
+					signeJ = (dJ<0)?-1:1;
+					
+					if( (dI*dI)+(dJ*dJ) <= 1 ) //à 1 de distance... ou 0.
+					{}	//attaque!
+					else
+					{
+						if( (pnj.getLocX() != _personnage.getLocX()) and _monde.estAccessible(pnj.getLocX() - signeI, pnj.getLocY()))
+						{ //déplacement sur l'axe x
+							_monde.moveOccupant(pnj.getLocX(), pnj.getLocY(), pnj.getLocX()-signeI, pnj.getLocY());
+							pnj.move( (signeI>0)?2:3 ); //signeI positif -> personnage à gauche -> move(2), sinon move(3)
+							
+							pnj.setSprite(pnj.getDirection());
+						}
+						else if( (pnj.getLocY() != _personnage.getLocY()) and _monde.estAccessible(pnj.getLocX(), pnj.getLocY()) - signeJ)
+						{ //déplacement sur l'axe y
+							_monde.moveOccupant(pnj.getLocX(), pnj.getLocY(), pnj.getLocX(), pnj.getLocY()-signeJ);
+							pnj.move( (signeJ>0)?0:1 ); //signeJ positif -> personnage au dessus -> move(0), sinon move(1)
+							
+							pnj.setSprite(pnj.getDirection());
+							
+						}
+						//else : bloqué ! C'est con un zombie
+					}
+				}
 			}
 		}
 	}

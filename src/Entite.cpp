@@ -114,8 +114,12 @@ void Entite::move(int direction)
 //>Mouvement en cours
 void Entite::move(sf::Time turnTime)
 {
+	move(turnTime, sf::seconds(0.33));
+}
+void Entite::move(sf::Time turnTime, sf::Time d)
+{
 	_tempsAction += turnTime;
-	sf::Time duree = sf::seconds(0.33);
+	sf::Time duree = d;
 
 	if(_tempsAction < duree)
 	{

@@ -103,26 +103,31 @@ bool PNJ::voitCase(int i, int j, Monde & monde)
 {
 	/*int dI = i - _location.x;
 	int dJ = j - _location.y;
+	int signeI = (dI<0)?-1:1;	//prend -1 si dI négatif, 1 sinon
+	int signeJ = (dJ<0)?-1:1;
 
 	if( dI == 0 )
 	{ //ligne verticale
-		for( int k = 1 ; k < dJ ; ++k )
+		for( int k = 1 ; k < (dJ*signeJ) ; ++k )	//dJ*signeJ est forcément positif, idem pour dI*signeI
 		{
-
+			if( !monde.estTransparant(_location.x, _location.y + (k*signeJ)) )
+				return false;
 		}
 	}
 	else if ( dJ == 0 )
 	{ //ligne horizontale
-		for( int k = 1 ; k < dI ; ++k )
+		for( int k = 1 ; k < (dI*signeI) ; ++k )
 		{
-
+			if( !monde.estTransparant(_location.x + (k*signeI), _location.y) )
+				return false;
 		}
 	}
 	else if ( (dI*dI) == (dJ*dJ) )
 	{ //diagonale
-		for( int k = 1 ; k < dI ; ++k )
+		for( int k = 1 ; k < (dI*signeI) ; ++k )
 		{
-
+			if( !monde.estTransparant(_location.x + (k*signeI), _location.y + (k*signeJ)) )
+				return false;
 		}
 	}
 	else if ( (dI*dI) > (dJ*dJ) )
@@ -167,6 +172,26 @@ bool PNJ::voitCase(int i, int j, Monde & monde)
 bool PNJ::voitCase(sf::Vector2i loc, Monde & monde)
 {
 	return voitCase(loc.x, loc.y, monde);
+}
+//ne tient compte que de la distance
+bool PNJ::detecteCase(int i, int j)
+{
+	int dI = i - _location.x, dJ = j - _location.y;
+	return ( (dI*dI)+(dJ*dJ) ) <= 8*8; //Pour 8 cases de distance à vol d'oiseau
+}
+bool PNJ::detecteCase(sf::Vector2i loc)
+{
+	return detecteCase(loc.x,loc.y); //Pour 8 cases de distance à vol d'oiseau
+}
+
+//Mouvement
+void PNJ::move(int direction)
+{
+	Entite::move(direction);
+}
+void PNJ::move(sf::Time turnTime)
+{
+	Entite::move(turnTime, sf::seconds(0.5));
 }
 
 //Attaque/Defense

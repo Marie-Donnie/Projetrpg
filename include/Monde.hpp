@@ -22,6 +22,7 @@ class Monde {
 		
 		//getters
 		bool estAccessible(int x, int y);
+		bool estTransparent(int x, int y);
 		int getOccupant(int x, int y);
 		//int getObjet(int x, int y);
 		int getX();

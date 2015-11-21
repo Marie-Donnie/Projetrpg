@@ -59,6 +59,12 @@ public :
 	//vision
 	bool voitCase(sf::Vector2i loc, Monde & monde);
 	bool voitCase(int i, int j, Monde & monde);
+	bool detecteCase(int i, int j);
+	bool detecteCase(sf::Vector2i loc);
+
+	//Mouvement
+	void move(int direction);
+	void move(sf::Time turnTime); //durée par défaut différente
 
 	//combat
 	void defendre(Personnage& attaquant);

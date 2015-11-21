@@ -280,6 +280,7 @@ Monde::Monde(std::string fic)
 
 //getters
 bool Monde::estAccessible(int i, int j){return _map[i+(_x*j)].estAccessible();}
+bool Monde::estTransparent(int i, int j){return _map[i+(_x*j)].estTransparent();}
 int Monde::getOccupant(int i, int j){return _map[i+(_x*j)].getOccupant();}
 int Monde::getX(){return _x;}
 int Monde::getY(){return _y;}
