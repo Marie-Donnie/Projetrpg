@@ -28,7 +28,7 @@ class Jeu {
 		//méthodes internes
 		void gestionPersonnage(); //appelée par : void gestion()
 		void gestionPNJ();
-		
+
 		void setTexturePNJ(int num);
 
 	public:
@@ -36,7 +36,7 @@ class Jeu {
 		Jeu(std::string fic);
 
 		//Création des entités mouvantes
-		void creerPersonnage(int x, int y);
+  void creerPersonnage(int x, int y, string nom, int sexe);
 		//void supprimerPersonnage();
 
 		void creerPNJ(std::string nom, int text);
@@ -44,17 +44,17 @@ class Jeu {
 		//void supprimerPNJ(int num);
 		void ajouterTexture(std::string texture);
 		void popPNJ(int num, int x, int y);
-		
+
 		// gestion des entrées
 		//>inputs
 		void inputs(bool * in);
 		void setPosSouris(sf::Vector2i posSouris);
 		//>temps de tour
 		void takeTurnTime(sf::Time turnTime);
-		
+
 		// traitement des données
 		void gestion();
-		
+
 		// affichage global
 		void draw(sf::RenderWindow & window);
 };

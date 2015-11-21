@@ -16,11 +16,11 @@ Jeu::Jeu(std::string fic) : _monde(fic)
 
 //CREATION DES ENTITES MOUVANTES
 //>Personnage
-void Jeu::creerPersonnage(int x, int y)
+void Jeu::creerPersonnage(int x, int y, string nom, int sexe)
 {
-	_personnage = Personnage();
+  _personnage = Personnage(nom, sexe);
 
-	if(_personnage.getSexe() == 0)
+	if(sexe == 0)
 		_personnage.setTexture("data/sprites/homme.png");
 	else
 		_personnage.setTexture("data/sprites/femme.png");
@@ -29,7 +29,7 @@ void Jeu::creerPersonnage(int x, int y)
 
 	_personnage.setLocation(x,y);
 	_personnage.setPosition(16*x,16*y);
-	
+
 	_monde.setOccupant(x,y,0); //occupant 0 : Personnage
 }
 //>PNJ
@@ -49,23 +49,23 @@ void Jeu::ajouterTexture(std::string text)
 	if(!(*texture).loadFromFile(text)){
 		std::cout << "Erreur lors du chargement de " << texture << std::endl;
 	}
-	
+
 	_pnjTextures.push_back(texture);
 }
 void Jeu::popPNJ(int num, int x, int y)
 {
 	_pnjs[num].setEnJeu(true);
-	
+
 	_pnjs[num].setLocation(x,y);
 	_pnjs[num].setPosition(16*x,16*y);
-	
+
 	_monde.setOccupant(x,y,num+1);
 }
 
 //>>méthode privée
 void Jeu::setTexturePNJ(int num)
 {
-	
+
 }
 
 //GESTION DES ENTREES
@@ -130,7 +130,7 @@ void Jeu::inputs(bool * in)
 		{
 
 		}
-		
+
 		if(in[0] or in[1] or in[2] or in[3])
 		{	//provisoire, juste pour que ça soit plus sympa
 			//changer la direction et le sprite du personnage selon l'endroit de la souris
@@ -290,7 +290,7 @@ void Jeu::gestionPNJ()
 					dJ = pnj.getLocY()-_personnage.getLocY();
 					signeI = (dI<0)?-1:1;
 					signeJ = (dJ<0)?-1:1;
-					
+
 					if( (dI*dI)+(dJ*dJ) <= 1 ) //à 1 de distance... ou 0.
 					{}	//attaque!
 					else
@@ -299,16 +299,16 @@ void Jeu::gestionPNJ()
 						{ //déplacement sur l'axe x
 							_monde.moveOccupant(pnj.getLocX(), pnj.getLocY(), pnj.getLocX()-signeI, pnj.getLocY());
 							pnj.move( (signeI>0)?2:3 ); //signeI positif -> personnage à gauche -> move(2), sinon move(3)
-							
+
 							pnj.setSprite(pnj.getDirection());
 						}
 						else if( (pnj.getLocY() != _personnage.getLocY()) and _monde.estAccessible(pnj.getLocX(), pnj.getLocY()) - signeJ)
 						{ //déplacement sur l'axe y
 							_monde.moveOccupant(pnj.getLocX(), pnj.getLocY(), pnj.getLocX(), pnj.getLocY()-signeJ);
 							pnj.move( (signeJ>0)?0:1 ); //signeJ positif -> personnage au dessus -> move(0), sinon move(1)
-							
+
 							pnj.setSprite(pnj.getDirection());
-							
+
 						}
 						//else : bloqué ! C'est con un zombie
 					}
@@ -322,7 +322,7 @@ void Jeu::gestionPNJ()
 void Jeu::draw(sf::RenderWindow & window)
 {
 	float x, y;
-	
+
 	//monde -> personnage & PNJ -> HUD
 	//>Monde
 	_monde.centrerSur(_personnage.getPosition());
@@ -335,9 +335,9 @@ void Jeu::draw(sf::RenderWindow & window)
 		{
 			x = pnj.getPosX() - _personnage.getPosX() + 504;
 			y = pnj.getPosY() - _personnage.getPosY() + 376;
-			
+
 			pnj.getSprite().setPosition(x,y);
-			
+
 			window.draw(pnj.getSprite());
 		}
 	}

@@ -28,7 +28,7 @@ int main(){
 	//Création du jeu
 	Jeu jeu = Jeu("./data/map.txt");
 
-	jeu.creerPersonnage(22,3);
+	jeu.creerPersonnage(22,3, "lol", 1);
 
 	string text = "./data/sprites/zombie.png";
 	jeu.ajouterTexture("./data/sprites/zombie.png");
