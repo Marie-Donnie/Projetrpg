@@ -25,6 +25,17 @@ PNJ::PNJ(string nom){
         _focus = -1;
         _enJeu = false;
 }
+PNJ::PNJ(string nom, string texture) : Entite(texture){
+	_nom = nom;
+        _equi = Equipement();
+	_stats = Stat();
+        _corps = Corps();
+        _corps.setSuiv(this);
+        suiv = NULL;
+        
+        _focus = -1;
+        _enJeu = false;
+}
 
 
 void PNJ::afficher(){

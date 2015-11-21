@@ -39,6 +39,10 @@ void Jeu::creerPNJ(std::string nom, int text)
 	_pnjs.back().setTexture(*_pnjTextures[text]);
     _pnjs.back().setSprite();
 }
+void Jeu::creerPNJ(std::string nom, std::string text)
+{
+	_pnjs.push_back(PNJ(nom, text));
+}
 void Jeu::ajouterTexture(std::string text)
 {
 	sf::Texture * texture = new sf::Texture();

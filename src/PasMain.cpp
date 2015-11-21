@@ -30,14 +30,15 @@ int main(){
 
 	jeu.creerPersonnage(22,3);
 	
+	string text = "./data/sprites/zombie.png";
 	jeu.ajouterTexture("./data/sprites/zombie.png");
 	jeu.ajouterTexture("./data/sprites/cadavre.png");
 	
-	jeu.creerPNJ("Bob", 0);
-	jeu.creerPNJ("Désiré", 0);
-	jeu.creerPNJ("Francis", 0);
-	jeu.creerPNJ("Michel(le)", 0);
-	jeu.creerPNJ("Modeste", 0);
+	jeu.creerPNJ("Bob", text);
+	jeu.creerPNJ("Désiré", text);
+	jeu.creerPNJ("Francis", text);
+	jeu.creerPNJ("Michel(le)", text);
+	jeu.creerPNJ("Modeste", text);
 	
 	jeu.popPNJ(0,12,5);
 	jeu.popPNJ(1,7,30);

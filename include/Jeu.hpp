@@ -40,6 +40,7 @@ class Jeu {
 		//void supprimerPersonnage();
 
 		void creerPNJ(std::string nom, int text);
+		void creerPNJ(std::string nom, std::string text);
 		//void supprimerPNJ(int num);
 		void ajouterTexture(std::string texture);
 		void popPNJ(int num, int x, int y);
