@@ -8,11 +8,19 @@
 #include "Jeu.hpp"
 #include <string>
 
+using namespace std;
+
 //CONSTRUCTEUR
-Jeu::Jeu(std::string fic) : _monde(fic)
+Jeu::Jeu(string fic) : _monde(fic)
 {
 	//_pnjs = std::vector<PNJ>;
 }
+
+//Getters
+Personnage& Jeu::getPerso(){return _personnage;}
+vector<PNJ>& Jeu::getPNJs(){return _pnjs;}
+vector<sf::Texture *>& Jeu::getTextures(){return _pnjTextures;}
+Monde& Jeu::getMonde(){return _monde;}
 
 //CREATION DES ENTITES MOUVANTES
 //>Personnage
@@ -33,17 +41,17 @@ void Jeu::creerPersonnage(int x, int y, string nom, int sexe)
 	_monde.setOccupant(x,y,0); //occupant 0 : Personnage
 }
 //>PNJ
-void Jeu::creerPNJ(std::string nom, int text)
+void Jeu::creerPNJ(string nom, int text)
 {
 	_pnjs.push_back(PNJ(nom));
 	_pnjs.back().setTexture(*_pnjTextures[text]);
     _pnjs.back().setSprite();
 }
-void Jeu::creerPNJ(std::string nom, std::string text)
+void Jeu::creerPNJ(string nom, string text)
 {
 	_pnjs.push_back(PNJ(nom, text));
 }
-void Jeu::ajouterTexture(std::string text)
+void Jeu::ajouterTexture(string text)
 {
 	sf::Texture * texture = new sf::Texture();
 	if(!(*texture).loadFromFile(text)){
@@ -181,12 +189,9 @@ void Jeu::gestion()
 }
 
 //>Gestion du Personnage
-void Jeu::gestionPersonnage()
-{
-	if(_personnage.estActif())
-	{
-		switch(_personnage.getAction())
-		{
+void Jeu::gestionPersonnage(){
+	if(_personnage.estActif()){
+		switch(_personnage.getAction())	{
 			case 0 :{ //deplacement
 				_personnage.move(_turnTime);
 

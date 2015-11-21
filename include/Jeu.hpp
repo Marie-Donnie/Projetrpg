@@ -16,47 +16,56 @@
 #include "Monde.hpp"
 #include "PNJ.hpp"
 
+using namespace std;
+
 class Jeu {
-	private:
-		Personnage _personnage;
-		std::vector<PNJ> _pnjs;
-		std::vector<sf::Texture *> _pnjTextures;
-		Monde _monde;
-		sf::Time _turnTime;			//temps du précédent tour de la boucle while principale
-		sf::Vector2i _posSouris;	//position de la souris
+private:
+  Personnage _personnage;
+  vector<PNJ> _pnjs;
+  vector<sf::Texture *> _pnjTextures;
+  Monde _monde;
+  sf::Time _turnTime;//temps du précédent tour de la boucle while principale
+  sf::Vector2i _posSouris;//position de la souris
 
-		//méthodes internes
-		void gestionPersonnage(); //appelée par : void gestion()
-		void gestionPNJ();
+  //méthodes internes
+  void gestionPersonnage(); //appelée par : void gestion()
+  void gestionPNJ();
 
-		void setTexturePNJ(int num);
+  void setTexturePNJ(int num);
 
-	public:
-		//CONSTRUCTEUR
-		Jeu(std::string fic);
+public:
+  //CONSTRUCTEUR
+  Jeu(string fic);
 
-		//Création des entités mouvantes
+  //Getters
+  Personnage& getPerso();
+  vector<PNJ>& getPNJs();
+  vector<sf::Texture *>& getTextures();
+  Monde& getMonde();
+
+
+  //Création des entités mouvantes
   void creerPersonnage(int x, int y, string nom, int sexe);
-		//void supprimerPersonnage();
+  //void supprimerPersonnage();
 
-		void creerPNJ(std::string nom, int text);
-		void creerPNJ(std::string nom, std::string text);
-		//void supprimerPNJ(int num);
-		void ajouterTexture(std::string texture);
-		void popPNJ(int num, int x, int y);
+  void creerPNJ(string nom, int text);
+  void creerPNJ(string nom, string text);
+  //void supprimerPNJ(int num);
+  void ajouterTexture(string texture);
+  void popPNJ(int num, int x, int y);
 
-		// gestion des entrées
-		//>inputs
-		void inputs(bool * in);
-		void setPosSouris(sf::Vector2i posSouris);
-		//>temps de tour
-		void takeTurnTime(sf::Time turnTime);
+  // gestion des entrées
+  //>inputs
+  void inputs(bool * in);
+  void setPosSouris(sf::Vector2i posSouris);
+  //>temps de tour
+  void takeTurnTime(sf::Time turnTime);
 
-		// traitement des données
-		void gestion();
+  // traitement des données
+  void gestion();
 
-		// affichage global
-		void draw(sf::RenderWindow & window);
+  // affichage global
+  void draw(sf::RenderWindow & window);
 };
 
 #endif
