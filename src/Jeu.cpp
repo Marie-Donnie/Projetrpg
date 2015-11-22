@@ -58,7 +58,9 @@ void Jeu::popPersonnage(int x, int y)
 //>PNJ
 void Jeu::creerPNJ(string nom, string text)
 {
-  _pnjs.push_back(PNJ(nom,text));
+  PNJ pnj = PNJ(nom,text);
+  pnj.setSuiv(this);
+  _pnjs.push_back(pnj);
 }
 void Jeu::popPNJ(int num, int x, int y)
 {
@@ -253,40 +255,40 @@ void Jeu::inputs(bool * in)
     {
       int x = _personnage.getLocX();
       int y = _personnage.getLocY();
-      
+
       if((dir == 0) or (dir == 1))
         y += (dir==0)?-1:1;
       else
         x += (dir==2)?-1:1;
-      
+
       int interaction = _monde.getInteraction(x,y);
-      
+
       switch(interaction){
         case 0: {break;}
         case 1:{
           //test si les vector de l'inventaire sont vides
-          
-          
+
+
           break;
         }
         case 2:{
-          
+
           break;
         }
         case 3:{
-          
+
           break;
         }
       }
-      
+
     }
     else if (in[7]) //F
     {
-      
+
     }
     else if (in[8]) //I
     {
-      
+
     }
   }
 }
@@ -516,13 +518,13 @@ void Jeu::personnageMort(){
 void Jeu::pnjMort(PNJ& p){
 	//ajout du cadavre
   _monde.setTexture(p.getLocX(), p.getLocY(), 14);
-  
+
   for(Armure arm : p.getEquipement().getArmures())
   {
     _monde.getInventaire(p.getLocX(), p.getLocY()).ajouterArmure(arm);
   }
   _monde.getInventaire(p.getLocX(), p.getLocY()).ajouterArme(p.getEquipement().getArme()); //mains de zombies
-  
+
   //retrait du pnj
   _monde.setOccupant(p.getLocX(), p.getLocY(), -1);
   p.setEnJeu(false);
