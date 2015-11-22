@@ -475,7 +475,7 @@ void Jeu::personnageMort(){
     suiv->personnageMort();
 }
 
-void Jeu::pnjMort(){
+void Jeu::pnjMort(PNJ& p){
 
 
 }

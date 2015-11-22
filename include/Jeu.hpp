@@ -2,8 +2,6 @@
 #ifndef JEU_HPP
 #define JEU_HPP
 
-//Forward declared dependencies
-//class PNJ;
 
 //included dependencies
 #include <string>
@@ -76,7 +74,7 @@ public:
   void traiter(Membre& m, int pv);
   void passer(Membre& m);
   void personnageMort();
-  void pnjMort();
+  void pnjMort(PNJ& p);
 };
 
 #endif
