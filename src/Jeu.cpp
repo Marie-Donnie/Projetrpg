@@ -17,6 +17,8 @@ Jeu::Jeu(string fic, string nom, int sexe) :  _personnage(nom,sexe), _monde(fic)
 //_pnjs = std::vector<PNJ>;
 }
 
+
+//Recopie
 Jeu::Jeu(const Jeu& lautre):
   _personnage(lautre._personnage),
   _pnjs(lautre._pnjs),
@@ -30,6 +32,8 @@ Jeu::Jeu(const Jeu& lautre):
    pnj.setSuiv(this);
  }
 }
+
+//Assignement
 Jeu& Jeu::operator=(const Jeu& lautre){
   _personnage=(lautre._personnage);
   _personnage.setSuiv(this);
