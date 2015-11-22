@@ -57,6 +57,7 @@ PNJ& PNJ::operator=(const PNJ& lautre){
   _focus=(lautre._focus);
   _enJeu=(lautre._enJeu);
    _corps.setSuiv(this);
+   suiv=(lautre.suiv);
    return *this;
 }
 

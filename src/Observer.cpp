@@ -9,8 +9,6 @@ void Observer::traiter(Membre& m, int pv){}
 
 
 void Observer::passer(Membre& m){
-  if (suiv)
-    suiv->traiter(m, m.getPv());
 }
 
 

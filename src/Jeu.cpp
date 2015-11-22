@@ -17,6 +17,33 @@ Jeu::Jeu(string fic, string nom, int sexe) :  _personnage(nom,sexe), _monde(fic)
 //_pnjs = std::vector<PNJ>;
 }
 
+Jeu::Jeu(const Jeu& lautre):
+  _personnage(lautre._personnage),
+  _pnjs(lautre._pnjs),
+  _pnjTextures(lautre._pnjTextures),
+  _monde(lautre._monde),
+  _turnTime(lautre._turnTime),
+  _posSouris(lautre._posSouris)
+{
+  _personnage.setSuiv(this);
+ for (PNJ& pnj : _pnjs){
+   pnj.setSuiv(this);
+ }
+}
+Jeu& Jeu::operator=(const Jeu& lautre){
+  _personnage=(lautre._personnage);
+  _personnage.setSuiv(this);
+  _pnjs=(lautre._pnjs);
+ for (PNJ& pnj : _pnjs){
+   pnj.setSuiv(this);
+ }
+  _pnjTextures=(lautre._pnjTextures);
+  _monde=(lautre._monde);
+  _turnTime=(lautre._turnTime);
+  _posSouris=(lautre._posSouris);
+   return *this;
+}
+
 //Getters
 Personnage& Jeu::getPerso(){return _personnage;}
 vector<PNJ>& Jeu::getPNJs(){return _pnjs;}
@@ -463,16 +490,16 @@ void Jeu::draw(sf::RenderWindow & window)
 Observer* Jeu::getSuiv(){return suiv;}
 void Jeu::setSuiv(Observer* o){suiv = o;}
 void Jeu::passer(Membre& m){
-  if (suiv)
-    suiv->traiter(m, m.getPv());
+  // if (suiv)
+  //   suiv->traiter(m, m.getPv());
 }
 void Jeu::traiter(Membre& m, int pv){
-  passer(m);
+  //passer(m);
 }
 
 void Jeu::personnageMort(){
-  if (suiv)
-    suiv->personnageMort();
+  // if (suiv)
+  //   suiv->personnageMort();
 }
 
 void Jeu::pnjMort(PNJ& p){

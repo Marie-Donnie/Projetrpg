@@ -38,6 +38,9 @@ public:
   //CONSTRUCTEUR
   Jeu(string fic, std::string nom, int sexe);
 
+  Jeu(const Jeu& lautre);
+  Jeu& operator=(const Jeu& lautre);
+
   //Getters
   Personnage& getPerso();
   vector<PNJ>& getPNJs();
