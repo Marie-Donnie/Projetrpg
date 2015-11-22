@@ -72,6 +72,8 @@ public :
 	//combat
 	void defendre(Personnage& attaquant);
   void attaquer(Personnage& defendant);
+  
+  void action(sf::Time turnTime);
 };
 
 #endif //truc_HPP

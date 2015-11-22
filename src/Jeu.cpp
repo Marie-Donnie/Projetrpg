@@ -81,161 +81,172 @@ void Jeu::inputs(bool * in)
   int dir = directionSouris();
 
   if(!_personnage.estActif())
-    {	//choisir les priorités : deplacement - attaque - interaction
-      if(in[0])
-        { //haut
-          int x = _personnage.getLocX();
-          int y1 = _personnage.getLocY();
-          int y2 = _personnage.getLocY() - 1;
-          if( (y2 >= 0) and (_monde.estAccessible(x,y2)) )
-            {
-              _personnage.move(0);
-              _monde.moveOccupant(x, y1, x, y2);
-            }
-        }
-      else if(in[1])
-        { //bas
-          int x = _personnage.getLocX();
-          int y1 = _personnage.getLocY();
-          int y2 = _personnage.getLocY() + 1;
-          if( (y2 < _monde.getY()) and (_monde.estAccessible(x,y2)) )
-            {
-              _personnage.move(1);
-              _monde.moveOccupant(x, y1, x, y2);
-            }
-        }
-      else if(in[2])
-        { //gauche
-          int x1 = _personnage.getLocX();
-          int x2 = _personnage.getLocX() - 1;
-          int y = _personnage.getLocY();
-          if( (x2 >= 0) and (_monde.estAccessible(x2,y)) )
-            {
-              _personnage.move(2);
-              _monde.moveOccupant(x1, y, x2, y);
-            }
-        }
-      else if(in[3])
-        { //droite
-          int x1 = _personnage.getLocX();
-          int x2 = _personnage.getLocX() + 1;
-          int y = _personnage.getLocY();
-          if( (x2 < _monde.getX()) and (_monde.estAccessible(x2,y)) )
-            {
-              _personnage.move(3);
-              _monde.moveOccupant(x1, y, x2, y);
-            }
-        }
-      else if(in[4])
-        { //clicG
-          int x = _personnage.getLocX();
-          int y = _personnage.getLocY();
-
-          //Determination de la direction
-          if(dir == 0)
-            y-=1;
-          else if(dir == 1)
-            y+=1;
-          else if(dir == 2)
-            x-=1;
-          else
-            x+=1;
-
-          if(_monde.getOccupant(x,y)!=-1)
-            {
-              _personnage.attaquer(_pnjs[_monde.getOccupant(x,y)-1]);
-              //les indices de pnjs vont de 0 à n, ceux de getOccupant vont de 1 à n+1 pour les pnj
-              _personnage.setDirection(dir);
-              _personnage.setAction(1);
-              _personnage.setSprite(dir);
-            }
-          else
-            {
-              //blanchir la case momentannément
-            }
-        }
-      else if(in[5])
-        { //clicD
-          int x = _personnage.getLocX();
-          int y = _personnage.getLocY();
-
-          //Determination de la direction
-          if(dir == 0)
-            {
-              if( _monde.estPlat(x-1,y-1) and
-                  _monde.estPlat(x  ,y-1) and
-                  _monde.estPlat(x+1,y-1) )
-                {
-                  for(int i=-1; i<2; ++i)
-                    {
-                      if(_monde.getOccupant(x+i,y-1)!=-1)
-                        _personnage.attaquer(_pnjs[_monde.getOccupant(x+i,y-1)-1]);
-                    }
-                }
-
-              _personnage.setDirection(dir);
-              _personnage.setAction(1);
-              _personnage.setSprite(dir);
-            }
-          else if(dir==1)
-            {
-              if( _monde.estPlat(x-1,y+1) and
-                  _monde.estPlat(x  ,y+1) and
-                  _monde.estPlat(x+1,y+1) )
-                {
-                  for(int i=-1; i<2; ++i)
-                    {
-                      if(_monde.getOccupant(x+i,y+1)!=-1)
-                        _personnage.attaquer(_pnjs[_monde.getOccupant(x+i,y+1)-1]);
-                    }
-                }
-
-              _personnage.setDirection(dir);
-              _personnage.setAction(1);
-              _personnage.setSprite(dir);
-            }
-          else if(dir==2)
-            {
-              if( _monde.estPlat(x-1,y-1) and
-                  _monde.estPlat(x-1,y  ) and
-                  _monde.estPlat(x-1,y+1) )
-                {
-                  for(int i=-1; i<2; ++i)
-                    {
-                      if(_monde.getOccupant(x-1,y+i)!=-1)
-                        _personnage.attaquer(_pnjs[_monde.getOccupant(x-1,y+i)-1]);
-                    }
-                }
-
-              _personnage.setDirection(dir);
-              _personnage.setAction(1);
-              _personnage.setSprite(dir);
-            }
-          else if(dir==3)
-            {
-              if( _monde.estPlat(x+1,y-1) and
-                  _monde.estPlat(x+1,y  ) and
-                  _monde.estPlat(x+1,y+1) )
-                {
-                  for(int i=-1; i<2; ++i)
-                    {
-                      if(_monde.getOccupant(x+1,y+i)!=-1)
-                        _personnage.attaquer(_pnjs[_monde.getOccupant(x+1,y+i)-1]);
-                    }
-                }
-
-              _personnage.setDirection(dir);
-              _personnage.setAction(1);
-              _personnage.setSprite(dir);
-            }
-        }
-
-      /*if(in[0] or in[1] or in[2] or in[3])
-        {	//provisoire, juste pour que ça soit plus sympa
-        //changer la direction et le sprite du personnage selon l'endroit de la souris
-        _personnage.setSprite(directionSouris());
-        }*/
+  {	//choisir les priorités : deplacement - attaque - interaction
+    if(in[0])
+    { //haut
+			int x = _personnage.getLocX();
+			int y1 = _personnage.getLocY();
+			int y2 = _personnage.getLocY() - 1;
+			if( (y2 >= 0) and (_monde.estAccessible(x,y2)) )
+			{
+				_personnage.move(0);
+				_monde.moveOccupant(x, y1, x, y2);
+			}
+		}
+    else if(in[1])
+    { //bas
+      int x = _personnage.getLocX();
+      int y1 = _personnage.getLocY();
+      int y2 = _personnage.getLocY() + 1;
+      if( (y2 < _monde.getY()) and (_monde.estAccessible(x,y2)) )
+      {
+				_personnage.move(1);
+        _monde.moveOccupant(x, y1, x, y2);
+      }
+		}
+    else if(in[2])
+    { //gauche
+			int x1 = _personnage.getLocX();
+      int x2 = _personnage.getLocX() - 1;
+      int y = _personnage.getLocY();
+      if( (x2 >= 0) and (_monde.estAccessible(x2,y)) )
+			{
+				_personnage.move(2);
+        _monde.moveOccupant(x1, y, x2, y);
+      }
     }
+    else if(in[3])
+    { //droite
+			int x1 = _personnage.getLocX();
+      int x2 = _personnage.getLocX() + 1;
+      int y = _personnage.getLocY();
+      if( (x2 < _monde.getX()) and (_monde.estAccessible(x2,y)) )
+			{
+				_personnage.move(3);
+        _monde.moveOccupant(x1, y, x2, y);
+      }
+		}
+    else if(in[4])
+    { //clicG
+      int x = _personnage.getLocX();
+			int y = _personnage.getLocY();
+			int dX, dY;
+				
+			int p = _personnage.getEquipement().getArme().getPortee();
+			bool espace = true;
+				
+			//Determination de la direction
+			if((dir == 0) or (dir == 1))
+			{ //axe vertical
+				dY = (dir==0)?-1:1;
+			
+				for(int i=0; i<p; ++i)
+				{//pour toutes les cases à portée
+					if(_monde.estPlat(x,y+(i*dY)) and espace)
+					{//si aucun obstacle rencontré maintenant ou avant
+						if(_monde.getOccupant(x,y+(i*dY))!=-1)
+						{//si pnj
+							_personnage.attaquer(_pnjs[_monde.getOccupant(x,y+(i*dY))-1]);
+							//les indices de pnjs vont de 0 à n, ceux de getOccupant vont de 1 à n+1 pour les pnj
+						}
+					}
+					else
+						espace = false;
+				}
+			}
+			else
+			{ //axe horizontale
+				dX = (dir==2)?-1:1;
+				
+				for(int i=0; i<p; ++i){
+					if(_monde.estPlat(x+(i*dX),y) and espace){
+						if(_monde.getOccupant(x+(i*dX),y)!=-1){
+							_personnage.attaquer(_pnjs[_monde.getOccupant(x+(i*dX),y)-1]);
+						}
+					}
+					else
+						espace = false;
+				}
+			}
+			
+			_personnage.setDirection(dir);
+			_personnage.setAction(1);
+			_personnage.setSprite(dir);
+		}
+    else if(in[5])
+    { //clicD
+			int x = _personnage.getLocX();
+      int y = _personnage.getLocY();
+
+      //Determination de la direction
+      if(dir == 0) //haut
+      {
+				if( _monde.estPlat(x-1,y-1) and // XXX
+						_monde.estPlat(x  ,y-1) and // .O.
+						_monde.estPlat(x+1,y-1) )		// ...
+        {
+					for(int i=-1; i<2; ++i) { //pour les 3 cases X
+						if(_monde.getOccupant(x+i,y-1)!=-1) //s'il y a un occupant
+							_personnage.attaquer(_pnjs[_monde.getOccupant(x+i,y-1)-1]);
+					}
+				}
+
+				_personnage.setDirection(dir);
+				_personnage.setAction(1);
+				_personnage.setSprite(dir);
+			}
+      else if(dir==1) //bas
+      {
+				if( _monde.estPlat(x-1,y+1) and // ...
+						_monde.estPlat(x  ,y+1) and // .O.
+            _monde.estPlat(x+1,y+1) )   // XXX
+        {
+					for(int i=-1; i<2; ++i)
+          {
+						if(_monde.getOccupant(x+i,y+1)!=-1)
+							_personnage.attaquer(_pnjs[_monde.getOccupant(x+i,y+1)-1]);
+					}
+				}
+
+        _personnage.setDirection(dir);
+				_personnage.setAction(1);
+        _personnage.setSprite(dir);
+      }
+      else if(dir==2) //gauche
+      {
+				if( _monde.estPlat(x-1,y-1) and // X..
+            _monde.estPlat(x-1,y  ) and // XO.
+            _monde.estPlat(x-1,y+1) )   // X..
+				{
+					for(int i=-1; i<2; ++i)
+          {
+						if(_monde.getOccupant(x-1,y+i)!=-1)
+							_personnage.attaquer(_pnjs[_monde.getOccupant(x-1,y+i)-1]);
+					}
+				}
+
+        _personnage.setDirection(dir);
+        _personnage.setAction(1);
+        _personnage.setSprite(dir);
+      }
+      else if(dir==3) //droit
+      {
+        if( _monde.estPlat(x+1,y-1) and // ..X
+            _monde.estPlat(x+1,y  ) and // .OX
+            _monde.estPlat(x+1,y+1) )   // ..X
+        {
+          for(int i=-1; i<2; ++i) {
+						if(_monde.getOccupant(x+1,y+i)!=-1)
+							_personnage.attaquer(_pnjs[_monde.getOccupant(x+1,y+i)-1]);
+            }
+        }
+
+        _personnage.setDirection(dir);
+        _personnage.setAction(1);
+        _personnage.setSprite(dir);
+      }
+    } //fin in[5]
+  }
 }
 
 //>> Méthode privée, direction de la souris
@@ -328,65 +339,94 @@ void Jeu::gestionPNJ()
   //>>Check état:
   //>> Si
 
-  int dI,dJ,signeI,signeJ;
+  int i,j,dI,dJ,signeI,signeJ;
 
-  for(PNJ& pnj : _pnjs)
-    {
-      if(pnj.getCorps().getPv() <= 0)
-        {
-          pnj.setEnJeu(false);
-        }
-      if(pnj.estEnJeu()) //pnj mort : false
-        {
-          if(pnj.estActif())
-            {	//action en cours
-              switch(pnj.getAction())
-                {
-                case 0 :{ //deplacement
-                  pnj.move(_turnTime);
-
-                  break;
-                }
-                case 1 :{ //attaque
-                  //personnage.attaque(direction)
-
-                }
-                }
-            }
-          else
-            {	//Peut démarrer une nouvelle action
-              if( pnj.detecteCase(_personnage.getLocation()) and pnj.voitCase(_personnage.getLocation(), _monde) )
-                {
-                  dI = pnj.getLocX()-_personnage.getLocX();
-                  dJ = pnj.getLocY()-_personnage.getLocY();
-                  signeI = (dI<0)?-1:1;
-                  signeJ = (dJ<0)?-1:1;
-
-                  if( (dI*dI)+(dJ*dJ) <= 1 ) //à 1 de distance... ou 0.
-                    {}	//attaque!
-                  else
-                    {
-                      if( (pnj.getLocX() != _personnage.getLocX()) and _monde.estAccessible(pnj.getLocX() - signeI, pnj.getLocY()))
-                        { //déplacement sur l'axe x
-                          _monde.moveOccupant(pnj.getLocX(), pnj.getLocY(), pnj.getLocX()-signeI, pnj.getLocY());
-                          pnj.move( (signeI>0)?2:3 ); //signeI positif -> personnage à gauche -> move(2), sinon move(3)
-
-                          pnj.setSprite(pnj.getDirection());
-                        }
-                      else if( (pnj.getLocY() != _personnage.getLocY()) and _monde.estAccessible(pnj.getLocX(), pnj.getLocY()) - signeJ)
-                        { //déplacement sur l'axe y
-                          _monde.moveOccupant(pnj.getLocX(), pnj.getLocY(), pnj.getLocX(), pnj.getLocY()-signeJ);
-                          pnj.move( (signeJ>0)?0:1 ); //signeJ positif -> personnage au dessus -> move(0), sinon move(1)
-
-                          pnj.setSprite(pnj.getDirection());
-
-                        }
-                      //else : bloqué ! C'est con un zombie
-                    }
-                }
-            }
-        }
+  for(PNJ& pnj : _pnjs){
+    if(pnj.getCorps().getPv() <= 0){
+      pnj.setEnJeu(false);
     }
+    
+    if(pnj.estEnJeu()){ //pnj mort : false
+      if(pnj.estActif()){	//action en cours
+        switch(pnj.getAction()){
+          case 0 :{ //deplacement
+            pnj.move(_turnTime);
+						break;
+          }
+          case 1 :{ //attaque
+            pnj.action(_turnTime); //cooldown
+					}
+        }
+      }
+      else
+      {	//Peut démarrer une nouvelle action
+        if( pnj.detecteCase(_personnage.getLocation()) and pnj.voitCase(_personnage.getLocation(), _monde) )
+				{ //pnj a vu personnage et veux s'en approcher !
+          i = pnj.getLocX();
+					j = pnj.getLocY();
+					dI = pnj.getLocX()-_personnage.getLocX();
+          dJ = pnj.getLocY()-_personnage.getLocY();
+          signeI = (dI<0)?-1:1;
+          signeJ = (dJ<0)?-1:1;
+
+          if( (dI*dI)+(dJ*dJ) <= 1 ) //à 1 de distance... ou 0.
+          {
+						pnj.attaquer(_personnage);
+						pnj.setAction(1);
+						
+						//direction
+						if(dI > 0)
+							pnj.setDirection(2);
+						else if (dI < 0)
+							pnj.setDirection(3);
+						else if (dJ > 0)
+							pnj.setDirection(0);
+						else
+							pnj.setDirection(1);
+						
+						pnj.setSprite(pnj.getDirection());
+					}	//attaque!
+          else
+          {
+            if(dI==0) //ils sont alignés verticalement
+						{
+							if( _monde.estAccessible(i,j-signeJ) ) //si la case du dessus/dessous est accessible
+							{
+								_monde.moveOccupant(i,j, i,j-signeJ); //maj de la map
+								pnj.move( (signeJ>0)?0:1 );	//mise en mouvement
+								pnj.setSprite(pnj.getDirection()); //maj du sprite
+							}
+						}
+						else if(dJ==0) //alignés horrizontalement
+						{
+							if( _monde.estAccessible(i-signeI,j) )
+							{
+								_monde.moveOccupant(i,j, i-signeI,j);
+								pnj.move( (signeI>0)?2:3 );
+								pnj.setSprite(pnj.getDirection());
+							}
+						}
+						else //pas alignés
+						{
+							if( _monde.estAccessible(i,j-signeJ) )
+							{
+								_monde.moveOccupant(i,j, i,j-signeJ);
+								pnj.move( (signeJ>0)?0:1 );
+								pnj.setSprite(pnj.getDirection());
+							}
+							else if( _monde.estAccessible(i-signeI,j) )
+							{
+								_monde.moveOccupant(i,j, i-signeI,j);
+								pnj.move( (signeI>0)?2:3 );
+								pnj.setSprite(pnj.getDirection());
+							}
+						}
+						//else : bloqué ! C'est con un zombie
+					}
+				}
+			}
+    }
+  }
 }
 
 

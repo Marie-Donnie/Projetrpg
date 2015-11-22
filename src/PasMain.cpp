@@ -27,7 +27,7 @@ int main(){
 	sf::Vector2i sourisInt;
 	sf::Vector2f sourisFloat;
 
-	//Création du personnage
+	//Choix du personnage
 	int sexe;
 	string nom;
 	cout << "Saisissez votre sexe puis votre nom :\n(0:homme, 1:femme)" << endl;
@@ -45,15 +45,16 @@ int main(){
 	std::string name = "Game";
 	sf::RenderWindow window(sf::VideoMode(X, Y), name);
 
-	//Création du jeu
+	//Création du jeu & du personnage
 	Jeu jeu = Jeu("./data/map.txt", nom, sexe);
 
 	jeu.popPersonnage(22,3);
 
+	//textures
 	string text = "./data/sprites/zombie.png";
 	jeu.ajouterTexture("./data/sprites/zombie.png");
-	jeu.ajouterTexture("./data/sprites/cadavre.png");
 
+	//pnj
 	jeu.creerPNJ("Bob", text);
 	jeu.creerPNJ("Desire", text);
 	jeu.creerPNJ("Francis", text);

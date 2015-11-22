@@ -271,5 +271,16 @@ void PNJ::defendre(Personnage& attaquant){
 }//Fin de defendre(PNJ attaquant)
 
 void PNJ::attaquer(Personnage& defendant){
+  _actif = true;
+  _tempsAction = sf::Time::Zero;
+	
   defendant.defendre(*this);
+}
+
+void PNJ::action(sf::Time turnTime){
+	_tempsAction += turnTime;
+	sf::Time duree = sf::seconds(1.0);
+	
+	if(_tempsAction >= duree)
+		_actif = false;
 }

@@ -293,14 +293,8 @@ void Monde::setOccupant(int i, int j, int occ){
 
 void Monde::moveOccupant(int x, int y, int x2, int y2)
 {
-	bool occupant = (_map[x+(_x*y)].getOccupant() != -1);
-	bool libre = (_map[x2+(_x*y2)].getOccupant() == -1);
-
-	if( occupant and libre )
-	{
-		_map[x2+(_x*y2)].setOccupant( _map[x+(_x*y)].getOccupant() );
-		_map[x+(_x*y)].setOccupant(-1);
-	}
+	_map[x2+(_x*y2)].setOccupant( _map[x+(_x*y)].getOccupant() );
+	_map[x+(_x*y)].setOccupant(-1);
 }
 
 // centrer le tableau de vertex sur un point
