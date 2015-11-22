@@ -58,6 +58,7 @@ public :
   void setSuiv(Observer* o);
   void traiter(Membre& m, int pv);
   void passer(Membre& m);
+  void pnjMort(PNJ& p);
 
 	//vision
 	bool voitCase(sf::Vector2i loc, Monde & monde);
@@ -72,7 +73,7 @@ public :
 	//combat
 	void defendre(Personnage& attaquant);
   void attaquer(Personnage& defendant);
-  
+
   void action(sf::Time turnTime);
 };
 

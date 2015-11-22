@@ -15,10 +15,11 @@
 #include "Personnage.hpp"
 #include "Monde.hpp"
 #include "PNJ.hpp"
+#include "Observer.hpp"
 
 using namespace std;
 
-class Jeu {
+class Jeu : public Observer{
 private:
   Personnage _personnage;
   vector<PNJ> _pnjs;
@@ -32,7 +33,7 @@ private:
   void gestionPNJ();
 
   void setTexturePNJ(int num);
-  
+
   int directionSouris();
 
 public:
@@ -68,6 +69,14 @@ public:
 
   // affichage global
   void draw(sf::RenderWindow & window);
+
+  //Méthodes de l'observer
+  Observer* getSuiv();
+  void setSuiv(Observer* o);
+  void traiter(Membre& m, int pv);
+  void passer(Membre& m);
+  void personnageMort();
+  void pnjMort();
 };
 
 #endif

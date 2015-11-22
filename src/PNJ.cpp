@@ -101,7 +101,7 @@ Observer* PNJ::getSuiv(){return suiv;}
 void PNJ::setSuiv(Observer* o){suiv = o;}
 void PNJ::passer(Membre& m){
   if (suiv)
-    suiv->traiter(m, m.getPv());
+    suiv->traiter(m, 1);
 }
 void PNJ::traiter(Membre& m, int pv){
   if (pv == 0){
@@ -111,14 +111,17 @@ void PNJ::traiter(Membre& m, int pv){
       else if (m.getNom().find("Jambe")!=string::npos || m.getNom().find("Genou")!=string::npos || m.getNom().find("Cuisse")!=string::npos || m.getNom().find("Pied")!=string::npos){
           _stats.baisserVitesse();
         }
-      else if (m.getNom().compare("Tête") || m.getNom().compare("Coeur")){
-        cout << "Le zombie est mort" << endl;
+      else if (m.getNom().compare("Tête")){
+        pnjMort(*this);
       }
   }
   _stats.setHP(_corps.getPv());
-  //passer(m);
+  passer(m);
 }
-
+void PNJ::pnjMort(PNJ& p){
+  if (suiv)
+    suiv->pnjMort(*this);
+}
 
 //vision
 bool PNJ::voitCase(int i, int j, Monde & monde)
@@ -273,14 +276,14 @@ void PNJ::defendre(Personnage& attaquant){
 void PNJ::attaquer(Personnage& defendant){
   _actif = true;
   _tempsAction = sf::Time::Zero;
-	
+
   defendant.defendre(*this);
 }
 
 void PNJ::action(sf::Time turnTime){
 	_tempsAction += turnTime;
 	sf::Time duree = sf::seconds(1.0);
-	
+
 	if(_tempsAction >= duree)
 		_actif = false;
 }

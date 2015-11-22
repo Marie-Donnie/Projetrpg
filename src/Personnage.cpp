@@ -129,7 +129,7 @@ Observer* Personnage::getSuiv(){return suiv;}
 void Personnage::setSuiv(Observer* o){suiv = o;}
 void Personnage::passer(Membre& m){
   if (suiv)
-    suiv->traiter(m, m.getPv());
+    suiv->traiter(m, 0);
 }
 void Personnage::traiter(Membre& m, int pv){
   //si le membre n'a plus de point de vie
@@ -162,13 +162,17 @@ void Personnage::traiter(Membre& m, int pv){
     }
     //si c'est la tête ou le coeur
     else if (m.getNom().compare("Tête") == 0 || m.getNom().compare("Coeur") == 0){
-      cout << "Le personnage est mort" << endl;
+      personnageMort();
     }
   }
   _stats.setHP(_corps.getPv());
   //passer(m);
 }
 
+void Personnage::personnageMort(){
+  if (suiv)
+    suiv->personnageMort();
+}
 
 
 //Autres méthodes

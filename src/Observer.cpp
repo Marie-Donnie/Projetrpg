@@ -1,5 +1,6 @@
 #include "Membre.hpp"
 #include "Observer.hpp"
+#include "PNJ.hpp"
 
 using namespace std;
 
@@ -11,3 +12,7 @@ void Observer::passer(Membre& m){
   if (suiv)
     suiv->traiter(m, m.getPv());
 }
+
+
+void Observer::personnageMort(){}
+void Observer::pnjMort(PNJ& p){}

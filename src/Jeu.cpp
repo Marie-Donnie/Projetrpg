@@ -13,7 +13,8 @@ using namespace std;
 //CONSTRUCTEUR
 Jeu::Jeu(string fic, string nom, int sexe) :  _personnage(nom,sexe), _monde(fic)
 {
-  //_pnjs = std::vector<PNJ>;
+  suiv = NULL;
+//_pnjs = std::vector<PNJ>;
 }
 
 //Getters
@@ -131,15 +132,15 @@ void Jeu::inputs(bool * in)
       int x = _personnage.getLocX();
       int y = _personnage.getLocY();
       int dX, dY;
-      
+
       int p = _personnage.getEquipement().getArme().getPortee();
       bool espace = true;
-      
+
       //Determination de la direction
       if((dir == 0) or (dir == 1))
       { //axe vertical
         dY = (dir==0)?-1:1;
-      
+
         for(int i=1; i<=p; ++i)
         {//pour toutes les cases à portée
           if(_monde.estPlat(x,y+(i*dY)) and espace)
@@ -157,7 +158,7 @@ void Jeu::inputs(bool * in)
       else
       { //axe horizontale
         dX = (dir==2)?-1:1;
-        
+
         for(int i=1; i<=p; ++i){
           if(_monde.estPlat(x+(i*dX),y) and espace){
             if(_monde.getOccupant(x+(i*dX),y)!=-1){
@@ -168,7 +169,7 @@ void Jeu::inputs(bool * in)
             espace = false;
         }
       }
-      
+
       _personnage.setDirection(dir);
       _personnage.setAction(1);
       _personnage.setSprite(dir);
@@ -207,7 +208,7 @@ void Jeu::inputs(bool * in)
               _personnage.attaquer(_pnjs[_monde.getOccupant(x+i,y+1)-1]);
           }
         }
-      
+
         _personnage.setDirection(dir);
         _personnage.setAction(1);
         _personnage.setSprite(dir);
@@ -344,7 +345,7 @@ void Jeu::gestionPNJ()
     if(pnj.getCorps().getPv() <= 0){
       pnj.setEnJeu(false);
     }
-    
+
     if(pnj.estEnJeu()){ //pnj mort : false
       if(pnj.estActif()){	//action en cours
         switch(pnj.getAction()){
@@ -372,7 +373,7 @@ void Jeu::gestionPNJ()
           {
 						pnj.attaquer(_personnage);
 						pnj.setAction(1);
-						
+
 						//direction
 						if(dI > 0)
 							pnj.setDirection(2);
@@ -382,7 +383,7 @@ void Jeu::gestionPNJ()
 							pnj.setDirection(0);
 						else
 							pnj.setDirection(1);
-						
+
 						pnj.setSprite(pnj.getDirection());
 					}	//attaque!
           else
@@ -454,7 +455,27 @@ void Jeu::draw(sf::RenderWindow & window)
 
   //>Personnage
   window.draw(_personnage.getSprite());
+}
 
-  //>HUD
+
+
+//Observer
+Observer* Jeu::getSuiv(){return suiv;}
+void Jeu::setSuiv(Observer* o){suiv = o;}
+void Jeu::passer(Membre& m){
+  if (suiv)
+    suiv->traiter(m, m.getPv());
+}
+void Jeu::traiter(Membre& m, int pv){
+  passer(m);
+}
+
+void Jeu::personnageMort(){
+  if (suiv)
+    suiv->personnageMort();
+}
+
+void Jeu::pnjMort(){
+
 
 }

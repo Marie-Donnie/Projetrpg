@@ -4,6 +4,7 @@
 #include <cstdlib>
 
 class Membre;
+class PNJ;
 
 class Observer{
 
@@ -13,7 +14,8 @@ protected:
 public:
   virtual void traiter(Membre& m, int pv)=0;
   virtual void passer(Membre& m);
-
+  virtual void personnageMort();
+  virtual void pnjMort(PNJ& p);
 
 };
 

@@ -91,6 +91,7 @@ public :
   void setSuiv(Observer* o);
   void traiter(Membre& m, int pv);
   void passer(Membre& m);
+  void personnageMort();
 
   //Autres méthodes
   void afficher();
