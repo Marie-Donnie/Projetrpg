@@ -217,6 +217,7 @@ void Corps::setSuiv(Observer* o){suiv = o;}
 void Corps::passer(Membre& m){
   if (suiv)
     suiv->traiter(m, m.getPv());
+  else cout << "Corps n'a pas de suivant" << endl;
 }
 void Corps::traiter(Membre& m, int pv){
   //si le membre n'est plus là et a des sous-membres, on met tous les

@@ -130,6 +130,7 @@ void Personnage::setSuiv(Observer* o){suiv = o;}
 void Personnage::passer(Membre& m){
   if (suiv)
     suiv->traiter(m, 0);
+  else cout << "Personnage n'a pas de suivant" << endl;
 }
 void Personnage::traiter(Membre& m, int pv){
   //si le membre n'a plus de point de vie

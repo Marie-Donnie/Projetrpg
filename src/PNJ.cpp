@@ -104,6 +104,7 @@ void PNJ::setSuiv(Observer* o){suiv = o;}
 void PNJ::passer(Membre& m){
   if (suiv)
     suiv->traiter(m, 1);
+  else cout << "PNJ n'a pas de suivant" << endl;
 }
 void PNJ::traiter(Membre& m, int pv){
   if (pv == 0){
