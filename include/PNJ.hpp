@@ -24,7 +24,6 @@ private :
 	Equipement _equi;
 	Corps _corps;
 
-	int _state;	//state : à définir
 	sf::Vector2i _destination;	//si _destinnation == _location : reste sur place
 	int _focus;	//-1: rien, 0: personnage, 1..n: pnj de 0 à n-1
 

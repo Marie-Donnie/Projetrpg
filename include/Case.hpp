@@ -4,6 +4,7 @@
 #include <iostream>				//cin cout
 #include <vector>
 #include <string>
+#include "Inventaire.hpp"
 
 #ifndef CASE_HPP
 #define CASE_HPP
@@ -14,6 +15,9 @@ class Case {
 		int _textX;
 		int _textY;
 		bool _transparent;
+		
+		Inventaire _inventaire;
+		int _interaction; //0: rien, 1: inventaire, 2: message, 3: dialogue
 		
 		sf::Sprite _sprite;
 		sf::Texture _texture;
@@ -28,6 +32,9 @@ class Case {
 		int getOccupant();
 		bool estTransparent();
 		
+		Inventaire& getInventaire();
+		int getInteraction();
+		
 		int getHauteur();
 		sf::Texture& getTexture();
 		sf::Sprite& getSprite();
@@ -41,10 +48,15 @@ class Case {
 		void setPosition(sf::Vector2f pos);
 		void setPosition(float x, float y);
 		
+		void setInteraction(int i);
+		
 		void setHauteur(int h);
 		void setTexture(sf::Texture & t);
 		
 		void setSprite(int i, int j);
+		
+		//interaction
+		void interaction();
 };
 
 #endif

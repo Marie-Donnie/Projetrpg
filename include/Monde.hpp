@@ -25,7 +25,9 @@ class Monde {
 		bool estAccessible(int x, int y);
 		bool estTransparent(int x, int y);
 		int getOccupant(int x, int y);
-		//int getObjet(int x, int y);
+		Inventaire& getInventaire(int x, int y);
+		int getInteraction(int x, int y);
+		
 		int getX();
 		int getY();
 		
@@ -34,7 +36,8 @@ class Monde {
 		
 		void moveOccupant(int x, int y, int x2, int y2);
 		
-		//void setSprite(int x, int y, int textX, int textY);
+		void setTexture(int x, int y, int num);
+		void setInteraction(int x, int y, int i);
 		
 		void centrerSur(sf::Vector2f point);
 		void centrerSur(float x, float y);

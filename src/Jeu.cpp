@@ -14,15 +14,11 @@ using namespace std;
 Jeu::Jeu(string fic, string nom, int sexe) :  _personnage(nom,sexe), _monde(fic)
 {
   suiv = NULL;
-//_pnjs = std::vector<PNJ>;
 }
 
-
-//Recopie
 Jeu::Jeu(const Jeu& lautre):
   _personnage(lautre._personnage),
   _pnjs(lautre._pnjs),
-  _pnjTextures(lautre._pnjTextures),
   _monde(lautre._monde),
   _turnTime(lautre._turnTime),
   _posSouris(lautre._posSouris)
@@ -32,8 +28,6 @@ Jeu::Jeu(const Jeu& lautre):
    pnj.setSuiv(this);
  }
 }
-
-//Assignement
 Jeu& Jeu::operator=(const Jeu& lautre){
   _personnage=(lautre._personnage);
   _personnage.setSuiv(this);
@@ -41,7 +35,6 @@ Jeu& Jeu::operator=(const Jeu& lautre){
  for (PNJ& pnj : _pnjs){
    pnj.setSuiv(this);
  }
-  _pnjTextures=(lautre._pnjTextures);
   _monde=(lautre._monde);
   _turnTime=(lautre._turnTime);
   _posSouris=(lautre._posSouris);
@@ -51,7 +44,6 @@ Jeu& Jeu::operator=(const Jeu& lautre){
 //Getters
 Personnage& Jeu::getPerso(){return _personnage;}
 vector<PNJ>& Jeu::getPNJs(){return _pnjs;}
-vector<sf::Texture *>& Jeu::getTextures(){return _pnjTextures;}
 Monde& Jeu::getMonde(){return _monde;}
 
 //CREATION DES ENTITES MOUVANTES
@@ -64,24 +56,9 @@ void Jeu::popPersonnage(int x, int y)
 	_monde.setOccupant(x,y,0); //occupant 0 : Personnage
 }
 //>PNJ
-void Jeu::creerPNJ(string nom, int text)
-{
-	_pnjs.push_back(PNJ(nom));
-	_pnjs.back().setTexture(*_pnjTextures[text]);
-        _pnjs.back().setSprite();
-}
 void Jeu::creerPNJ(string nom, string text)
 {
   _pnjs.push_back(PNJ(nom,text));
-}
-void Jeu::ajouterTexture(string text)
-{
-	sf::Texture * texture = new sf::Texture();
-	if(!(*texture).loadFromFile(text)){
-		std::cout << "Erreur lors du chargement de " << texture << std::endl;
-	}
-
-	_pnjTextures.push_back(texture);
 }
 void Jeu::popPNJ(int num, int x, int y)
 {
@@ -93,11 +70,6 @@ void Jeu::popPNJ(int num, int x, int y)
 	_monde.setOccupant(x,y,num+1);
 }
 
-//>>méthode privée
-void Jeu::setTexturePNJ(int num)
-{
-
-}
 
 //GESTION DES ENTREES
 //> relevé du temps du tour
@@ -277,6 +249,45 @@ void Jeu::inputs(bool * in)
         _personnage.setSprite(dir);
       }
     } //fin in[5]
+    else if (in[6]) //E
+    {
+      int x = _personnage.getLocX();
+      int y = _personnage.getLocY();
+      
+      if((dir == 0) or (dir == 1))
+        y += (dir==0)?-1:1;
+      else
+        x += (dir==2)?-1:1;
+      
+      int interaction = _monde.getInteraction(x,y);
+      
+      switch(interaction){
+        case 0: {break;}
+        case 1:{
+          //test si les vector de l'inventaire sont vides
+          
+          
+          break;
+        }
+        case 2:{
+          
+          break;
+        }
+        case 3:{
+          
+          break;
+        }
+      }
+      
+    }
+    else if (in[7]) //F
+    {
+      
+    }
+    else if (in[8]) //I
+    {
+      
+    }
   }
 }
 
@@ -373,11 +384,7 @@ void Jeu::gestionPNJ()
   int i,j,dI,dJ,signeI,signeJ;
 
   for(PNJ& pnj : _pnjs){
-    if(pnj.getCorps().getPv() <= 0){
-      pnj.setEnJeu(false);
-    }
-
-    if(pnj.estEnJeu()){ //pnj mort : false
+    if(pnj.estEnJeu()){
       if(pnj.estActif()){	//action en cours
         switch(pnj.getAction()){
           case 0 :{ //deplacement
@@ -507,6 +514,16 @@ void Jeu::personnageMort(){
 }
 
 void Jeu::pnjMort(PNJ& p){
-
-
+	//ajout du cadavre
+  _monde.setTexture(p.getLocX(), p.getLocY(), 14);
+  
+  for(Armure arm : p.getEquipement().getArmures())
+  {
+    _monde.getInventaire(p.getLocX(), p.getLocY()).ajouterArmure(arm);
+  }
+  _monde.getInventaire(p.getLocX(), p.getLocY()).ajouterArme(p.getEquipement().getArme()); //mains de zombies
+  
+  //retrait du pnj
+  _monde.setOccupant(p.getLocX(), p.getLocY(), -1);
+  p.setEnJeu(false);
 }

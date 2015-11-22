@@ -21,7 +21,6 @@ class Jeu : public Observer{
 private:
   Personnage _personnage;
   vector<PNJ> _pnjs;
-  vector<sf::Texture *> _pnjTextures;
   Monde _monde;
   sf::Time _turnTime;//temps du précédent tour de la boucle while principale
   sf::Vector2i _posSouris;//position de la souris
@@ -29,8 +28,6 @@ private:
   //méthodes internes
   void gestionPersonnage(); //appelée par : void gestion()
   void gestionPNJ();
-
-  void setTexturePNJ(int num);
 
   int directionSouris();
 
@@ -44,18 +41,13 @@ public:
   //Getters
   Personnage& getPerso();
   vector<PNJ>& getPNJs();
-  vector<sf::Texture *>& getTextures();
   Monde& getMonde();
 
 
   //Création des entités mouvantes
-  //void creerPersonnage(int x, int y, string nom, int sexe);
-  //void supprimerPersonnage();
   void popPersonnage(int x, int y);
 
-  void creerPNJ(string nom, int text);
   void creerPNJ(string nom, string text);
-  void ajouterTexture(string texture);
   void popPNJ(int num, int x, int y);
 
   // gestion des entrées

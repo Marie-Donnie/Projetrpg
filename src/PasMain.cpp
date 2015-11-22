@@ -52,7 +52,6 @@ int main(){
 
 	//textures
 	string text = "./data/sprites/zombie.png";
-	jeu.ajouterTexture("./data/sprites/zombie.png");
 
 	//pnj
 	jeu.creerPNJ("Bob", text);

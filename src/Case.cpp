@@ -24,6 +24,9 @@ bool Case::estTransparent()
 	return _transparent;
 }
 
+Inventaire& Case::getInventaire(){return _inventaire;}
+int Case::getInteraction(){return _interaction;}
+
 int Case::getOccupant(){return _occupant;}
 
 sf::Vector2f Case::getPosition(){return _sprite.getPosition();}
@@ -43,6 +46,10 @@ void Case::setTransparent(bool t){
 	_transparent = t;
 }
 
+void Case::setInteraction(int i){
+  _interaction = i;
+}
+
 void Case::setPosition(sf::Vector2f pos){_sprite.setPosition(pos);}
 void Case::setPosition(float x, float y){_sprite.setPosition(x,y);}
 
@@ -59,3 +66,17 @@ void Case::setSprite(int i, int j)
 	_sprite.setTextureRect(sf::IntRect(16*i, 16*j, 16, 16));
 }
 
+/*void Case::interaction()
+{
+  if(_interaction==0) //inventaire
+  {
+    
+  }
+  else if(_interaction==1) //porte
+  {
+    _hauteur = (_hauteur+1)%2;
+    int x = _texture.getSize().x;
+    int i = x/16;
+    
+  }
+}*/
