@@ -36,7 +36,8 @@ PNJ::PNJ(string nom, string texture) : Entite(texture){
 }
 
 PNJ::PNJ(const PNJ& lautre)
-  : Entite(lautre),
+  : Observer(lautre),
+    Entite(lautre),
     _nom(lautre._nom),
     _stats(lautre._stats),
     _equi(lautre._equi),
@@ -56,9 +57,9 @@ PNJ& PNJ::operator=(const PNJ& lautre){
   _destination=(lautre._destination);
   _focus=(lautre._focus);
   _enJeu=(lautre._enJeu);
-   _corps.setSuiv(this);
-   suiv=(lautre.suiv);
-   return *this;
+  _corps.setSuiv(this);
+  suiv=(lautre.suiv);
+  return *this;
 }
 
 void PNJ::afficher(){
