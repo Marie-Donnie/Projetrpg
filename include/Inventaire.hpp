@@ -45,7 +45,8 @@ private :
 public :
   //Constructeur
   Inventaire();
-Inventaire(vector<Armure>& armures, vector<Arme>& armes, boost::ptr_vector<Objet>& objets);
+  Inventaire(vector<Armure>& armures, vector<Arme>& armes, boost::ptr_vector<Objet>& objets);
+  Inventaire(string nom);
   //Getters
   vector<Armure>& getArmures();
   Armure& getArmure(int loca);

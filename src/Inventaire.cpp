@@ -1,4 +1,5 @@
 #include "Inventaire.hpp"
+#include "Drap.hpp"
 
 using namespace std;
 
@@ -11,6 +12,51 @@ Inventaire::Inventaire(vector<Armure>& armures, vector<Arme>& armes, boost::ptr_
   _armes = armes;
   _objets = objets;
 }
+
+/*-----Constructeur spécial-----*/
+Inventaire::Inventaire(string nom){
+  //si c'est une armoire, on crée un inventaire aléatoire
+  if (nom.compare("Armoire")==0){
+    int chance = rand() %2;
+    //si 1 on crée un "objet"
+    if (chance){
+      int type = rand()%2;
+      //si 1 c'est une arme, 0 une armure
+      if (type){
+        Arme a = Arme();
+        _armes.push_back(a);
+      }
+      else {
+        Armure a = Armure();
+        _armures.push_back(a);
+      }
+      //on teste si on recommence une fois
+      int gigachance = rand()% 100 +1;
+      //mais il faut une réussite critique
+      if (gigachance > 97){
+        int type = rand()%2;
+        if (type){
+          Arme a = Arme();
+          _armes.push_back(a);
+        }
+        else {
+          Armure a = Armure();
+          _armures.push_back(a);
+        }
+      }
+    }
+  }//fin de l'inventaire aléatoire
+  //si c'est un lit, on met un drap dans son inventaire
+  else if (nom.compare("Lit")==0){
+    Drap* drap = new Drap();
+    _objets.push_back(drap);
+  }
+  //sinon si c'est l'armoire unique, on ajoute les objets spéciaux
+  else if (nom.compare("Armoire spe")==0){
+    _armes.push_back(Arme("Hallebarde du héros", 2, 2, 2, 2.5, 4, 5, 3, false));
+    _armures.push_back(Armure("Heaume en acier incassable ou presque", "Heaume", "plaque", 1000, 6, 2, 3, 5.0));
+  }
+}//Fin des inventaires spéciaux
 
 /*-----Getters-----*/
 vector<Armure>& Inventaire::getArmures(){return _armures;}
