@@ -16,10 +16,10 @@ int main(){
 	//Boutons (reste à en rajouter)
 	//0:haut, 1:bas, 2:gauche, 3:droite,
 	//4:clicG, 5:clicD,
-	//6:E, 7:F, 8:I
-	//9-18:0-9
-	bool input[19];
-	for(int i=0; i<19; ++i){
+	//6:E, 7:F, 8:I, 9:R, 10:A
+	//11-20:0-9
+	bool input[21];
+	for(int i=0; i<21; ++i){
 		input[i]=false;
 	}
 
@@ -128,6 +128,21 @@ int main(){
 				input[7] = true;
 			else
 				input[7] = false;
+
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::I))
+				input[8] = true;
+			else
+				input[8] = false;
+
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::R))
+				input[9] = true;
+			else
+				input[9] = false;
+
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+				input[10] = true;
+			else
+				input[10] = false;
 
 		}
 

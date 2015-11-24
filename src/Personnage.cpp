@@ -336,9 +336,9 @@ void Personnage::action(sf::Time turnTime){
 	sf::Time duree;
 
 	if(_action == 1)
-		duree = sf::seconds(0.33)*float(_equipement.getArme().getVitesse());
+		duree = sf::seconds(1.0)*float(_equipement.getArme().getVitesse());
 	else if (_action == 2)
-		duree = sf::seconds(0.80)*float(_equipement.getArme().getVitesse());
+		duree = sf::seconds(2.0)*float(_equipement.getArme().getVitesse());
 
 	if(_tempsAction >= duree)
 		_actif = false;

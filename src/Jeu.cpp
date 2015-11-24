@@ -267,7 +267,16 @@ void Jeu::inputs(bool * in)
         case 0: {break;}
         case 1:{
           //test si les vector de l'inventaire sont vides
-
+          if( _monde.getInventaire(x,y).getArmes().empty() and 
+              _monde.getInventaire(x,y).getArmures().empty() and
+              _monde.getInventaire(x,y).getArmures().empty() ){
+            //Inventaire non-vide
+            
+          }
+          else //inventaire vide
+          {
+			  
+		  }
 
           break;
         }
