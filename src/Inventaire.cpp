@@ -96,6 +96,11 @@ void Inventaire::ajouter(Objet* objet){_objets.push_back(objet);}
 
 /*-----Autres méthodes-----*/
 
+bool Inventaire::estVide(){
+  bool vide = (_armures.empty() && _armes.empty() && _objets.empty());
+  return vide;
+}
+
 
 Armure Inventaire::prendreArmure(int loca){
   Armure arm = _armures.at(loca);

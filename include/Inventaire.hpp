@@ -72,6 +72,7 @@ void setObjets(boost::ptr_vector<Objet>& objets);
   void ajouter(Objet* objet);
 
   //Autres méthodes
+  bool estVide();
   Armure prendreArmure(int loca);
   Arme prendreArme(int loca);
   Objet prendreObjet(int loca);
