@@ -16,7 +16,7 @@ class Case {
 		int _textY;
 		bool _transparent;
 		
-		Inventaire _inventaire;
+		Inventaire * _inventaire;
 		int _interaction; //0: rien, 1: inventaire, 2: message, 3: dialogue
 		
 		sf::Sprite _sprite;
@@ -27,12 +27,16 @@ class Case {
 		//constructeur
 		Case();
 		
+		//construction d'inventaire
+		void makeInventaire(std::string nom);
+		
 		//getters
 		bool estAccessible();
 		int getOccupant();
 		bool estTransparent();
 		
 		Inventaire& getInventaire();
+		Inventaire* getInventaireAdress();
 		int getInteraction();
 		
 		int getHauteur();
@@ -48,6 +52,7 @@ class Case {
 		void setPosition(sf::Vector2f pos);
 		void setPosition(float x, float y);
 		
+		void setInventaire(Inventaire* inv);
 		void setInteraction(int i);
 		
 		void setHauteur(int h);

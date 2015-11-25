@@ -14,17 +14,25 @@ using namespace std;
 
 Case::Case(){}
 
+//construction d'Inventaire
+void Case::makeInventaire(string nom){
+	_inventaire = new Inventaire(nom);
+}
+
 //getters
-bool Case::estAccessible()
-{
+bool Case::estAccessible(){
 	return (_hauteur == 0) and (_occupant == -1);
 }
-bool Case::estTransparent()
-{
+bool Case::estTransparent(){
 	return _transparent;
 }
 
-Inventaire& Case::getInventaire(){return _inventaire;}
+Inventaire& Case::getInventaire(){
+	//Précondition: _inventaire != null
+	return *_inventaire;
+}
+Inventaire* Case::getInventaireAdress(){return _inventaire;}
+
 int Case::getInteraction(){return _interaction;}
 
 int Case::getOccupant(){return _occupant;}
@@ -46,6 +54,10 @@ void Case::setTransparent(bool t){
 	_transparent = t;
 }
 
+void Case::setInventaire(Inventaire* inv){
+	_inventaire = inv;
+}
+	
 void Case::setInteraction(int i){
   _interaction = i;
 }
@@ -66,9 +78,9 @@ void Case::setSprite(int i, int j)
 	_sprite.setTextureRect(sf::IntRect(16*i, 16*j, 16, 16));
 }
 
-/*void Case::interaction()
+void Case::interaction()
 {
-  if(_interaction==0) //inventaire
+  /*if(_interaction==0) //inventaire
   {
     
   }
@@ -78,5 +90,13 @@ void Case::setSprite(int i, int j)
     int x = _texture.getSize().x;
     int i = x/16;
     
-  }
-}*/
+  }*/
+  
+  //ouverture d'une porte d'une seule case
+  /*if(_interaction==4) //porte
+  {
+    _hauteur = (_hauteur+1)%2;
+    
+    setSprite( (hauteur==1)?0:1 );
+  }*/
+}

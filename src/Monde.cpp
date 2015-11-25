@@ -150,6 +150,7 @@ Monde::Monde(std::string fic)
 						_map[i].setTexture(*_textures[0]);
 						_map[i].setHauteur(0);
 						_map[i].setInteraction(0);
+						_map[i].makeInventaire(""); //créée un inventaire vide
 						
 						break;
 					}
@@ -157,6 +158,7 @@ Monde::Monde(std::string fic)
 						_map[i].setTexture(*_textures[1]);
 						_map[i].setHauteur(1);
 						_map[i].setInteraction(0);
+						_map[i].makeInventaire("");
 						
 						break;
 					}
@@ -164,6 +166,7 @@ Monde::Monde(std::string fic)
 						_map[i].setTexture(*_textures[2]);
 						_map[i].setHauteur(1);
 						_map[i].setInteraction(0);
+						_map[i].makeInventaire("");
 						
 						break;
 					}
@@ -171,6 +174,7 @@ Monde::Monde(std::string fic)
 						_map[i].setTexture(*_textures[3]);
 						_map[i].setHauteur(1);
 						_map[i].setInteraction(0);
+						_map[i].makeInventaire("");
 						
 						break;
 					}
@@ -178,6 +182,7 @@ Monde::Monde(std::string fic)
 						_map[i].setTexture(*_textures[4]);
 						_map[i].setHauteur(1);
 						_map[i].setInteraction(0);
+						_map[i].makeInventaire("");
 						
 						break;
 					}
@@ -185,6 +190,7 @@ Monde::Monde(std::string fic)
 						_map[i].setTexture(*_textures[5]);
 						_map[i].setHauteur(1); //tombe à 0 si porte ouverte
 						_map[i].setInteraction(2); //message
+						_map[i].makeInventaire("");
 						
 						break;
 					}
@@ -192,38 +198,49 @@ Monde::Monde(std::string fic)
 						_map[i].setTexture(*_textures[6]); //sprite provisoire de mêmes dimensions
 						_map[i].setHauteur(1);
 						_map[i].setInteraction(2);
+						_map[i].makeInventaire("");
 						
 						_map[i+1].setTexture(*_textures[6]);
 						_map[i+1].setHauteur(1);
-						_map[i + 1].setSprite(1,0);
-						_map[i].setInteraction(2);
+						_map[i+1].setSprite(1,0);
+						_map[i+1].setInteraction(2);
+						_map[i+1].setInventaire(_map[i].getInventaireAdress());
 						
 						
 						break;
 					}
 					case 'A' :{ //7: armoire, 2x2
-						//mettre à tous le même inventaire par référence
+						//mettre à tous le même inventaire
+						_map[i].makeInventaire("Armoire");
+						
 						for(int a=0; a<2; ++a){
 							for(int b=0; b<2; ++b){
 								_map[i + a + (_x*b)].setTexture(*_textures[7]);
 								_map[i + a + (_x*b)].setHauteur(1);
-								_map[i].setInteraction(1);
+								_map[i + a + (_x*b)].setInteraction(1);
 								
 								_map[i + a + (_x*b)].setSprite(a,b);
+								
+								if((a!=0) and (b!=0))
+									_map[i + a + (_x*b)].setInventaire(_map[i].getInventaireAdress());
 							}
 						}
 						
 						break;
 					}
 					case '+' :{ //7: armoire spéciale (même sprite)
-						//mettre à tous le même inventaire par référence
+						_map[i].makeInventaire("Armoire spe");
+						
 						for(int a=0; a<2; ++a){
 							for(int b=0; b<2; ++b){
 								_map[i + a + (_x*b)].setTexture(*_textures[7]);
 								_map[i + a + (_x*b)].setHauteur(1);
-								_map[i].setInteraction(1);
+								_map[i + a + (_x*b)].setInteraction(1);
 								
 								_map[i + a + (_x*b)].setSprite(a,b);
+								
+								if((a!=0) and (b!=0))
+									_map[i + a + (_x*b)].setInventaire(_map[i].getInventaireAdress());
 							}
 						}
 						
@@ -234,11 +251,13 @@ Monde::Monde(std::string fic)
 						_map[i].setTexture(*_textures[8]);
 						_map[i].setHauteur(1);
 						_map[i].setInteraction(1);
+						_map[i].makeInventaire("Lit");
 						
 						_map[i+1].setTexture(*_textures[8]);
 						_map[i+1].setHauteur(1);
-						_map[i + 1].setSprite(1,0);
-						_map[i].setInteraction(1);
+						_map[i+1].setSprite(1,0);
+						_map[i+1].setInteraction(1);
+						_map[i+1].setInventaire(_map[i].getInventaireAdress());
 						
 						break;	//euh... non, en fait c'était 8: litd. 'Fin, tu vois l'idée...
 					}
@@ -247,11 +266,13 @@ Monde::Monde(std::string fic)
 						_map[i].setTexture(*_textures[9]);
 						_map[i].setHauteur(1);
 						_map[i].setInteraction(1);
+						_map[i].makeInventaire("Lit");
 						
 						_map[i+1].setTexture(*_textures[9]);
 						_map[i+1].setHauteur(1);
-						_map[i + 1].setSprite(1,0);
-						_map[i].setInteraction(1);
+						_map[i+1].setSprite(1,0);
+						_map[i+1].setInteraction(1);
+						_map[i+1].setInventaire(_map[i].getInventaireAdress());
 						
 						break;
 					}
@@ -259,6 +280,7 @@ Monde::Monde(std::string fic)
 						_map[i].setTexture(*_textures[10]);
 						_map[i].setHauteur(1);
 						_map[i].setInteraction(0);
+						_map[i].makeInventaire("");
 						
 						break;
 					}
@@ -266,6 +288,7 @@ Monde::Monde(std::string fic)
 						_map[i].setTexture(*_textures[11]);
 						_map[i].setHauteur(1);
 						_map[i].setInteraction(0);
+						_map[i].makeInventaire("");
 						
 						break;
 					}
@@ -273,6 +296,7 @@ Monde::Monde(std::string fic)
 						_map[i].setTexture(*_textures[12]);
 						_map[i].setHauteur(1);
 						_map[i].setInteraction(0);
+						_map[i].makeInventaire("");
 						
 						for(int a=0; a<6; ++a){
 							for(int b=0; b<3; ++b){
@@ -281,28 +305,37 @@ Monde::Monde(std::string fic)
 								_map[i].setInteraction(0);
 								
 								_map[i + a + (_x*b)].setSprite(a,b);
+								
+								if((a!=0) and (b!=0))
+									_map[i + a + (_x*b)].setInventaire(_map[i].getInventaireAdress());
 							}
 						}
 						
 						break;
 					}
 					case 'J' :{ //jardin tout joli
+						_map[i].makeInventaire("");
 						
 						for(int a=0; a<27; ++a){
 							for(int b=0; b<14; ++b){
 								_map[i + a + (_x*b)].setTexture(*_textures[13]);
 								_map[i + a + (_x*b)].setHauteur(1);
-								_map[i].setInteraction(0);
+								_map[i + a + (_x*b)].setInteraction(0);
 								
 								_map[i + a + (_x*b)].setSprite(a,b);
+								
+								if((a!=0) and (b!=0))
+									_map[i + a + (_x*b)].setInventaire(_map[i].getInventaireAdress());
 							}
 						}
+						
 						break;
 					}
 					case 'I' :{ //15: Le mystérieux inconnu
 						_map[i].setTexture(*_textures[15]);
 						_map[i].setHauteur(1);
 						_map[i].setInteraction(3); //dialogue
+						_map[i].makeInventaire("");
 					}
 				}
 				
@@ -378,6 +411,10 @@ void Monde::centrerSur(float x, float y)
 		
 		_map[i].setPosition(x2-x + 392, y2-y + 292);
 	}
+}
+
+void Monde::interaction(int x, int y){
+	_map[x+(_x*y)].interaction();
 }
 
 void Monde::draw(sf::RenderWindow & window)
