@@ -2,12 +2,12 @@
 EXEC=prpg
 
 # Compiler
-IDIR=include SFML/include TGUI/include
+IDIR=include SFML/include
 IDIRFLAG=$(foreach idir, $(IDIR), -I$(idir))
 CXXFLAGS=-std=c++11 -W -Wall -Wextra -pedantic -Wno-sign-compare -Wno-unused-parameter $(IDIRFLAG)
 
 # Linker
-LFLAGS=$(IDIRFLAG) -LSFML/lib -LTGUI/lib -ltgui -lsfml-graphics -lsfml-window -lsfml-system
+LFLAGS=$(IDIRFLAG) -LSFML/lib -lsfml-graphics -lsfml-window -lsfml-system
 
 # Directories
 SRCDIR=src
