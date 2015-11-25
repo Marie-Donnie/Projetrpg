@@ -6,6 +6,8 @@
 #include <vector>
 #include <time.h>
 #include "Jeu.hpp"
+#include "Interface.hpp"
+#include "Etats.hpp"
 
 using namespace std;
 
@@ -39,6 +41,19 @@ int main(){
 	}
 	cout << "Votre nom :" << endl;
 	cin >> nom;
+        Interface interface = Interface();
+        static ABase abase(interface);
+        static AAide aaide(interface);
+        static AStats astats(interface);
+        static AEquipement aequi(interface);
+        static ACorps acorps(interface);
+        static AInventaireSplit ainvs(interface);
+        static AInventaire ainv(interface);
+        static AArmes aarmes(interface);
+        static AArmures aarmures(interface);
+        static AObjets aobjets(interface);
+        static ADialogues adial(interface);
+        interface.setEtat(&abase);
 
 	//Création de la fenêtre
 	int X = 800, Y = 600;
