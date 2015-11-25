@@ -41,6 +41,31 @@ Jeu& Jeu::operator=(const Jeu& lautre){
    return *this;
 }
 
+//>> Méthode privée, direction de la souris
+int Jeu::directionSouris()
+{
+	int sourisX = _posSouris.x - 400 ;
+	int sourisY = _posSouris.y - 300 ;
+
+	int x2 = sourisX*sourisX;
+	int y2 = sourisY*sourisY;
+
+	if(x2 > y2)
+	{
+		if(sourisX < 0)
+			return 2; //gauche
+		else
+			return 3; //droite
+	}
+	else
+	{
+		if(sourisY < 0)
+			return 0; //haut
+		else 			
+			return 1; //bas
+	}
+}
+
 //Getters
 Personnage& Jeu::getPerso(){return _personnage;}
 vector<PNJ>& Jeu::getPNJs(){return _pnjs;}
@@ -62,16 +87,17 @@ void Jeu::creerPNJ(string nom, string text)
   pnj.setSuiv(this);
   _pnjs.push_back(pnj);
 }
-void Jeu::popPNJ(int num, int x, int y)
+void Jeu::popPNJ(int num, int x, int y, int dir)
 {
-	_pnjs[num].setEnJeu(true);
+  _pnjs[num].setEnJeu(true);
 
-	_pnjs[num].setLocation(x,y);
-	_pnjs[num].setPosition(16*x,16*y);
+  _pnjs[num].setLocation(x,y);
+  _pnjs[num].setPosition(16*x,16*y);
+  _pnjs[num].setDirection(dir);
+  _pnjs[num].setSprite(dir);
 
-	_monde.setOccupant(x,y,num+1);
+  _monde.setOccupant(x,y,num+1);
 }
-
 
 //GESTION DES ENTREES
 //> relevé du temps du tour
@@ -133,7 +159,7 @@ void Jeu::inputs(bool * in)
       }
     }
     else if(in[4])
-    { //clicG
+    { //clicG, attaque simple
       int x = _personnage.getLocX();
       int y = _personnage.getLocY();
       int dX, dY;
@@ -142,26 +168,24 @@ void Jeu::inputs(bool * in)
       bool espace = true;
 
       //Determination de la direction
-      if((dir == 0) or (dir == 1))
-      { //axe vertical
+      if((dir == 0) or (dir == 1)) { //axe vertical
         dY = (dir==0)?-1:1;
 
         for(int i=1; i<=p; ++i)
         {//pour toutes les cases à portée
           if(_monde.estPlat(x,y+(i*dY)) and espace)
-          {//si aucun obstacle rencontré maintenant ou avant
+          {//si aucun obstacle n'est ou n'a été rencontré
             if(_monde.getOccupant(x,y+(i*dY))!=-1)
-            {//si pnj
+            {//si pnj sur la case
               _personnage.attaquer(_pnjs[_monde.getOccupant(x,y+(i*dY))-1]);
-            //les indices de pnjs vont de 0 à n, ceux de getOccupant vont de 1 à n+1 pour les pnj
+              //les indices de pnjs vont de 0 à n, ceux de getOccupant vont de 1 à n+1 pour les pnj
             }
           }
-        else
-          espace = false;
+          else
+            espace = false;
         }
       }
-      else
-      { //axe horizontale
+      else { //axe horizontale
         dX = (dir==2)?-1:1;
 
         for(int i=1; i<=p; ++i){
@@ -180,13 +204,13 @@ void Jeu::inputs(bool * in)
       _personnage.setSprite(dir);
     }
     else if(in[5])
-    { //clicD
+    { //clicD, attaque en largeur
       int x = _personnage.getLocX();
       int y = _personnage.getLocY();
 
       //Determination de la direction
-      if(dir == 0) //haut
-      {
+      if(dir == 0){ //haut
+        //S'il n'y a pas d'obstacle dans les trois cases attaquées
         if( _monde.estPlat(x-1,y-1) and // XXX
             _monde.estPlat(x  ,y-1) and // .O.
             _monde.estPlat(x+1,y-1) )		// ...
@@ -201,8 +225,7 @@ void Jeu::inputs(bool * in)
         _personnage.setAction(1);
         _personnage.setSprite(dir);
       }
-      else if(dir==1) //bas
-      {
+      else if(dir==1){ //bas
         if( _monde.estPlat(x-1,y+1) and // ...
             _monde.estPlat(x  ,y+1) and // .O.
             _monde.estPlat(x+1,y+1) )   // XXX
@@ -218,8 +241,7 @@ void Jeu::inputs(bool * in)
         _personnage.setAction(1);
         _personnage.setSprite(dir);
       }
-      else if(dir==2) //gauche
-      {
+      else if(dir==2){ //gauche
         if( _monde.estPlat(x-1,y-1) and // X..
             _monde.estPlat(x-1,y  ) and // XO.
             _monde.estPlat(x-1,y+1) )   // X..
@@ -234,8 +256,7 @@ void Jeu::inputs(bool * in)
         _personnage.setAction(1);
         _personnage.setSprite(dir);
       }
-      else if(dir==3) //droite
-      {
+      else if(dir==3){ //droite
         if( _monde.estPlat(x+1,y-1) and // ..X
             _monde.estPlat(x+1,y  ) and // .OX
             _monde.estPlat(x+1,y+1) )   // ..X
@@ -253,6 +274,7 @@ void Jeu::inputs(bool * in)
     } //fin in[5]
     else if (in[6]) //E
     {
+      //détermination de la case
       int x = _personnage.getLocX();
       int y = _personnage.getLocY();
 
@@ -261,6 +283,7 @@ void Jeu::inputs(bool * in)
       else
         x += (dir==2)?-1:1;
 
+      //interactions: 0:rien, 1:Inventaire, 2:message (ex:porte fermée), 3:dialogue, 4:porte à ouvrir
       int interaction = _monde.getInteraction(x,y);
 
       switch(interaction){
@@ -274,17 +297,21 @@ void Jeu::inputs(bool * in)
           else //inventaire non vide
           {
 
-		  }
+          }
 
           break;
         }
-        case 2:{
+        case 2:{ //message
 
           break;
         }
-        case 3:{
+        case 3:{ //dialogue
 
           break;
+        }
+        case 4:{ //porte
+          //La méthode interaction() exécute une action selon le numéro d'interaction de la case, ici changer de sprite et rendre la case accessible
+          _monde.interaction(x,y);
         }
       }
 
@@ -298,31 +325,6 @@ void Jeu::inputs(bool * in)
 
     }
   }
-}
-
-//>> Méthode privée, direction de la souris
-int Jeu::directionSouris()
-{
-	int sourisX = _posSouris.x - 400 ;
-	int sourisY = _posSouris.y - 300 ;
-
-	int x2 = sourisX*sourisX;
-	int y2 = sourisY*sourisY;
-
-	if(x2 > y2)
-	{
-		if(sourisX < 0) //gauche
-			return 2;
-		else 			//droite
-			return 3;
-	}
-	else
-	{
-		if(sourisY < 0) //haut
-			return 0;
-		else 			//bas
-			return 1;
-	}
 }
 
 //relevé de la position de la souris

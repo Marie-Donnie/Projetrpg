@@ -53,18 +53,53 @@ int main(){
 	//textures
 	string text = "./data/sprites/zombie.png";
 
-	//pnj
-	jeu.creerPNJ("Bob", text);
+	//création des pnj
+	jeu.creerPNJ("Bob", text);			//0
 	jeu.creerPNJ("Desire", text);
 	jeu.creerPNJ("Francis", text);
 	jeu.creerPNJ("Michel(le)", text);
 	jeu.creerPNJ("Modeste", text);
-
+	jeu.creerPNJ("Constante", text);	//5
+	jeu.creerPNJ("Modeste", text);
+	jeu.creerPNJ("Phillipe", text);
+	jeu.creerPNJ("Arnaud", text);
+	jeu.creerPNJ("Guillaume", text);
+	jeu.creerPNJ("Sylvain", text);		//10
+	jeu.creerPNJ("Jean", text);
+	jeu.creerPNJ("Xavier", text);
+	jeu.creerPNJ("Robert", text);
+	jeu.creerPNJ("Donald", text);
+	
+	//placement des pnj
+	//>Hall d'entrée
 	jeu.popPNJ(0,12,5);
-	jeu.popPNJ(1,7,30);
-	jeu.popPNJ(2,18,29);
-	jeu.popPNJ(3,18,27);
-	jeu.popPNJ(4,27,17);
+	
+	//>Couloir ouest
+	
+	//>Chambres ouest
+	
+	//>Salle à manger
+	jeu.popPNJ(1,18,25, 0);
+	jeu.popPNJ(2,18,28, 3);
+	jeu.popPNJ(3,13,25);
+	jeu.popPNJ(7,13,29, 0);
+	jeu.popPNJ(5,14,29, 0);
+	jeu.popPNJ(6,16,29, 0);
+	
+	
+	//>Salle Sud
+	
+	//>Lits est-sud-est
+	jeu.popPNJ(8,14,50, 1);
+	jeu.popPNJ(9,41,20, 3);
+	jeu.popPNJ(10,49,20, 2);
+	jeu.popPNJ(11,42,30, 2);
+	
+	//>Jardin (pour la déco)
+	jeu.popPNJ(4,33,10, 0);
+	jeu.popPNJ(12,29,14, 2);
+	jeu.popPNJ(13,23,14, 3);
+	jeu.popPNJ(14,18,22, 1);
 
 	//Lancement du jeu
 	sf::Clock globalTime;

@@ -101,7 +101,6 @@ bool Inventaire::estVide(){
   return vide;
 }
 
-
 Armure Inventaire::prendreArmure(int loca){
   Armure arm = _armures.at(loca);
   _armures.erase(_armures.begin() + loca);

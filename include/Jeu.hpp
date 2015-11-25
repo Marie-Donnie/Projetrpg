@@ -48,7 +48,7 @@ public:
   void popPersonnage(int x, int y);
 
   void creerPNJ(string nom, string text);
-  void popPNJ(int num, int x, int y);
+  void popPNJ(int num, int x, int y, int dir=1);
 
   // gestion des entrées
   //>inputs
