@@ -221,8 +221,7 @@ Monde::Monde(std::string fic)
 								
 								_map[i + a + (_x*b)].setSprite(a,b);
 								
-								if((a!=0) and (b!=0))
-									_map[i + a + (_x*b)].setInventaire(_map[i].getInventaireAdress());
+								_map[i + a + (_x*b)].setInventaire(_map[i].getInventaireAdress());
 							}
 						}
 						
@@ -239,8 +238,7 @@ Monde::Monde(std::string fic)
 								
 								_map[i + a + (_x*b)].setSprite(a,b);
 								
-								if((a!=0) and (b!=0))
-									_map[i + a + (_x*b)].setInventaire(_map[i].getInventaireAdress());
+								_map[i + a + (_x*b)].setInventaire(_map[i].getInventaireAdress());
 							}
 						}
 						
@@ -306,8 +304,7 @@ Monde::Monde(std::string fic)
 								
 								_map[i + a + (_x*b)].setSprite(a,b);
 								
-								if((a!=0) and (b!=0))
-									_map[i + a + (_x*b)].setInventaire(_map[i].getInventaireAdress());
+								_map[i + a + (_x*b)].setInventaire(_map[i].getInventaireAdress());
 							}
 						}
 						
@@ -324,8 +321,7 @@ Monde::Monde(std::string fic)
 								
 								_map[i + a + (_x*b)].setSprite(a,b);
 								
-								if((a!=0) and (b!=0))
-									_map[i + a + (_x*b)].setInventaire(_map[i].getInventaireAdress());
+								_map[i + a + (_x*b)].setInventaire(_map[i].getInventaireAdress());
 							}
 						}
 						
