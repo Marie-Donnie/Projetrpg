@@ -42,7 +42,20 @@ int main(){
 	}
 	cout << "Votre nom :" << endl;
 	cin >> nom;
-        Interface interface = Interface();
+
+
+	//Création de la fenêtre
+	int X = 800, Y = 600;
+	std::string name = "Game";
+	sf::RenderWindow window(sf::VideoMode(X, Y), name);
+
+	//Création du jeu & du personnage
+	Jeu jeu = Jeu("./data/map.txt", nom, sexe);
+
+	jeu.popPersonnage(22,3);
+
+
+        Interface interface = Interface(jeu.getPerso());
         static ABase abase(interface);
         static AAide aaide(interface);
         static AStats astats(interface);
@@ -56,16 +69,6 @@ int main(){
         static ADialogues adial(interface);
         interface.setEtat(&abase);
         interface.setSuiv(interface.getEtatCourant());
-
-	//Création de la fenêtre
-	int X = 800, Y = 600;
-	std::string name = "Game";
-	sf::RenderWindow window(sf::VideoMode(X, Y), name);
-
-	//Création du jeu & du personnage
-	Jeu jeu = Jeu("./data/map.txt", nom, sexe);
-
-	jeu.popPersonnage(22,3);
 
 	//textures
 	string text = "./data/sprites/zombie.png";

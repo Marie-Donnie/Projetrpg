@@ -12,6 +12,7 @@
 #include "Observer.hpp"
 #include "Etat.hpp"
 #include "Etats.hpp"
+#include "Personnage.hpp"
 
 
 using namespace std;
@@ -19,34 +20,13 @@ using namespace std;
  class Interface : public Observer{
 private:
   Etat* _etatCourant;
-  // Etat* _ABase;
-  // Etat* _AAide;
-  // Etat* _AStats;
-  // Etat* _AEquipement;
-  // Etat* _ACorps;
-  // Etat* _AInventaireSplit;
-  // Etat* _AInventaire;
-  // Etat* _AArmures;
-  // Etat* _AArmes;
-  // Etat* _AObjets;
-  // Etat* _ADialogues;
+   Personnage& _perso;
+
 public:
-  Interface();
+  Interface(Personnage& perso);
   //Getter
   Etat* getEtatCourant();
 
-
-  // Etat* getEtatABase();
-  // Etat* getEtatAAide();
-  // Etat* getEtatAStats();
-  // Etat* getEtatAEquipement();
-  // Etat* getEtatACorps();
-  // Etat* getEtatAInventaireSplit();
-  // Etat* getEtatAInventaire();
-  // Etat* getEtatAArmures();
-  // Etat* getEtatAArmes();
-  // Etat* getEtatAObjets();
-  // Etat* getEtatADialogues();
   //Setter
   void setEtat(Etat* etat);
 

@@ -11,7 +11,7 @@ class Interface;
 #include <vector>
 #include "Observer.hpp"
 #include "Etat.hpp"
-
+#include "Personnage.hpp"
 
 using namespace std;
 

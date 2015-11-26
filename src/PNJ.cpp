@@ -114,7 +114,7 @@ void PNJ::traiter(Membre& m, int pv){
       else if (m.getNom().find("Jambe")!=string::npos || m.getNom().find("Genou")!=string::npos || m.getNom().find("Cuisse")!=string::npos || m.getNom().find("Pied")!=string::npos){
           _stats.baisserVitesse();
         }
-      else if (m.getNom().compare("Tête")){
+      else if (m.getNom().compare("Tête")==0){
         pnjMort(*this);
       }
   }
@@ -232,9 +232,9 @@ void PNJ::defendre(Personnage& attaquant){
   //On vérifie si le coup passe
   if (def < attaquant.getStats().getCc() - (_stats.getAgi())*10){
     //On cherche le membre touché
-    int r = (rand() %6);
+    int r = (rand() %9);
     cout << "rand membre " << r << endl;
-    m = &(_corps.getLMembres().at(r));
+    m = &(_corps.getLMembres().at((r<6)?r:5));
     //Calcul de dommages de l'échec :
     //On cherche maintenant l'armure qui défend cette localisation
     Armure* a;

@@ -1,33 +1,11 @@
 #include "Interface.hpp"
 
-Interface::Interface(){
-  // _ABase= new ABase(*this);
-  // _AAide= new AAide(*this);
-  // _AStats= new AStats(*this);
-  // _AEquipement= new AEquipement(*this);
-  // _ACorps= new ACorps(*this);
-  // _AInventaireSplit= new AInventaireSplit(*this);
-  // _AInventaire= new AInventaire(*this);
-  // _AArmures= new AArmures(*this);
-  // _AArmes= new AArmes(*this);
-  // _AObjets= new AObjets(*this);
-  // _ADialogues= new ADialogues(*this);
+Interface::Interface(Personnage& perso) : _perso(perso){
   _etatCourant= NULL;
     suiv = NULL;
  }
 
 Etat* Interface::getEtatCourant(){return _etatCourant;}
-// Etat* Interface::getEtatABase(){return _ABase;}
-// Etat* Interface::getEtatAAide(){return _AAide;}
-// Etat* Interface::getEtatAStats(){return _AStats;}
-// Etat* Interface::getEtatAEquipement(){return _AEquipement;}
-// Etat* Interface::getEtatACorps(){return _ACorps;}
-// Etat* Interface::getEtatAInventaireSplit(){return _AInventaireSplit;}
-// Etat* Interface::getEtatAInventaire(){return _AInventaire;}
-// Etat* Interface::getEtatAArmures(){return _AArmures;}
-// Etat* Interface::getEtatAArmes(){return _AArmes;}
-// Etat* Interface::getEtatAObjets(){return _AObjets;}
-// Etat* Interface::getEtatADialogues(){return _ADialogues;}
 
 void Interface::setEtat(Etat* etat){_etatCourant = etat;}
 

@@ -64,7 +64,7 @@ Arme::Arme(string nom){
   _type = 5;
   _mains = 0;
   _portee = 1;
-  _vitesse = 1;
+  _vitesse = 2;
   _dmgmin = 0;
   _dmgmax = 0;
   _penetration = 0;
