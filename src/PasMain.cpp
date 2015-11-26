@@ -8,6 +8,7 @@
 #include "Jeu.hpp"
 #include "Interface.hpp"
 #include "Etats.hpp"
+#include "Observer.hpp"
 
 using namespace std;
 
@@ -54,6 +55,7 @@ int main(){
         static AObjets aobjets(interface);
         static ADialogues adial(interface);
         interface.setEtat(&abase);
+        interface.setSuiv(interface.getEtatCourant());
 
 	//Création de la fenêtre
 	int X = 800, Y = 600;
@@ -84,15 +86,15 @@ int main(){
 	jeu.creerPNJ("Xavier", text);
 	jeu.creerPNJ("Robert", text);
 	jeu.creerPNJ("Donald", text);
-	
+
 	//placement des pnj
 	//>Hall d'entrée
 	jeu.popPNJ(0,12,5);
-	
+
 	//>Couloir ouest
-	
+
 	//>Chambres ouest
-	
+
 	//>Salle à manger
 	jeu.popPNJ(1,18,25, 0);
 	jeu.popPNJ(2,18,28, 3);
@@ -100,16 +102,16 @@ int main(){
 	jeu.popPNJ(7,13,29, 0);
 	jeu.popPNJ(5,14,29, 0);
 	jeu.popPNJ(6,16,29, 0);
-	
-	
+
+
 	//>Salle Sud
-	
+
 	//>Lits est-sud-est
 	jeu.popPNJ(8,14,50, 1);
 	jeu.popPNJ(9,41,20, 3);
 	jeu.popPNJ(10,49,20, 2);
 	jeu.popPNJ(11,42,30, 2);
-	
+
 	//>Jardin (pour la déco)
 	jeu.popPNJ(4,33,10, 0);
 	jeu.popPNJ(12,29,14, 2);

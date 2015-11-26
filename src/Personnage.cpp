@@ -245,29 +245,25 @@ void Personnage::defendre(PNJ& attaquant){
     }
     //Sinon c'est le heaume
     else a = &(_equipement.getArmure(2));
-    //On teste si l'armure a encore de la durabilité pour savoir si on
-    //est protégé
-    if (a->getDura() > 0){
-      //Calcul des dommages, avec le coup critique
-      int coup = attaquant.getStats().getForce()+3-a->getScA();
-      //Jet de sauvegarde
-      int sauv = rand() %10 ;
-      //Si le score de sauvegarde est plus grand que le rand, seule
-      //l'armure prend le coup
-      if (a->getSauv() > sauv && coup > 0){
-        a->changerDura(coup);
-        cout << _nom << " a perdu " << coup << " de durabilité sur " << a->getNom() <<endl;
-      }
-      //Sinon, l'armure et le membre subissent des dommages
-      else if (coup >0) {
-        m->changerPv(coup);
-        m->checkPv();
-        a->changerDura(coup);
-        //cout << &m << endl;
-        cout << _nom << " a perdu " << coup << " de vie sur " << m->getNom() <<endl;
-        cout << _nom << " a perdu " << coup << " de durabilité sur " << a->getNom() <<endl;
-      }
-    }//Fin du calcul de dommages de l'échec critique
+    //Calcul des dommages, avec le coup critique
+    int coup = attaquant.getStats().getForce()+3-((a->getDura() >0)?a->getScA():0);
+    //Jet de sauvegarde
+    int sauv = rand() %10 ;
+    //Si le score de sauvegarde est plus grand que le rand, seule
+    //l'armure prend le coup
+    if (a->getSauv() > sauv && coup > 0){
+      a->changerDura(coup);
+      cout << _nom << " a perdu " << coup << " de durabilité sur " << a->getNom() <<endl;
+    }
+    //Sinon, l'armure et le membre subissent des dommages
+    else if (coup >0) {
+      m->changerPv(coup);
+      m->checkPv();
+      a->changerDura(coup);
+      //cout << &m << endl;
+      cout << _nom << " a perdu " << coup << " de vie sur " << m->getNom() <<endl;
+      cout << _nom << " a perdu " << coup << " de durabilité sur " << a->getNom() <<endl;
+    }
   } //Fin de l'échec critique
 
   //Jet non critique, on vérifie si le coup passe
@@ -290,13 +286,10 @@ void Personnage::defendre(PNJ& attaquant){
     }
     //Sinon c'est le heaume
     else a = &(_equipement.getArmure(2));
-    //On teste si l'armure a encore de la durabilité pour savoir si on
-    //est protégé
-    if (a->getDura() > 0){
-      //Calcul des dommages
-      int coup = (attaquant.getStats().getForce()+1-a->getScA());
-      //Jet de sauvegarde
-      int sauv = rand() %10 ;
+    //Calcul des dommages
+    int coup = (attaquant.getStats().getForce()+1-((a->getDura() >0)?a->getScA():0));
+    //Jet de sauvegarde
+    int sauv = rand() %10 ;
       //Si le score de sauvegarde est plus grand que le rand, seule
       //l'armure prend le coup
       if (a->getSauv() > sauv && coup > 0){
@@ -311,8 +304,7 @@ void Personnage::defendre(PNJ& attaquant){
         cout << _nom << " a perdu " << coup << " de vie sur " << m->getNom() <<endl;
         cout << _nom << " a perdu " << coup << " de durabilité sur " << a->getNom() <<endl;
       }
-    }//Fin du calcul de dommages de l'échec
-  }//Fin de l'échec
+    }  //Fin de l'échec
   //Si le jet de défense est réussi, rien ne se passe
 }//Fin de defendre(Personnage attaquant)
 

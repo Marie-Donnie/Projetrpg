@@ -249,13 +249,10 @@ void PNJ::defendre(Personnage& attaquant){
     }
     //Sinon c'est le heaume
     else a = &(_equi.getArmure(2));
-    //On teste si l'armure a encore de la durabilité pour savoir si on
-    //est protégé
-    if (a->getDura() > 0){
-      //Calcul des dommages
-      Arme* armeattaq = &(attaquant.getEquipement().getArme());
-      int dmgarme = (rand()% (armeattaq->getDmgmax()- armeattaq->getDmgmin()+1)+armeattaq->getDmgmin());
-      int coup = ((attaquant.getStats().getForce()+dmgarme+10)-a->getScA());
+    Arme* armeattaq = &(attaquant.getEquipement().getArme());
+    int dmgarme = (rand()% (armeattaq->getDmgmax()- armeattaq->getDmgmin()+1)+armeattaq->getDmgmin());
+    //Calcul des dommages
+    int coup = ((attaquant.getStats().getForce()+dmgarme)+10-((a->getDura() >0)?a->getScA():0));
       //Jet de sauvegarde
       int sauv = rand() %10 ;
       //Si le score de sauvegarde est plus grand que le rand, seule
@@ -273,7 +270,7 @@ void PNJ::defendre(Personnage& attaquant){
         cout << _nom << " a perdu " << coup << " de durabilité sur " << a->getNom() <<endl;
       }
     }//Fin du calcul de dommages de l'échec
-  }//Fin de l'échec
+  //Fin de l'échec
 }//Fin de defendre(PNJ attaquant)
 
 void PNJ::attaquer(Personnage& defendant){

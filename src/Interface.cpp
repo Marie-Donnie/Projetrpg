@@ -13,6 +13,7 @@ Interface::Interface(){
   // _AObjets= new AObjets(*this);
   // _ADialogues= new ADialogues(*this);
   _etatCourant= NULL;
+    suiv = NULL;
  }
 
 Etat* Interface::getEtatCourant(){return _etatCourant;}
