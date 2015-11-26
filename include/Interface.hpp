@@ -2,6 +2,8 @@
 #ifndef INTERFACE_HPP
 #define INTERFACE_HPP
 
+class PNJ;
+class Case;
 
 //included dependencies
 #include <string>
@@ -23,12 +25,32 @@ private:
    Personnage& _perso;
 
 public:
-  Interface(Personnage& perso);
-  //Getter
-  Etat* getEtatCourant();
+   static ABase abase;
+   static AAide aaide;
+   static AStats astats;
+   static AEquipement aequi;
+   static ACorps acorps;
+   static AInventaireSplit ainvs;
+   static AInventaire ainv;
+   static AArmes aarmes;
+   static AArmures aarmures;
+   static AObjets aobjets;
+   static ADialogues adial;
+   static AInventairep ainvp;
 
-  //Setter
-  void setEtat(Etat* etat);
+   Interface(Personnage& perso);
+
+  Interface(const Interface& lautre);
+  Interface& operator=(const Interface& lautre);
+
+   void updateEtat();
+
+   //Getter
+   Etat* getEtatCourant();
+   Personnage& getPerso();
+
+   //Setter
+   void setEtat(Etat* etat);
 
    //Méthodes de l'observer
   Observer* getSuiv();
@@ -36,14 +58,15 @@ public:
   void traiter(Membre& m, int pv);
   void passer(Membre& m);
   void personnageMort();
-   void pnjMort();
+  void pnjMort(PNJ& p);
 
   //Méthodes state
   void affichage();
   void retour();
   void inputchiffre(int chiffre);
-  void interaction(int laquelle);
+  void interaction(Case& c);
   void aide();
+   void inventaire();
  };
 
 

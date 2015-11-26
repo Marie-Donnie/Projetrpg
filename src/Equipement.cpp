@@ -16,7 +16,7 @@ Equipement::Equipement(){
   _armures.push_back(Armure("Jambieres"));
   _armures.push_back(Armure("Plastron"));
   _armures.push_back(Armure("Heaume"));
-  _arme = Arme("Mains nues");
+  _arme = Arme("Mains de zombies");
 }
 
 /*-----Constructeur par nom-----*/

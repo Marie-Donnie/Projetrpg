@@ -228,12 +228,12 @@ void PNJ::defendre(Personnage& attaquant){
   //Jet de défense, sur 100
   int def = (rand() %100 + 1);
   //cout << &_corps;
-  cout << "rand def " << def << endl;
+  //cout << "rand def " << def << endl;
   //On vérifie si le coup passe
   if (def < attaquant.getStats().getCc() - (_stats.getAgi())*10){
     //On cherche le membre touché
     int r = (rand() %9);
-    cout << "rand membre " << r << endl;
+    // cout << "rand membre " << r << endl;
     m = &(_corps.getLMembres().at((r<6)?r:5));
     //Calcul de dommages de l'échec :
     //On cherche maintenant l'armure qui défend cette localisation
@@ -259,15 +259,15 @@ void PNJ::defendre(Personnage& attaquant){
       //l'armure prend le coup
       if (a->getSauv() > sauv && coup > 0){
         a->changerDura(coup);
-        cout << _nom << " a perdu " << coup << " de durabilité sur " << a->getNom() <<endl;
+        //cout << _nom << " a perdu " << coup << " de durabilité sur " << a->getNom() <<endl;
       }
       //Sinon, l'armure et le membre subissent des dommages
       else if (coup > 0) {
         m->changerPv(coup);
         m->checkPv();
         a->changerDura(coup);
-        cout << _nom << " a perdu " << coup << " de vie sur " << m->getNom() <<endl;
-        cout << _nom << " a perdu " << coup << " de durabilité sur " << a->getNom() <<endl;
+        //cout << _nom << " a perdu " << coup << " de vie sur " << m->getNom() <<endl;
+        //cout << _nom << " a perdu " << coup << " de durabilité sur " << a->getNom() <<endl;
       }
     }//Fin du calcul de dommages de l'échec
   //Fin de l'échec

@@ -124,12 +124,14 @@ void Personnage::setNiveau(int niveau){_niveau = niveau;}
 void Personnage::levelUp(){++_niveau;}
 
 
-  //Methodes de l'Observer
+/*--------Methodes de l'Observer--------*/
 Observer* Personnage::getSuiv(){return suiv;}
 void Personnage::setSuiv(Observer* o){suiv = o;}
 void Personnage::passer(Membre& m){
-  if (suiv)
+  if (suiv){
     suiv->traiter(m, 0);
+    //cout << "Perso a passé les pv perdus" << endl;
+  }
   else cout << "Personnage n'a pas de suivant" << endl;
 }
 void Personnage::traiter(Membre& m, int pv){
@@ -167,7 +169,7 @@ void Personnage::traiter(Membre& m, int pv){
     }
   }
   _stats.setHP(_corps.getPv());
-  //passer(m);
+  passer(m);
 }
 
 void Personnage::personnageMort(){
@@ -190,21 +192,21 @@ void Personnage::defendre(PNJ& attaquant){
   //Jet de défense, sur 100
   int def = (rand() %100 + 1);
   //cout << &_corps;
-  cout << "rand def " << def << endl;
+  //cout << "rand def " << def << endl;
   //Si échec critique
   if (def < 4){
     //On cherche le membre touché
     int r = (rand() %6);
-    cout << "rand membre " << r << endl;
+    //cout << "rand membre " << r << endl;
     //Si c'est un bras ou une jambe
     if (r<4){
       //On précise la localisation (pied/main, genou/coude ou cuisse/épaule)
       int memb = (rand() %3);
-      cout << "rand loca " << memb << endl;
+      //cout << "rand loca " << memb << endl;
       //Si c'est pied ou main, on désigne l'orteil ou le doigt
       if (memb == 0){
         int doigt = (rand() %6);
-        cout << "rand extremite " << doigt << endl;
+        //cout << "rand extremite " << doigt << endl;
         //Si c'est 5, c'est la cheville ou le poignet (donc pied ou main)
         if (doigt == 5){
           m = &(_corps.getLMembres().at(r).getMembre(memb));}
@@ -220,7 +222,7 @@ void Personnage::defendre(PNJ& attaquant){
     else {
       //On désigne la loca
       int memb = (rand() %8);
-      cout << "rand loca " << memb << endl;
+      //cout << "rand loca " << memb << endl;
       //si c'est 7, c'est la gorge pour la tête (donc la tête qui
       //prend), le torse pour le torse
       if (memb == 7){
@@ -253,16 +255,17 @@ void Personnage::defendre(PNJ& attaquant){
     //l'armure prend le coup
     if (a->getSauv() > sauv && coup > 0){
       a->changerDura(coup);
-      cout << _nom << " a perdu " << coup << " de durabilité sur " << a->getNom() <<endl;
+      //cout << _nom << " a perdu " << coup << " de durabilité sur " << a->getNom() <<endl;
     }
     //Sinon, l'armure et le membre subissent des dommages
     else if (coup >0) {
       m->changerPv(coup);
       m->checkPv();
+      //cout << "Perso a perdu des pv" << endl;
       a->changerDura(coup);
       //cout << &m << endl;
-      cout << _nom << " a perdu " << coup << " de vie sur " << m->getNom() <<endl;
-      cout << _nom << " a perdu " << coup << " de durabilité sur " << a->getNom() <<endl;
+      //cout << _nom << " a perdu " << coup << " de vie sur " << m->getNom() <<endl;
+      //cout << _nom << " a perdu " << coup << " de durabilité sur " << a->getNom() <<endl;
     }
   } //Fin de l'échec critique
 
@@ -270,7 +273,7 @@ void Personnage::defendre(PNJ& attaquant){
   else if (def < attaquant.getStats().getCc() - (_stats.getAgi())*10){
     //On cherche le membre touché
     int r = (rand() %6);
-    cout << "rand membre " << r << endl;
+    //cout << "rand membre " << r << endl;
     m = &(_corps.getLMembres().at(r));
     //Calcul de dommages de l'échec :
     //On cherche maintenant l'armure qui défend cette localisation
@@ -294,15 +297,16 @@ void Personnage::defendre(PNJ& attaquant){
       //l'armure prend le coup
       if (a->getSauv() > sauv && coup > 0){
         a->changerDura(coup);
-        cout << _nom << " a perdu " << coup << " de durabilité sur " << a->getNom() <<endl;
+        //cout << _nom << " a perdu " << coup << " de durabilité sur " << a->getNom() <<endl;
       }
       //Sinon, l'armure et le membre subissent des dommages
       else if (coup > 0) {
         m->changerPv(coup);
         m->checkPv();
+        //cout << "Perso a perdu des pv" << endl;
         a->changerDura(coup);
-        cout << _nom << " a perdu " << coup << " de vie sur " << m->getNom() <<endl;
-        cout << _nom << " a perdu " << coup << " de durabilité sur " << a->getNom() <<endl;
+        //cout << _nom << " a perdu " << coup << " de vie sur " << m->getNom() <<endl;
+        //cout << _nom << " a perdu " << coup << " de durabilité sur " << a->getNom() <<endl;
       }
     }  //Fin de l'échec
   //Si le jet de défense est réussi, rien ne se passe

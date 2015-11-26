@@ -54,21 +54,11 @@ int main(){
 
 	jeu.popPersonnage(22,3);
 
-
         Interface interface = Interface(jeu.getPerso());
-        static ABase abase(interface);
-        static AAide aaide(interface);
-        static AStats astats(interface);
-        static AEquipement aequi(interface);
-        static ACorps acorps(interface);
-        static AInventaireSplit ainvs(interface);
-        static AInventaire ainv(interface);
-        static AArmes aarmes(interface);
-        static AArmures aarmures(interface);
-        static AObjets aobjets(interface);
-        static ADialogues adial(interface);
-        interface.setEtat(&abase);
-        interface.setSuiv(interface.getEtatCourant());
+        jeu.setSuiv(&interface);
+        interface.setEtat(&Interface::abase);
+        interface.setSuiv(&Interface::abase);
+        interface.affichage();
 
 	//textures
 	string text = "./data/sprites/zombie.png";

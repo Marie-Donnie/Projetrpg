@@ -13,6 +13,7 @@ using namespace std;
 //CONSTRUCTEUR
 Jeu::Jeu(string fic, string nom, int sexe) :  _personnage(nom,sexe), _monde(fic)
 {
+  _personnage.setSuiv(this);
   suiv = NULL;
 }
 
@@ -61,7 +62,7 @@ int Jeu::directionSouris()
 	{
 		if(sourisY < 0)
 			return 0; //haut
-		else 			
+		else
 			return 1; //bas
 	}
 }
@@ -512,16 +513,19 @@ void Jeu::draw(sf::RenderWindow & window)
 Observer* Jeu::getSuiv(){return suiv;}
 void Jeu::setSuiv(Observer* o){suiv = o;}
 void Jeu::passer(Membre& m){
-  // if (suiv)
-  //   suiv->traiter(m, m.getPv());
+  if (suiv)
+    suiv->traiter(m, m.getPv());
 }
 void Jeu::traiter(Membre& m, int pv){
-  //passer(m);
+  if (pv==0){
+    passer(m);
+    //cout << "Jeu a passé le membre" << endl;
+  }
 }
 
 void Jeu::personnageMort(){
-  // if (suiv)
-  //   suiv->personnageMort();
+  if (suiv)
+    suiv->personnageMort();
 }
 
 void Jeu::pnjMort(PNJ& p){
@@ -537,4 +541,6 @@ void Jeu::pnjMort(PNJ& p){
   //retrait du pnj
   _monde.setOccupant(p.getLocX(), p.getLocY(), -1);
   p.setEnJeu(false);
+  if (suiv)
+    suiv->pnjMort(p);
 }

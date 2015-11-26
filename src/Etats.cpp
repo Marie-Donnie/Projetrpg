@@ -3,111 +3,122 @@
 
 /*------------ABase------------*/
 
-ABase::ABase(Interface& interface) : _interface(interface) {}
-void ABase::affichage(){}
+ABase::ABase() {}
+void ABase::affichage(){
+  cout << "\x1B[2J" ;
+  cout << interface->getPerso().getStats().getHP() << endl;
+}
 void ABase::retour(){}
 void ABase::inputchiffre(int chiffre){}
-void ABase::interaction(int laquelle){}
+void ABase::interaction(Case& c){}
 void ABase::aide(){}
-void ABase::traiter(Membre& m, int pv){}
+void ABase::traiter(Membre& m, int pv){
+    affichage();
+}
 
 
 /*------------AAide------------*/
-AAide::AAide(Interface& interface) : _interface(interface) {}
-void AAide::affichage(){}
+AAide::AAide() {}
+void AAide::affichage(){
+  cout << "\x1B[2J" ;
+}
 void AAide::retour(){}
 void AAide::inputchiffre(int chiffre){}
-void AAide::interaction(int laquelle){}
+void AAide::interaction(Case& c){}
 void AAide::aide(){}
-void AAide::traiter(Membre& m, int pv){}
 
 /*------------AStats------------*/
-AStats::AStats(Interface& interface) : _interface(interface) {}
-void AStats::affichage(){}
+AStats::AStats() {}
+void AStats::affichage(){
+  cout << "\x1B[2J" ;
+}
 void AStats::retour(){}
 void AStats::inputchiffre(int chiffre){}
-void AStats::interaction(int laquelle){}
-void AStats::aide(){}
-void AStats::traiter(Membre& m, int pv){}
+void AStats::interaction(Case& c){}
 
 /*------------AEquipement------------*/
-AEquipement::AEquipement(Interface& interface) : _interface(interface) {}
-void AEquipement::affichage(){}
+AEquipement::AEquipement() {}
+void AEquipement::affichage(){
+  cout << "\x1B[2J" ;
+}
 void AEquipement::retour(){}
 void AEquipement::inputchiffre(int chiffre){}
-void AEquipement::interaction(int laquelle){}
-void AEquipement::aide(){}
-void AEquipement::traiter(Membre& m, int pv){}
-
-
+void AEquipement::interaction(Case& c){}
 
 /*------------ACorps------------*/
-ACorps::ACorps(Interface& interface) : _interface(interface) {}
-void ACorps::affichage(){}
+ACorps::ACorps() {}
+void ACorps::affichage(){
+  cout << "\x1B[2J" ;
+}
 void ACorps::retour(){}
 void ACorps::inputchiffre(int chiffre){}
-void ACorps::interaction(int laquelle){}
-void ACorps::aide(){}
-void ACorps::traiter(Membre& m, int pv){}
+void ACorps::interaction(Case& c){}
 
 /*------------AInventaireSplit------------*/
-AInventaireSplit::AInventaireSplit(Interface& interface) : _interface(interface) {}
-void AInventaireSplit::affichage(){}
+AInventaireSplit::AInventaireSplit() {}
+void AInventaireSplit::affichage(){
+  cout << "\x1B[2J" ;
+}
 void AInventaireSplit::retour(){}
 void AInventaireSplit::inputchiffre(int chiffre){}
-void AInventaireSplit::interaction(int laquelle){}
-void AInventaireSplit::aide(){}
-void AInventaireSplit::traiter(Membre& m, int pv){}
-
+void AInventaireSplit::interaction(Case& c){}
 
 /*------------AInventaire------------*/
-AInventaire::AInventaire(Interface& interface) : _interface(interface) {}
-void AInventaire::affichage(){}
+AInventaire::AInventaire() {}
+void AInventaire::affichage(){
+  cout << "\x1B[2J" ;
+}
 void AInventaire::retour(){}
 void AInventaire::inputchiffre(int chiffre){}
-void AInventaire::interaction(int laquelle){}
-void AInventaire::aide(){}
-void AInventaire::traiter(Membre& m, int pv){}
-
+void AInventaire::interaction(Case& c){}
 
 /*------------AArmures------------*/
 
-AArmures::AArmures(Interface& interface) : _interface(interface) {}
-void AArmures::affichage(){}
+AArmures::AArmures() {}
+void AArmures::affichage(){
+  cout << "\x1B[2J" ;
+}
 void AArmures::retour(){}
 void AArmures::inputchiffre(int chiffre){}
-void AArmures::interaction(int laquelle){}
-void AArmures::aide(){}
-void AArmures::traiter(Membre& m, int pv){}
+void AArmures::interaction(Case& c){}
 
 
 /*------------AArmes------------*/
 
-AArmes::AArmes(Interface& interface) : _interface(interface) {}
-void AArmes::affichage(){}
+AArmes::AArmes() {}
+void AArmes::affichage(){
+  cout << "\x1B[2J" ;
+}
 void AArmes::retour(){}
 void AArmes::inputchiffre(int chiffre){}
-void AArmes::interaction(int laquelle){}
-void AArmes::aide(){}
-void AArmes::traiter(Membre& m, int pv){}
+void AArmes::interaction(Case& c){}
 
 
 /*------------AObjets------------*/
 
-AObjets::AObjets(Interface& interface) : _interface(interface) {}
-void AObjets::affichage(){}
+AObjets::AObjets() {}
+void AObjets::affichage(){
+  cout << "\x1B[2J" ;
+}
 void AObjets::retour(){}
 void AObjets::inputchiffre(int chiffre){}
-void AObjets::interaction(int laquelle){}
-void AObjets::aide(){}
-void AObjets::traiter(Membre& m, int pv){}
+void AObjets::interaction(Case& c){}
 
 /*------------ADialogues------------*/
 
-ADialogues::ADialogues(Interface& interface) : _interface(interface) {}
-void ADialogues::affichage(){}
+ADialogues::ADialogues() {}
+void ADialogues::affichage(){
+  cout << "\x1B[2J" ;
+}
 void ADialogues::retour(){}
 void ADialogues::inputchiffre(int chiffre){}
-void ADialogues::interaction(int laquelle){}
-void ADialogues::aide(){}
-void ADialogues::traiter(Membre& m, int pv){}
+void ADialogues::interaction(Case& c){}
+
+/*------------AInventairep------------*/
+AInventairep::AInventairep() {}
+void AInventairep::affichage(){
+  cout << "\x1B[2J" ;
+}
+void AInventairep::retour(){}
+void AInventairep::inputchiffre(int chiffre){}
+void AInventairep::interaction(Case& c){}

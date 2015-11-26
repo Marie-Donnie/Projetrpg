@@ -6,7 +6,7 @@ class Interface;
 
 //included dependencies
 #include <string>
-#include <stdio.h>				//printf
+#include <stdio.h>
 #include <iostream>				//cin cout
 #include <vector>
 #include "Observer.hpp"
@@ -18,146 +18,124 @@ using namespace std;
 
 
 class ABase : public Etat{
-private:
-Interface& _interface;
 public:
-ABase(Interface& interface);
+ABase();
   void affichage();
   void retour();
   void inputchiffre(int chiffre);
-  void interaction(int laquelle);
+  void interaction(Case& c);
   void aide();
 void traiter(Membre& m, int pv);
 };
 
 class AAide : public Etat{
-private:
-Interface& _interface;
 public:
-AAide(Interface& interface);
+AAide();
   void affichage();
   void retour();
   void inputchiffre(int chiffre);
-  void interaction(int laquelle);
+  void interaction(Case& c);
   void aide();
-void traiter(Membre& m, int pv);
 };
 
 class AStats : public Etat{
-private:
-Interface& _interface;
 public:
-AStats(Interface& interface);
+AStats();
   void affichage();
   void retour();
   void inputchiffre(int chiffre);
-  void interaction(int laquelle);
+  void interaction(Case& c);
   void aide();
-void traiter(Membre& m, int pv);
 };
 
 class AEquipement : public Etat{
-private:
-Interface& _interface;
 public:
-AEquipement(Interface& interface);
+AEquipement();
   void affichage();
   void retour();
   void inputchiffre(int chiffre);
-  void interaction(int laquelle);
+  void interaction(Case& c);
   void aide();
-void traiter(Membre& m, int pv);
 };
 
 class ACorps : public Etat{
-private:
-Interface& _interface;
 public:
-ACorps(Interface& interface);
+ACorps();
   void affichage();
   void retour();
   void inputchiffre(int chiffre);
-  void interaction(int laquelle);
+  void interaction(Case& c);
   void aide();
-void traiter(Membre& m, int pv);
 };
 
 class AInventaireSplit : public Etat{
-private:
-Interface& _interface;
 public:
-AInventaireSplit(Interface& interface);
+AInventaireSplit();
   void affichage();
   void retour();
   void inputchiffre(int chiffre);
-  void interaction(int laquelle);
+  void interaction(Case& c);
   void aide();
-void traiter(Membre& m, int pv);
 };
 
 class AInventaire : public Etat{
-private:
-Interface& _interface;
 public:
-AInventaire(Interface& interface);
+AInventaire();
   void affichage();
   void retour();
   void inputchiffre(int chiffre);
-  void interaction(int laquelle);
+  void interaction(Case& c);
   void aide();
-void traiter(Membre& m, int pv);
 };
 
 class AArmures : public Etat{
-private:
-Interface& _interface;
 public:
-AArmures(Interface& interface);
+AArmures();
   void affichage();
   void retour();
   void inputchiffre(int chiffre);
-  void interaction(int laquelle);
+  void interaction(Case& c);
   void aide();
-void traiter(Membre& m, int pv);
 };
 
 class AArmes : public Etat{
-private:
-Interface& _interface;
 public:
-AArmes(Interface& interface);
+AArmes();
   void affichage();
   void retour();
   void inputchiffre(int chiffre);
-  void interaction(int laquelle);
+  void interaction(Case& c);
   void aide();
-void traiter(Membre& m, int pv);
 };
 
 class AObjets : public Etat{
-private:
-Interface& _interface;
 public:
-AObjets(Interface& interface);
+AObjets();
   void affichage();
   void retour();
   void inputchiffre(int chiffre);
-  void interaction(int laquelle);
+  void interaction(Case& c);
   void aide();
-void traiter(Membre& m, int pv);
 };
 
 class ADialogues : public Etat{
-private:
-Interface& _interface;
 public:
-ADialogues(Interface& interface);
+ADialogues();
   void affichage();
   void retour();
   void inputchiffre(int chiffre);
-  void interaction(int laquelle);
+  void interaction(Case& c);
   void aide();
-void traiter(Membre& m, int pv);
+};
+
+class AInventairep : public Etat{
+public:
+AInventairep();
+  void affichage();
+  void retour();
+  void inputchiffre(int chiffre);
+  void interaction(Case& c);
+  void aide();
 };
 
 #endif //ETATS_HPP

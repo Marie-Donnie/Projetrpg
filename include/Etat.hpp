@@ -3,6 +3,7 @@
 #define ETAT_HPP
 
 class Interface;
+class Case;
 
 //included dependencies
 #include <string>
@@ -16,12 +17,25 @@ using namespace std;
 
 
 class Etat : public Observer{
+protected:
+  Interface* interface;
 public:
   virtual void affichage();
   virtual void retour();
   virtual void inputchiffre(int chiffre);
-  virtual void interaction(int laquelle);
-  virtual void aide();
+  virtual void interaction(Case& c);
+  void aide();
+  void inventaire();
+
+  void setInterface(Interface* inter);
+
+     //Méthodes de l'observer
+  Observer* getSuiv();
+  void setSuiv(Observer* o);
+  void traiter(Membre& m, int pv);
+  void passer(Membre& m);
+  void personnageMort();
+  void pnjMort(PNJ& p);
 };
 
 #endif //ETAT_HPP
