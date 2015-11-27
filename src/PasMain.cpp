@@ -1,6 +1,7 @@
 #include "SFML/Graphics.hpp"	//RenderWindow
 #include "SFML/Window.hpp"		//Window - VideoMode - Style
 #include "SFML/System.hpp"
+#include "SFML/Audio.hpp"
 #include <iostream>
 #include <string>
 #include <vector>
@@ -120,7 +121,15 @@ int main(){
 	jeu.popPNJ(12,29,14, 2);
 	jeu.popPNJ(13,23,14, 3);
 	jeu.popPNJ(14,18,22, 1);
-
+	
+	//MUSIQUE
+	sf::Music musique;
+	if(!musique.openFromFile("data/music/eerie.wav"))
+		return -1; //erreur
+	musique.setLoop(true);
+	musique.setVolume(100);
+	musique.play();
+	
 	//Lancement du jeu
 	sf::Clock globalTime;
 	sf::Time turnTime;

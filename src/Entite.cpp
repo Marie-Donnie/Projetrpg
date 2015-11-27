@@ -2,7 +2,7 @@
  * @file PNJ.cpp
  * @author Marie Delavergne, Robin Wibaux
  * @since 2015
- * @brief Définition de la classe Case
+ * @brief Définition de la classe Entite
  **/
 
 #include "SFML/Graphics.hpp"
@@ -122,12 +122,16 @@ void Entite::move(sf::Time turnTime)
 }
 void Entite::move(sf::Time turnTime, sf::Time d)
 {
+	//incrémente le temps de l'action
 	_tempsAction += turnTime;
 	sf::Time duree = d;
-
-	if(_tempsAction < duree)
+	
+	if(_tempsAction < duree) //si l'action n'est pas finie
 	{
+		//calcule la progression du mouvement
 		float rapport = _tempsAction.asSeconds() / duree.asSeconds();
+		
+		//la position du personnage dépend donc de sa localisation (là où il va), de sa direction et de sa progression
 		if(_direction==0)
 			_position.y = (float)(_location.y * 16) + 16 - (16*rapport);
 		else if(_direction==1)
@@ -138,7 +142,7 @@ void Entite::move(sf::Time turnTime, sf::Time d)
 			_position.x = (float)(_location.x * 16) - 16 + (16*rapport);
 
 	}
-	else
+	else //si elle est finie
 	{
 		_position.x = (float)(_location.x * 16);
 		_position.y = (float)(_location.y * 16);

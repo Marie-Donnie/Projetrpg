@@ -332,14 +332,16 @@ void Personnage::bandage(){
 }
 
 void Personnage::action(sf::Time turnTime){
+	//incrémente le temps d'action
 	_tempsAction += turnTime;
 	sf::Time duree;
-
+	
+	//définie la durée de l'attaque selon le type d'attaque et la vitesse de l'arme
 	if(_action == 1)
 		duree = sf::seconds(1.0)*float(_equipement.getArme().getVitesse());
 	else if (_action == 2)
 		duree = sf::seconds(2.0)*float(_equipement.getArme().getVitesse());
 
-	if(_tempsAction >= duree)
+	if(_tempsAction >= duree) //si l'action a atteint sa fin, Personnage inactif
 		_actif = false;
 }
