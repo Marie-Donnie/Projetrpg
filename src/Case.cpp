@@ -80,18 +80,6 @@ void Case::setSprite(int i, int j)
 
 void Case::interaction()
 {
-  /*if(_interaction==0) //inventaire
-  {
-    
-  }
-  else if(_interaction==1) //porte
-  {
-    _hauteur = (_hauteur+1)%2;
-    int x = _texture.getSize().x;
-    int i = x/16;
-    
-  }*/
-  
   //ouverture d'une porte d'une seule case
   if(_interaction==4) //porte
   {
