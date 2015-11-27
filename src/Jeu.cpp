@@ -278,7 +278,7 @@ void Jeu::inputs(bool * in)
       }
     } //fin in[5]
 
-    //touches devant être activer une seule fois (et non en 60hz) :
+    //touches devant être activées une seule fois (et non en 60hz) :
     //touches numériques, E, I, R, F, H
 
     //une de ces touches est pressée ?
@@ -332,6 +332,7 @@ void Jeu::inputs(bool * in)
       else if (in[7]) //F
       {
         _personnage.soin();
+        _interface->affichage();
         cout << "Vous vous êtes soigné !" << endl;
       }
       else if (in[8]) //I

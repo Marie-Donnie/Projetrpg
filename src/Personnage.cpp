@@ -321,6 +321,7 @@ void Personnage::attaquer(PNJ& defendant){
 
 void Personnage::soin(){
   _corps.soin();
+  _stats.setHP(_corps.getPv());
 }
 
 void Personnage::bandage(){
