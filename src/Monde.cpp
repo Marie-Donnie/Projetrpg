@@ -189,6 +189,14 @@ Monde::Monde(std::string fic)
 					case ';' :{ //5: portehaut l'haut-porte sunniste
 						_map[i].setTexture(*_textures[5]);
 						_map[i].setHauteur(1); //tombe à 0 si porte ouverte
+						_map[i].setInteraction(4); //message
+						_map[i].makeInventaire("");
+						
+						break;
+					}
+					case '/' :{ //5: portehaut fermée
+						_map[i].setTexture(*_textures[5]);
+						_map[i].setHauteur(1); //tombe à 0 si porte ouverte
 						_map[i].setInteraction(2); //message
 						_map[i].makeInventaire("");
 						

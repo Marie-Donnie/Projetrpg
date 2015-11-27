@@ -93,10 +93,10 @@ void Case::interaction()
   }*/
   
   //ouverture d'une porte d'une seule case
-  /*if(_interaction==4) //porte
+  if(_interaction==4) //porte
   {
     _hauteur = (_hauteur+1)%2;
     
-    setSprite( (hauteur==1)?0:1 );
-  }*/
+    setSprite( (_hauteur==1)?0:1, 0 );
+  }
 }
