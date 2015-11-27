@@ -117,6 +117,8 @@ AObjets();
 };
 
 class ADialogues : public Etat{
+private:
+  int _nombre;
 public:
 ADialogues();
   void affichage();
