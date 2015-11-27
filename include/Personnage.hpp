@@ -52,6 +52,41 @@
    * @return Un personnage tout prêt !
    */
 
+  /**
+   * @name  personnageMort()
+   * @brief Envoie à son suivant dans la chaîne d'observer le fait que
+   * le personnage est mort
+   */
+
+  /**
+   * @name  afficher
+   * @brief Affichage par défaut du personnage, sert
+   * principalement pour les tests
+   */
+
+  /**
+   * @name  défendre
+   * @brief Calculs des attaques faites par le pnj attaquant
+   * @param attaquant la référence du pnj qui attaque
+   */
+
+  /**
+   * @name  attaquer
+   * @brief Lance la fonction défendre du pnj attaqué
+   * @param defendant la référence vers le pnj attaqué
+   */
+
+  /**
+   * @name  soin
+   * @brief Lance le soin() du corps du personnage et fixe le nombre
+   * de points de vie des stats
+   */
+
+  /**
+   * @name  bandage
+   * @brief Lance le bandage() du corps du personnage et fixe le nombre
+   * de points de vie des stats
+   */
 
 
 

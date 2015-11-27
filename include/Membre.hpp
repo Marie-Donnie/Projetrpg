@@ -1,3 +1,16 @@
+  /**
+   * @name  Constructeur partiel
+   * @brief Créé un membre en définissant ses paramètres, sauf les
+   * _sousMembre qui sont un vecteur vide
+   * @param pv les points de vie du membre
+   * @param pvmax les points de vie maximum, quand le personnage/pnj
+   * n'a pas pris de dommages
+   * @param nom le nom du membre
+   * @param o l'observer à qui il envoie les informations, c'est à
+   * dire le corps
+   * @return Un membre dont les sousmembres ne sont pas encore initialisés
+   */
+
 //include guard
 #ifndef MEMBRE_HPP
 #define MEMBRE_HPP

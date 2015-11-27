@@ -12,6 +12,18 @@
    * Passe le membre à son suivant dans la chaîne
    */
 
+  /**
+   * @name  personnageMort()
+   * @brief Envoie à son suivant dans la chaîne d'observer le fait que
+   * le personnage est mort
+   */
+
+  /**
+   * @name  pnjMort()
+   * @brief Envoie à son suivant dans la chaîne d'observer le fait que
+   * le pnj est mort
+   * @param p la référence du pnj mort
+   */
 
 
 //include guard

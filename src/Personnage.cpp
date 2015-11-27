@@ -180,7 +180,7 @@ void Personnage::personnageMort(){
 }
 
 
-//Autres méthodes
+/*--------Autres méthodes--------*/
 
 void Personnage::afficher(){
   cout << "Salut je suis " << _nom << ", j'ai " << _age << " ans, je mesure " << _taille << "m et je fais " << _poids << "kg. Je suis niveau " << _niveau<< "." << endl;
@@ -328,6 +328,7 @@ void Personnage::soin(){
 
 void Personnage::bandage(){
   _corps.bandage(_niveau);
+  _stats.setHP(_corps.getPv());
 }
 
 void Personnage::action(sf::Time turnTime){
