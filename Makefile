@@ -7,7 +7,7 @@ IDIRFLAG=$(foreach idir, $(IDIR), -I$(idir))
 CXXFLAGS=-std=c++11 -W -Wall -Wextra -pedantic -Wno-sign-compare -Wno-unused-parameter $(IDIRFLAG)
 
 # Linker
-LFLAGS=$(IDIRFLAG) -LSFML/lib -lsfml-graphics -lsfml-window -lsfml-system
+LFLAGS=$(IDIRFLAG) -LSFML/lib -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio
 
 # Directories
 SRCDIR=src
