@@ -121,7 +121,7 @@ int main(){
 	jeu.popPNJ(12,29,14, 2);
 	jeu.popPNJ(13,23,14, 3);
 	jeu.popPNJ(14,18,22, 1);
-	
+
 	//MUSIQUE
 	sf::Music musique;
 	if(!musique.openFromFile("data/music/eerie.ogg"))
@@ -129,7 +129,7 @@ int main(){
 	musique.setLoop(true);
 	musique.setVolume(100);
 	musique.play();
-	
+
 	//Lancement du jeu
 	sf::Clock globalTime;
 	sf::Time turnTime;

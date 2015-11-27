@@ -1,3 +1,15 @@
+  /**
+   * @name  utiliser
+   * @brief Soigne le personnage par la fonction bandage du personnage
+   * @param p le personnage que l'on veut bander
+   */
+
+  /**
+   * @name  afficher
+   * @brief Affiche le nom et la description de l'objet
+   */
+
+
 //include guard
 #ifndef BANDAGE_HPP
 #define BANDAGE_HPP

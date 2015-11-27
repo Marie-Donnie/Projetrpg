@@ -4,6 +4,7 @@
 
 using namespace std;
 
+/*-----Constructeur complet-----*/
 Armure::Armure(string nom, string piece, string matiere, int dura, int scA, int mA, int scS, double poids){
   _nom = nom;
   _piece = piece;
@@ -15,6 +16,7 @@ Armure::Armure(string nom, string piece, string matiere, int dura, int scA, int 
   _poids = poids;
 }
 
+/*-----Constructeur partiel-----*/
 Armure::Armure(string piece){
   _piece = piece;
   //Choix du matériau
@@ -32,6 +34,8 @@ Armure::Armure(string piece){
   _scoreSauvegarde = mat;
   _poids = 0.75+(pow(mat,2));
 }
+
+/*-----Constructeur vide-----*/
 Armure::Armure(){
   //Choix de la pièce
   string pieces[3];
@@ -56,6 +60,7 @@ Armure::Armure(){
   _poids = 0.75+(pow(mat,2));
 }
 
+/*-----Constructeur partiel-----*/
 Armure::Armure(string piece, string suff){
   _matiere = "tissu";
   _piece = piece;
@@ -68,7 +73,7 @@ Armure::Armure(string piece, string suff){
 }
 
 
-//Getters
+/*-----Getters-----*/
 string Armure::getNom(){return _nom;}
 string Armure::getPiece(){return _piece;}
 string Armure::getMat(){return _matiere;}
@@ -78,7 +83,7 @@ int Armure::getMA(){return _mallusAgi;}
 int Armure::getSauv(){return _scoreSauvegarde;}
 double Armure::getPoids(){return _poids;}
 
-//Setters
+/*-----Setters-----*/
 void Armure::setNom(string nom){_nom = nom;}
 void Armure::setPiece(string piece){_piece = piece;}
 void Armure::setMat(string mat){_matiere = mat;}
@@ -89,6 +94,7 @@ void Armure::setMA(int mA){_mallusAgi = mA;}
 void Armure::setSauv(int scS){_scoreSauvegarde = scS;}
 void Armure::setPoids(double poids){_poids = poids;}
 
+/*-----Autres méthodes-----*/
  void Armure::afficher(){
    cout << "Nom \t\t" << _nom << endl;
    cout << "Type \t\t" << _piece << endl;

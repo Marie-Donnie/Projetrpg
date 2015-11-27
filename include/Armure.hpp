@@ -1,3 +1,52 @@
+  /**
+   * @name  Constructeur complet
+   * @brief Créé une armure prenant les paramètres donnés.
+   * @param nom le nom qu'on veut donner à l'armure
+   * @param piece le type de pièce que c'est (Plastron, Jambieres ou
+   * Heaume)
+   * @param matiere la matiere (tissu, cuir, maille ou plaque)
+   * @param dura sa durabilité, permet de déterminer si elle protège
+   * ou non (dura = 0 plus de protection)
+   * @param scA son score d'armure, c'est à dire sa capacité à amortir
+   * les coups (voir défendre de la classe personnage)
+   * @param mA le mallus d'agilité (pas encore utile)
+   * @param scS le score de sauvegarde, permet aux armures lourdes
+   * d'encaisser totalement un coup
+   * @param poids son poids (pas encore utile)
+   * @return Une armure
+   */
+
+  /**
+   * @name  Constructeur partiel
+   * @brief Créé une armure prenant les paramètres donnés, le reste
+   * étant aléatoire en fonction de ce paramètre
+   * @param piece le type de piece qu'on veut (Plastron, Jambieres ou
+   * Heaume)
+   * @return Une armure
+   */
+
+  /**
+   * @name  Constructeur partiel
+   * @brief Créé une armure par défaut prenant les paramètres donnés, le reste
+   * étant aléatoire en fonction de ce paramètre, c'est le
+   * constructeur des armures de base du personnage
+   * @param piece le type de piece qu'on veut (Plastron, Jambieres ou
+   * Heaume)
+   * @param suff le suffixe qu'on veut appliquer
+   * @return Une armure
+   */
+
+  /**
+   * @name  Constructeur par défaut
+   * @brief Créé une armure aléatoire
+   * @return Une armure
+   */
+
+ /**
+   * @name  afficher
+   * @brief Affiche l'armure en détails
+   */
+
 //include guard
 #ifndef ARMURE_HPP
 #define ARMURE_HPP
