@@ -36,5 +36,9 @@ void Etat::passer(Membre& m){
     suiv->traiter(m, 0);
   else cout << "Etat n'a pas de suivant" << endl;
 }
-void Etat::personnageMort(){}
-void Etat::pnjMort(PNJ& p){}
+void Etat::personnageMort(){
+  cout << "Vous êtes mort ! Dieu a gagné !" << endl;
+}
+void Etat::pnjMort(PNJ& p){
+  cout << "Le zombie est mort !" << endl;
+}

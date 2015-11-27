@@ -26,7 +26,7 @@ ABase();
   void inputchiffre(int chiffre);
   void interaction(Case& c);
   void aide();
-void traiter(Membre& m, int pv);
+  void traiter(Membre& m, int pv);
 };
 
 class AAide : public Etat{

@@ -12,7 +12,8 @@ void ABase::affichage(){
   cout << "Votre force : " << interface->getPerso().getStats().getForce() << endl;
   cout << "Votre agilité : " << interface->getPerso().getStats().getAgi() << endl;
   cout << "Votre capacité de combat : " <<interface->getPerso().getStats().getCc() << endl;
-  cout << "1 : Corps | 2 : Equipement | 3 : Stats | E : Interagir | I : Inventaire | H : Aide" << endl;
+  cout << "1 : Corps | 2 : Equipement | 3 : Stats" << endl;
+  cout << "E : Interagir | I : Inventaire | H : Aide" << endl;
 }
 void ABase::retour(){}
 void ABase::inputchiffre(int chiffre){}
@@ -154,6 +155,7 @@ void ADialogues::interaction(Case& c){}
 AInventairep::AInventairep() {}
 void AInventairep::affichage(){
   cout << "\x1B[2J" ;
+  cout << "1 : Armures | 2 : Armes | 3 : Objets" << endl;
 }
 void AInventairep::retour(){
 interface->setEtat(&interface->abase);
