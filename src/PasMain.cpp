@@ -21,7 +21,7 @@ int main(){
 	//4:clicG, 5:clicD,
 	//6:E, 7:F, 8:I, 9:R, 10:A, 11:H
 	//12-21:0-9
-	bool input[21];
+	bool input[22];
 	for(int i=0; i<21; ++i){
 		input[i]=false;
 	}
