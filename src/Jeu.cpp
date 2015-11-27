@@ -529,6 +529,7 @@ void Jeu::draw(sf::RenderWindow & window)
     {
       if(pnj.estEnJeu())
         {
+          //calcule les coordonnées du sprite selon celles du personnage et le centre de l'écran
           x = pnj.getPosX() - _personnage.getPosX() + 392;
           y = pnj.getPosY() - _personnage.getPosY() + 292;
 

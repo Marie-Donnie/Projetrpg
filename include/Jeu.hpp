@@ -1,4 +1,11 @@
 /**
+ * @file Jeu.hpp
+ * @author Marie Delavergne, Robin Wibaux
+ * @date October, 2015
+ * @brief Définition de la classe de Jeu
+ **/
+
+/**
   * @name   Constructeur
   * @brief  Créée le Jeu, lance la construction de Monde et Personnage avec leurs paramètres respectifs.
   * @param  fic, l'adresse du fichier de la map

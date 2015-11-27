@@ -78,6 +78,7 @@ void Case::setSprite(int i, int j)
 	_sprite.setTextureRect(sf::IntRect(16*i, 16*j, 16, 16));
 }
 
+//Réaction de la case face aux interactions
 void Case::interaction()
 {
   //ouverture d'une porte d'une seule case

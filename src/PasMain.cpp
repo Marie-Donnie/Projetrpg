@@ -124,7 +124,7 @@ int main(){
 	
 	//MUSIQUE
 	sf::Music musique;
-	if(!musique.openFromFile("data/music/eerie.wav"))
+	if(!musique.openFromFile("data/music/eerie.ogg"))
 		return -1; //erreur
 	musique.setLoop(true);
 	musique.setVolume(100);

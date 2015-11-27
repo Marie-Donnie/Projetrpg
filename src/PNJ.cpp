@@ -281,9 +281,12 @@ void PNJ::attaquer(Personnage& defendant){
 }
 
 void PNJ::action(sf::Time turnTime){
+	//incrémente le temps de l'action
 	_tempsAction += turnTime;
+	
+	//détermina la durée selon l'arme du PNJ
 	sf::Time duree = sf::seconds(1.0)*float(_equi.getArme().getVitesse());
 
-	if(_tempsAction >= duree)
+	if(_tempsAction >= duree) //si l'action a atteint sa fin
 		_actif = false;
 }
