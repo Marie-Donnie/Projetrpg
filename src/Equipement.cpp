@@ -82,8 +82,9 @@ void Equipement::afficher(){
   cout << "*------------------Equipement------------------*" << endl;
   cout << "*------------------Armures------------------*" << endl;
   for (int i = 0; i < _armures.size(); ++i){
-    _armures.at(i).afficher();
+    cout << _armures.at(i).getNom() << endl;
   }
   cout << "*------------------Arme------------------*" << endl;
-  _arme.afficher();
+  cout << _arme.getNom() << endl;
+  cout << "*------------------Fin de l'équipement------------------*" << endl;
 }

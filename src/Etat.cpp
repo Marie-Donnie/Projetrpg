@@ -28,6 +28,7 @@ void Etat::setSuiv(Observer* o){suiv = o;}
 void Etat::traiter(Membre& m, int pv){
   interface->setEtat(&interface->abase);
   interface->affichage();
+  cout << "Le zombie a attaqué votre " << m.getNom() << " !" << endl;
 }
 void Etat::passer(Membre& m){
   if (suiv)
