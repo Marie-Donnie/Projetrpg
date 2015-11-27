@@ -4,6 +4,7 @@
 
 class Interface;
 class Membre;
+class Case;
 
 //included dependencies
 #include <string>
@@ -24,7 +25,6 @@ ABase();
   void affichage();
   void retour();
   void inputchiffre(int chiffre);
-  void interaction(Case& c);
   void aide();
   void traiter(Membre& m, int pv);
 };
@@ -35,7 +35,6 @@ AAide();
   void affichage();
   void retour();
   void inputchiffre(int chiffre);
-  void interaction(Case& c);
   void aide();
 };
 
@@ -45,7 +44,6 @@ AStats();
   void affichage();
   void retour();
   void inputchiffre(int chiffre);
-  void interaction(Case& c);
   void aide();
 };
 
@@ -55,7 +53,6 @@ AEquipement();
   void affichage();
   void retour();
   void inputchiffre(int chiffre);
-  void interaction(Case& c);
   void aide();
 };
 
@@ -65,28 +62,31 @@ ACorps();
   void affichage();
   void retour();
   void inputchiffre(int chiffre);
-  void interaction(Case& c);
   void aide();
 };
 
 class AInventaireSplit : public Etat{
+// private:
+//   Case* _c;
 public:
 AInventaireSplit();
   void affichage();
   void retour();
   void inputchiffre(int chiffre);
-  void interaction(Case& c);
   void aide();
+  //void setCase(Case& c);
 };
 
 class AInventaire : public Etat{
+// private:
+//   Case* _c;
 public:
 AInventaire();
   void affichage();
   void retour();
   void inputchiffre(int chiffre);
-  void interaction(Case& c);
   void aide();
+  //void setCase(Case& c);
 };
 
 class AArmures : public Etat{
@@ -95,7 +95,6 @@ AArmures();
   void affichage();
   void retour();
   void inputchiffre(int chiffre);
-  void interaction(Case& c);
   void aide();
 };
 
@@ -105,7 +104,6 @@ AArmes();
   void affichage();
   void retour();
   void inputchiffre(int chiffre);
-  void interaction(Case& c);
   void aide();
 };
 
@@ -115,7 +113,6 @@ AObjets();
   void affichage();
   void retour();
   void inputchiffre(int chiffre);
-  void interaction(Case& c);
   void aide();
 };
 
@@ -125,7 +122,6 @@ ADialogues();
   void affichage();
   void retour();
   void inputchiffre(int chiffre);
-  void interaction(Case& c);
   void aide();
 };
 
@@ -135,7 +131,6 @@ AInventairep();
   void affichage();
   void retour();
   void inputchiffre(int chiffre);
-  void interaction(Case& c);
   void aide();
 };
 

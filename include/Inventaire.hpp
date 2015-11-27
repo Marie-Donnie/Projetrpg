@@ -78,6 +78,7 @@ void setObjets(boost::ptr_vector<Objet>& objets);
   Objet prendreObjet(int loca);
   void utiliserObjet(Personnage& p, int loca);
   void afficher();
+  void afficherC();
 };
 
 #endif //INVENTAIRE_HPP

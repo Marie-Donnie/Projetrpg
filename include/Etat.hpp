@@ -24,7 +24,7 @@ public:
   virtual void affichage();
   virtual void retour();
   virtual void inputchiffre(int chiffre);
-  virtual void interaction(Case& c);
+  void interaction(Case& c);
   void aide();
   void inventaire();
 

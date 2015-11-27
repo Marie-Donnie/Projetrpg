@@ -3,7 +3,6 @@
 #define INTERFACE_HPP
 
 class PNJ;
-class Case;
 class Jeu;
 
 //included dependencies
@@ -15,7 +14,7 @@ class Jeu;
 #include "Etat.hpp"
 #include "Etats.hpp"
 #include "Personnage.hpp"
-
+#include "Case.hpp"
 
 using namespace std;
 
@@ -23,6 +22,7 @@ using namespace std;
 private:
   Etat* _etatCourant;
    Personnage& _perso;
+   Case* _case;
 
 public:
    static ABase abase;
@@ -48,9 +48,11 @@ public:
    //Getter
    Etat* getEtatCourant();
    Personnage& getPerso();
+   Case* getCase();
 
    //Setter
    void setEtat(Etat* etat);
+   void setCase(Case* c);
 
    //Méthodes de l'observer
   Observer* getSuiv();

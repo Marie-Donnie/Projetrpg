@@ -57,11 +57,12 @@ void Interface::updateEtat(){
 /*--------Getters--------*/
 Etat* Interface::getEtatCourant(){return _etatCourant;}
 Personnage& Interface::getPerso(){return _perso;}
+Case* Interface::getCase(){return _case;}
 
 
 /*--------Setters--------*/
 void Interface::setEtat(Etat* etat){_etatCourant = etat;}
-
+void Interface::setCase(Case* c){_case = c;}
 
 /*--------Methodes de l'Observer--------*/
 Observer* Interface::getSuiv(){return suiv;}
@@ -94,6 +95,8 @@ void Interface::inputchiffre(int chiffre){
   _etatCourant->inputchiffre(chiffre);
 }
 void Interface::interaction(Case& c){
+  Case* ca = &c;
+  setCase(ca);
   _etatCourant->interaction(c);
 }
 void Interface::aide(){

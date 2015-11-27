@@ -8,7 +8,24 @@
 void Etat::affichage(){}
 void Etat::retour(){}
 void Etat::inputchiffre(int chiffre){}
-void Etat::interaction(Case& c){}
+void Etat::interaction(Case& c){
+  switch(c.getInteraction()){
+  case 1:{
+    interface->setEtat(&interface->ainvs);
+    interface->affichage();
+    break;
+  }
+  case 2:{
+    cout << "La porte est fermée" << endl;
+    break;
+  }
+  case 3:{
+    interface->setEtat(&interface->adial);
+    interface->affichage();
+    break;
+  }
+  }
+}
 void Etat::aide(){
   interface->setEtat(&interface->aaide);
   interface->affichage();

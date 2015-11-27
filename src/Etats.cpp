@@ -1,6 +1,7 @@
 #include "Etats.hpp"
 #include "Interface.hpp"
 #include "Membre.hpp"
+#include "Case.hpp"
 
 /*------------ABase------------*/
 
@@ -17,7 +18,6 @@ void ABase::affichage(){
 }
 void ABase::retour(){}
 void ABase::inputchiffre(int chiffre){}
-void ABase::interaction(Case& c){}
 void ABase::traiter(Membre& m, int pv){
     affichage();
     cout << "Le zombie a attaqué votre " << m.getNom() << " !" << endl;
@@ -35,7 +35,6 @@ interface->setEtat(&interface->abase);
   interface->affichage();
 }
 void AAide::inputchiffre(int chiffre){}
-void AAide::interaction(Case& c){}
 
 /*------------AStats------------*/
 AStats::AStats() {}
@@ -47,7 +46,7 @@ interface->setEtat(&interface->abase);
   interface->affichage();
 }
 void AStats::inputchiffre(int chiffre){}
-void AStats::interaction(Case& c){}
+
 
 /*------------AEquipement------------*/
 AEquipement::AEquipement() {}
@@ -59,7 +58,7 @@ interface->setEtat(&interface->abase);
   interface->affichage();
 }
 void AEquipement::inputchiffre(int chiffre){}
-void AEquipement::interaction(Case& c){}
+
 
 /*------------ACorps------------*/
 ACorps::ACorps() {}
@@ -71,31 +70,77 @@ interface->setEtat(&interface->abase);
   interface->affichage();
 }
 void ACorps::inputchiffre(int chiffre){}
-void ACorps::interaction(Case& c){}
+
 
 /*------------AInventaireSplit------------*/
 AInventaireSplit::AInventaireSplit() {}
 void AInventaireSplit::affichage(){
   cout << "\x1B[2J" ;
+  cout << "*------------------Inventaire perso------------------*" << endl;
+  interface->getPerso().getInventaire().afficherC();
+  cout << "*------------------Fin Inventaire perso------------------*" << endl;
+  cout << "*------------------Loots------------------*" << endl;
+  interface->getCase()->getInventaireAdress()->afficherC();
+  cout << "*------------------Fin Loots------------------*" << endl;
+  cout << "1 : Inventaire perso | 2 : Loots" << endl;
 }
 void AInventaireSplit::retour(){
-interface->setEtat(&interface->abase);
+  interface->setEtat(&interface->abase);
   interface->affichage();
 }
-void AInventaireSplit::inputchiffre(int chiffre){}
-void AInventaireSplit::interaction(Case& c){}
+void AInventaireSplit::inputchiffre(int chiffre){
+  switch(chiffre){
+  case 1:{
+    interface->setEtat(&interface->ainvp);
+    interface->affichage();
+    break;
+  }
+  case 2:{
+    interface->setEtat(&interface->ainv);
+    interface->affichage();
+    break;
+  }
+  }
+}
+// void AInventaireSplit::setCase(Case& c){
+//   _c = c;
+// }
+
 
 /*------------AInventaire------------*/
 AInventaire::AInventaire() {}
 void AInventaire::affichage(){
   cout << "\x1B[2J" ;
+  interface->getCase()->getInventaireAdress()->afficher();
+  cout << "1 : Armures | 2 : Armes | 3 : Objets" << endl;
 }
 void AInventaire::retour(){
 interface->setEtat(&interface->abase);
   interface->affichage();
 }
-void AInventaire::inputchiffre(int chiffre){}
-void AInventaire::interaction(Case& c){}
+void AInventaire::inputchiffre(int chiffre){
+  switch(chiffre){
+  case 1:{
+    interface->setEtat(&interface->aarmures);
+    interface->affichage();
+    break;
+  }
+  case 2:{
+    interface->setEtat(&interface->aarmes);
+    interface->affichage();
+    break;
+  }
+  case 3:{
+    interface->setEtat(&interface->aobjets);
+    interface->affichage();
+    break;
+  }
+  }
+}
+// void AInventaire::setCase(Case& c){
+//   _c = c;
+// }
+
 
 /*------------AArmures------------*/
 
@@ -108,7 +153,7 @@ interface->setEtat(&interface->ainvs);
   interface->affichage();
 }
 void AArmures::inputchiffre(int chiffre){}
-void AArmures::interaction(Case& c){}
+
 
 
 /*------------AArmes------------*/
@@ -122,7 +167,7 @@ interface->setEtat(&interface->ainvs);
   interface->affichage();
 }
 void AArmes::inputchiffre(int chiffre){}
-void AArmes::interaction(Case& c){}
+
 
 
 /*------------AObjets------------*/
@@ -136,7 +181,6 @@ interface->setEtat(&interface->ainvs);
   interface->affichage();
 }
 void AObjets::inputchiffre(int chiffre){}
-void AObjets::interaction(Case& c){}
 
 /*------------ADialogues------------*/
 
@@ -149,7 +193,7 @@ interface->setEtat(&interface->abase);
   interface->affichage();
 }
 void ADialogues::inputchiffre(int chiffre){}
-void ADialogues::interaction(Case& c){}
+
 
 /*------------AInventairep------------*/
 AInventairep::AInventairep() {}
@@ -162,4 +206,3 @@ interface->setEtat(&interface->abase);
   interface->affichage();
 }
 void AInventairep::inputchiffre(int chiffre){}
-void AInventairep::interaction(Case& c){}

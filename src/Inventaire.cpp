@@ -141,4 +141,20 @@ void Inventaire::afficher(){
   for (int i = 0; i < _objets.size(); ++i){
     _objets.at(i).afficher();
   }
+  cout << "*------------------Fin Inventaire------------------*" << endl;
+}
+
+void Inventaire::afficherC(){
+  cout << "*------------------Armures------------------*" << endl;
+  for (int i = 0; i < _armures.size(); ++i){
+    cout << _armures.at(i).getNom() << endl;
+  }
+  cout << "*------------------Armes------------------*" << endl;
+  for (int i = 0; i < _armes.size(); ++i){
+    cout << _armes.at(i).getNom()<< endl;
+  }
+  cout << "*------------------Objets------------------*" << endl;
+  for (int i = 0; i < _objets.size(); ++i){
+    cout << _objets.at(i).getNom()<<endl;
+  }
 }
