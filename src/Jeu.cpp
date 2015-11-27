@@ -281,6 +281,7 @@ void Jeu::inputs(bool * in)
     //touches devant être activer une seule fois (et non en 60hz) :
     //touches numériques, E, I, R, F, H
 
+    //une de ces touches est pressée ?
     bool saisie = false;
     int i;
     for(i=6; i<22; ++i){
@@ -288,11 +289,10 @@ void Jeu::inputs(bool * in)
         saisie = true;
     }
 
-    if(!_saisie and saisie){
+    if(!_saisie and saisie){ //si une touche VIENT d'être pressée
+      _saisie = true; //empêche l'entrée dans ce if si la touche n'est pas relâchée
       if (in[6]) //E
       {
-        _saisie = true;
-
         //détermination de la case
         int x = _personnage.getLocX();
         int y = _personnage.getLocY();
@@ -346,20 +346,18 @@ void Jeu::inputs(bool * in)
       {
         _interface->aide();
       }
-      else{
+      else{ //touches numériques
         i = 12;
 
-        while(!in[i] and i<22){
+        while(!in[i] and i<22){ //prend fin sur l'indice de la touche pressée
           ++i;
         }
         if(i<22)
           _interface->inputchiffre(i-12);
       }
     }
-    else if(!in[12] and !in[13] and !in[14] and !in[15] and !in[16] and
-            !in[17] and !in[18] and !in[19] and !in[20] and !in[21] and
-            !in[6] and !in[7] and !in[8] and !in[9] and !in[11]){
-      _saisie = false;
+    else if(!saisie){ //si aucune touche n'est saisie
+      _saisie = false; //on permet d'en saisir une nouvelle
     }
   }
 }
