@@ -343,9 +343,9 @@ void ADialogues::affichage(){
       }
   case 1 :{//explications
       cout << "Inconnu : La peste, là, qui ravage l’Europe... C’est pas bon pour mon commerce. Je sais bien que c’est une punition divine, mais il a un peu déconné, Dieu, là. " << endl;
-      cout << "Entre la peste qui tue les gens et le fait que ça les ramène en mort-vivant pour bouffer d’autres gens... Il va pas rester grand monde. " << endl;
-      cout << "Je sais, je sais vous l’avez cherché, comme pour Sodome et Gomorrhe, comme pour la tour de Babel, tout ça, mais le vieux il  déconne, là, on va se retrouver comme après le déluge avec plus personne avec qui marchander, s’il continue !" <<endl;
-      cout << "Alors j’ai besoin de quelqu’un... Ben pour éliminer les sources de peste, ce genre de trucs. " << endl;
+      cout << "  Entre la peste qui tue les gens et le fait que ça les ramène en mort-vivant pour bouffer d’autres gens... Il va pas rester grand monde. " << endl;
+      cout << "  Je sais, je sais vous l’avez cherché, comme pour Sodome et Gomorrhe, comme pour la tour de Babel, tout ça, mais le vieux il  déconne, là, on va se retrouver comme après le déluge avec plus personne avec qui marchander, s’il continue !" <<endl;
+      cout << "  Alors j’ai besoin de quelqu’un... Ben pour éliminer les sources de peste, ce genre de trucs. " << endl;
       cout<< "1 : Vous vous rendez compte que je suis pas un chevalier ?" << endl;
       cout << "2 : D’accord. Vous me donnez quoi en échange ? " << endl;
       cout << "3 : D’accord, je vais sauver le monde." << endl;
@@ -357,6 +357,19 @@ void ADialogues::affichage(){
       cout << "2 : D’accord, je vais sauver le monde." << endl;
       cout << "3 : Euh..." << endl;
       break;
+  }
+  case 3 :{//d'accord
+    cout << "Inconnu, riant à nouveau : Là, tu me plais. Je peux te donner deux ou trois trucs qui pourront bien t’aider. D’accord ?";
+      cout << "1 : Non, en fait, rien à foutre, salut !" << endl;
+    cout << "2 : Non, je suis un guerrier, je vais me démerder !" << endl;
+    cout << "3 : Euh... ouais ?" << endl;
+    break;
+  }
+  case 4 :{//merveilleux
+    cout << "Inconnu : \"Merveilleux. D’abord : tiens, faut que je mette ma main sur ton épaule, là. Voilà. Maintenant, si tu te concentres, tu vas pouvoir... Oh tiens, je te montre !\" L'inconnu coupe votre bras " << endl;
+    cout << "Vous : AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH !" << endl;
+
+    break;
   }
   cout << "R : Retour" << endl;
 
@@ -398,9 +411,20 @@ void ADialogues::inputchiffre(int chiffre){
     break;
   }//fin explication
   case 2:{//pourquoi moi ?
-
+    switch(chiffre){
+    case 0:
+      _nombre =0;
+      break;
+    case 1://d'accord
+    case 2://d'accord
+    case 3:
+      _nombre = 3;
+      break;
+    }
     break;
-  }
+  }//fin pourquoi moi
+
+
   }//fin switch
   affichage();
 }
