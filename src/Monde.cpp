@@ -351,6 +351,8 @@ Monde::Monde(std::string fic)
 
 
 //getters
+Case& Monde::getCase(int x, int y){return _map[x+(_x*y)];}
+		
 bool Monde::estPlat(int i, int j){return (_map[i+(_x*j)].getHauteur()==0)?true:false;}
 bool Monde::estAccessible(int i, int j){return _map[i+(_x*j)].estAccessible();}
 bool Monde::estTransparent(int i, int j){return _map[i+(_x*j)].estTransparent();}

@@ -273,57 +273,80 @@ void Jeu::inputs(bool * in)
         _personnage.setSprite(dir);
       }
     } //fin in[5]
-    else if (in[6]) //E
-    {
-      //détermination de la case
-      int x = _personnage.getLocX();
-      int y = _personnage.getLocY();
+    
+    //touches devant être activer une seule fois (et non en 60hz) :
+    //touches numériques, E, I, R, F, H
+    if(!_saisie){
+      if (in[6]) //E
+      {
+        //
+        
+        //détermination de la case
+        int x = _personnage.getLocX();
+        int y = _personnage.getLocY();
 
-      if((dir == 0) or (dir == 1))
-        y += (dir==0)?-1:1;
-      else
-        x += (dir==2)?-1:1;
+        if((dir == 0) or (dir == 1))
+          y += (dir==0)?-1:1;
+        else
+          x += (dir==2)?-1:1;
 
-      //interactions: 0:rien, 1:Inventaire, 2:message (ex:porte fermée), 3:dialogue, 4:porte à ouvrir
-      int interaction = _monde.getInteraction(x,y);
+        //interactions: 0:rien, 1:Inventaire, 2:message (ex:porte fermée), 3:dialogue, 4:porte à ouvrir
+        int interaction = _monde.getInteraction(x,y);
 
-      switch(interaction){
-        case 0: {break;}
-        case 1:{
-          //test si les vector de l'inventaire sont vides
-          if( _monde.getInventaire(x,y).estVide() ){
-            //Inventaire vide
+        switch(interaction){
+          case 0: {break;}
+          case 1:{ //inventaire
+            _interface->interaction(_monde.getCase(x,y));
 
+            break;
           }
-          else //inventaire non vide
-          {
+          case 2:{ //message
+            _interface->interaction(_monde.getCase(x,y));
 
+            break;
           }
+          case 3:{ //dialogue
+            _interface->interaction(_monde.getCase(x,y));
 
-          break;
+            break;
+          }
+          case 4:{ //porte
+            //La méthode interaction() exécute une action selon le numéro d'interaction de la case, ici changer de sprite et rendre la case accessible
+            _monde.interaction(x,y);
+          }
         }
-        case 2:{ //message
 
-          break;
-        }
-        case 3:{ //dialogue
-
-          break;
-        }
-        case 4:{ //porte
-          //La méthode interaction() exécute une action selon le numéro d'interaction de la case, ici changer de sprite et rendre la case accessible
-          _monde.interaction(x,y);
-        }
       }
-
+      else if (in[7]) //F
+      {
+        _personnage.soin();
+      }
+      else if (in[8]) //I
+      {
+        _interface->inventaire();
+      }
+      else if (in[9]) //R
+      {
+        _interface->retour();
+      }
+      else if (in[11]) //H
+      {
+        _interface->aide();
+      }
+      else{
+        int i = 12;
+        do{
+          if(in[i])
+            _interface->inputchiffre(i-12);
+          
+          ++i;
+        }while(!in[i] and i<22);
+      }
     }
-    else if (in[7]) //F
-    {
-
-    }
-    else if (in[8]) //I
-    {
-
+    else if(!in[12] and !in[13] and !in[14] and !in[15] and !in[16] and
+            !in[17] and !in[18] and !in[19] and !in[20] and !in[21] and
+            !in[6] and !in[7] and !in[8] and !in[9] and !in[11]){
+      _saisie = false;
     }
   }
 }
@@ -531,6 +554,7 @@ void Jeu::personnageMort(){
 void Jeu::pnjMort(PNJ& p){
 	//ajout du cadavre
   _monde.setTexture(p.getLocX(), p.getLocY(), 14);
+  _monde.setInteraction(p.getLocX(), p.getLocY(), 1);
 
   for(Armure arm : p.getEquipement().getArmures())
   {

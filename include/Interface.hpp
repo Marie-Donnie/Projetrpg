@@ -4,13 +4,13 @@
 
 class PNJ;
 class Case;
+class Jeu;
 
 //included dependencies
 #include <string>
 #include <stdio.h>				//printf
 #include <iostream>				//cin cout
 #include <vector>
-#include "Jeu.hpp"
 #include "Observer.hpp"
 #include "Etat.hpp"
 #include "Etats.hpp"

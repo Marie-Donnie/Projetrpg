@@ -14,6 +14,7 @@
 #include "Monde.hpp"
 #include "PNJ.hpp"
 #include "Observer.hpp"
+#include "Interface.hpp"
 
 using namespace std;
 
@@ -24,6 +25,8 @@ private:
   Monde _monde;
   sf::Time _turnTime;//temps du précédent tour de la boucle while principale
   sf::Vector2i _posSouris;//position de la souris
+  Interface  * _interface;
+  bool _saisie; //pour les touches devant être relâchées avant nouvelles pressions
 
   //méthodes internes
   void gestionPersonnage(); //appelée par : void gestion()
@@ -42,6 +45,10 @@ public:
   Personnage& getPerso();
   vector<PNJ>& getPNJs();
   Monde& getMonde();
+  Interface& getInterface();
+  
+  //Setters
+  void setInterface(Interface* interface);
 
 
   //Création des entités mouvantes

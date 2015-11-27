@@ -19,8 +19,8 @@ int main(){
 	//Boutons (reste à en rajouter)
 	//0:haut, 1:bas, 2:gauche, 3:droite,
 	//4:clicG, 5:clicD,
-	//6:E, 7:F, 8:I, 9:R, 10:A
-	//11-20:0-9
+	//6:E, 7:F, 8:I, 9:R, 10:A, 11:H
+	//12-21:0-9
 	bool input[21];
 	for(int i=0; i<21; ++i){
 		input[i]=false;
@@ -52,7 +52,7 @@ int main(){
 	//Création du jeu & du personnage
 	Jeu jeu = Jeu("./data/map.txt", nom, sexe);
 
-	jeu.popPersonnage(22,3);
+	jeu.popPersonnage(41,6);
 
         Interface interface = Interface(jeu.getPerso());
         jeu.setSuiv(&interface);
@@ -70,7 +70,7 @@ int main(){
 	jeu.creerPNJ("Michel(le)", text);
 	jeu.creerPNJ("Modeste", text);
 	jeu.creerPNJ("Constante", text);	//5
-	jeu.creerPNJ("Modeste", text);
+	jeu.creerPNJ("Songleton", text);
 	jeu.creerPNJ("Phillipe", text);
 	jeu.creerPNJ("Arnaud", text);
 	jeu.creerPNJ("Guillaume", text);
@@ -79,23 +79,31 @@ int main(){
 	jeu.creerPNJ("Xavier", text);
 	jeu.creerPNJ("Robert", text);
 	jeu.creerPNJ("Donald", text);
+	jeu.creerPNJ("Duck", text);		//15
+	jeu.creerPNJ("No", text);
+	jeu.creerPNJ("More", text);
+	jeu.creerPNJ("Name", text);
 
 	//placement des pnj
 	//>Hall d'entrée
-	jeu.popPNJ(0,12,5);
+	jeu.popPNJ(0,12,5, 0);
+	jeu.popPNJ(7,22,2, 1);
+	jeu.popPNJ(6,24,4, 3);
 
 	//>Couloir ouest
-
+	jeu.popPNJ(17,7,7, 0);
+	jeu.popPNJ(18,11,7, 0);
+	
 	//>Chambres ouest
-
+	jeu.popPNJ(15,1,10, 3);
+	jeu.popPNJ(16,2,10, 2);
+	
 	//>Salle à manger
 	jeu.popPNJ(1,18,25, 0);
 	jeu.popPNJ(2,18,28, 3);
 	jeu.popPNJ(3,13,25);
-	jeu.popPNJ(7,13,29, 0);
 	jeu.popPNJ(5,14,29, 0);
-	jeu.popPNJ(6,16,29, 0);
-
+	
 
 	//>Salle Sud
 
@@ -188,6 +196,61 @@ int main(){
 				input[10] = true;
 			else
 				input[10] = false;
+
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::H))
+				input[11] = true;
+			else
+				input[11] = false;
+			
+			if ( (sf::Keyboard::isKeyPressed(sf::Keyboard::Num0)) && (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad0)) )
+				input[12] = true;
+			else
+				input[12] = false;
+
+			if ( (sf::Keyboard::isKeyPressed(sf::Keyboard::Num1)) && (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad1)) )
+				input[13] = true;
+			else
+				input[13] = false;
+
+			if ( (sf::Keyboard::isKeyPressed(sf::Keyboard::Num2)) && (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad2)) )
+				input[14] = true;
+			else
+				input[14] = false;
+
+			if ( (sf::Keyboard::isKeyPressed(sf::Keyboard::Num3)) && (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad3)) )
+				input[15] = true;
+			else
+				input[15] = false;
+
+			if ( (sf::Keyboard::isKeyPressed(sf::Keyboard::Num4)) && (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad4)) )
+				input[16] = true;
+			else
+				input[16] = false;
+
+			if ( (sf::Keyboard::isKeyPressed(sf::Keyboard::Num5)) && (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad5)) )
+				input[17] = true;
+			else
+				input[17] = false;
+
+			if ( (sf::Keyboard::isKeyPressed(sf::Keyboard::Num6)) && (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad6)) )
+				input[18] = true;
+			else
+				input[18] = false;
+
+			if ( (sf::Keyboard::isKeyPressed(sf::Keyboard::Num7)) && (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad7)) )
+				input[19] = true;
+			else
+				input[19] = false;
+
+			if ( (sf::Keyboard::isKeyPressed(sf::Keyboard::Num8)) && (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad8)) )
+				input[20] = true;
+			else
+				input[20] = false;
+
+			if ( (sf::Keyboard::isKeyPressed(sf::Keyboard::Num9)) && (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad9)) )
+				input[21] = true;
+			else
+				input[21] = false;
 
 		}
 

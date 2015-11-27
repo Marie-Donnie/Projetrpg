@@ -21,6 +21,8 @@ class Monde {
 		Monde(std::string fic);
 		
 		//getters
+		Case& getCase(int x, int y);
+		
 		bool estPlat(int x, int y);
 		bool estAccessible(int x, int y);
 		bool estTransparent(int x, int y);
