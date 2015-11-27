@@ -1,3 +1,33 @@
+/**
+  * @name    Constructeur
+  * @brief   Construit à vide
+  */
+ /**
+  * @name    makeInventaire
+  * @brief   Construit un inventaire.
+  * Selon le nom saisi en paramètre, ce qu'il contiendra sera différent
+  * @param   nom une chaine de caractères
+  */
+/**
+  * @name    getInventaire
+  * @return  l'Inventaire pointé par l'attribut pointeur de la Case
+  */
+/**
+  * @name    getInventaireAdress
+  * @return  Le pointeur de la Case
+  */
+/**
+  * @name    setSprite
+  * @brief   change la zone de texture carré que prend le sprite de la case
+  * @param   i, le numéro de la colonne de la zone de texture
+  * @param   j, le numéro de la ligne de la zone de texture
+  */
+/**
+  * @name    interaction
+  * @brief   Contient la réaction de la case si on interagit avec, selon son numéro d'interaction
+  */
+
+  
 #include "SFML/Graphics.hpp"	//RenderWindow
 #include <string>
 #include <stdio.h>				//printf
