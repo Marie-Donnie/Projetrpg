@@ -23,6 +23,7 @@ private:
   Etat* _etatCourant;
    Personnage& _perso;
    Case* _case;
+   int _quoi;
 
 public:
    static ABase abase;
@@ -32,11 +33,11 @@ public:
    static ACorps acorps;
    static AInventaireSplit ainvs;
    static AInventaire ainv;
+   static AInventairep ainvp;
    static AArmes aarmes;
    static AArmures aarmures;
    static AObjets aobjets;
    static ADialogues adial;
-   static AInventairep ainvp;
 
    Interface(Personnage& perso);
 
@@ -49,10 +50,12 @@ public:
    Etat* getEtatCourant();
    Personnage& getPerso();
    Case* getCase();
+   int getQuoi();
 
    //Setter
    void setEtat(Etat* etat);
    void setCase(Case* c);
+   void setQuoi(int i);
 
    //Méthodes de l'observer
   Observer* getSuiv();

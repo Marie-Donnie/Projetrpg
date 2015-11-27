@@ -158,3 +158,33 @@ void Inventaire::afficherC(){
     cout << _objets.at(i).getNom()<<endl;
   }
 }
+
+void Inventaire::afficherArmures(){
+  cout << "*------------------Armures------------------*" << endl;
+  if (!_armures.empty()){
+    for (Armure& a : _armures){
+      a.afficher();
+    }
+  }
+  else cout << "Pas d'armures dans l'inventaire" << endl;
+}
+
+void Inventaire::afficherArmes(){
+  cout << "*------------------Armes------------------*" << endl;
+  if (!_armes.empty()){
+    for (Arme& a : _armes){
+      a.afficher();
+    }
+  }
+  else cout << "Pas d'armes dans l'inventaire" << endl;
+}
+
+void Inventaire::afficherObjets(){
+  cout << "*------------------Objets------------------*" << endl;
+  if (!_objets.empty()){
+    for (int i = 0; i < _objets.size(); ++i){
+      _objets.at(i).afficher();
+    }
+  }
+  else cout << "Pas d'objets dans l'inventaire" << endl;
+}
