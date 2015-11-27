@@ -48,6 +48,10 @@ AAide::AAide() {}
 void AAide::affichage(){
   cout << "\x1B[2J" ;
   cout << "Conseil : N'attaquez pas les zombies à mains nues !" << endl;
+  cout << "Programmation : Robin Wibaux et Marie Delavergne" << endl;
+  cout << "Art : Marie Delavergne" << endl;
+  cout << "Musique : Florent Marchand de Kerchove de Denterghem" << endl;
+  cout << "Scénario : Logan Carpentier" << endl;
   cout << "R : Retour | H : Aide" << endl;
 }
 void AAide::retour(){
