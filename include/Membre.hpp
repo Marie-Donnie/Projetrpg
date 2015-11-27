@@ -11,6 +11,19 @@
    * @return Un membre dont les sousmembres ne sont pas encore initialisés
    */
 
+  /**
+   * @name  changerPv
+   * @brief Applique les dommages subits sur un membre, en vérifiant
+   * qu'il ne va pas tomber en points de vie négatif
+   * @param pv les points de vie qu'il devrait perdre
+   */
+
+  /**
+   * @name  checkPv
+   * @brief Est appelé dans la défense du personnage ou pnj, enclenche
+   * la chaîne d'observers
+   */
+
 //include guard
 #ifndef MEMBRE_HPP
 #define MEMBRE_HPP

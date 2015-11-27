@@ -1,3 +1,49 @@
+  /**
+   * @name  Constructeur complet
+   * @brief Créé une arme prenant les paramètres donnés.
+   * @param nom le nom qu'on veut donner à l'arme
+   * @param type le type de l'arme (0 : épée, 1 : masse, 2 :
+   * hallebarde/dague selon mains)
+   * @param mains le nombre de mains nécessaire pour la porter
+   * @param portée sa portée
+   * @param vitesse sa vitesse
+   * @param dmgmin ses dommages minimum
+   * @param dmgmax ses dommages maximum
+   * @param penetration indique la pénétration qu'aura l'arme sur l'armure
+   * @param contondant booléen indiquant si on peut assomer l'ennemi
+   * (pas encore implémenté)
+   * @return Une arme selon les paramètres
+   */
+
+  /**
+   * @name  Constructeur partiel
+   * @brief Créé une arme prenant les paramètres donnés et calculant
+   * le reste au hasard, le nom étant obtenu par concatenation
+   * @param type le type de l'arme (0 : épée, 1 : masse, 2 :
+   * hallebarde/dague selon mains)
+   * @param mains le nombre de mains nécessaire pour la porter
+   * @return Une arme selon les paramètres
+   */
+
+  /**
+   * @name  Constructeur partiel
+   * @brief Créé une arme par défaut (mains nues ou mains de zombie,
+   * dans ce code) qui n'a pas d'avantage
+   * @param nom le nom de l'arme
+   * @return Une arme selon les paramètres
+   */
+
+  /**
+   * @name  Constructeur par défaut
+   * @brief Créé une arme de test
+   * @return Une arme de test
+   */
+
+  /**
+   * @name  Afficher
+   * @brief Affiche les détails de l'arme
+   */
+
 //include guard
 #ifndef ARME_HPP
 #define ARME_HPP

@@ -63,5 +63,5 @@ void Membre::checkPv(){
   if (_corps)
   _corps->traiter(*this, _pv);
   else
-    cout << "HUHO" << endl;
+    cout << "Le membre n'est pas dans un corps" << endl;
 }
