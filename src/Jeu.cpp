@@ -71,6 +71,10 @@ int Jeu::directionSouris()
 Personnage& Jeu::getPerso(){return _personnage;}
 vector<PNJ>& Jeu::getPNJs(){return _pnjs;}
 Monde& Jeu::getMonde(){return _monde;}
+Interface& Jeu::getInterface(){return *_interface;}
+  
+//Setters
+void Jeu::setInterface(Interface* interface){_interface = interface;}
 
 //CREATION DES ENTITES MOUVANTES
 //>Personnage

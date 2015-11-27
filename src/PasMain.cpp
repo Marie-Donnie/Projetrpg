@@ -59,6 +59,8 @@ int main(){
         interface.setEtat(&Interface::abase);
         interface.setSuiv(&Interface::abase);
         interface.affichage();
+        
+    jeu.setInterface(&interface);
 
 	//textures
 	string text = "./data/sprites/zombie.png";
