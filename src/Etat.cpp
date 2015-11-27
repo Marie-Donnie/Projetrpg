@@ -1,6 +1,7 @@
 #include "Etat.hpp"
 #include "Interface.hpp"
 #include "Case.hpp"
+#include "Membre.hpp"
 
 
 /*------------Etat------------*/

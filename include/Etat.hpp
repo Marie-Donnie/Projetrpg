@@ -4,6 +4,7 @@
 
 class Interface;
 class Case;
+class Membre;
 
 //included dependencies
 #include <string>

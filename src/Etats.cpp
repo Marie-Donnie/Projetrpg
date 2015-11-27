@@ -1,5 +1,6 @@
 #include "Etats.hpp"
 #include "Interface.hpp"
+#include "Membre.hpp"
 
 /*------------ABase------------*/
 

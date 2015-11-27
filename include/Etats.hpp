@@ -3,6 +3,7 @@
 #define ETATS_HPP
 
 class Interface;
+class Membre;
 
 //included dependencies
 #include <string>
