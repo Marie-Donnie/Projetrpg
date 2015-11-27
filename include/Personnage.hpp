@@ -22,6 +22,45 @@
    * @return Un personnage tout prêt !
    */
 
+  /**
+   * @name  Constructeur partiel
+   * @brief Créé un personnage prenant les paramètres donnés, ce
+   * constructeur n'est actuellement pas utilisé
+   * @param nom le nom qu'on veut donner au personnage
+   * @param sexe le sexe du personnage (0 pour homme et 1 pour femme)
+   * @param age l'âge du personnage
+   * @param taille sa taille (type 1.50, pour 1 mètre et 50 centimètres)
+   * @param poids son poids (type 50.3)
+   * @param niveau son niveau
+   * @return Un personnage tout prêt !
+   */
+
+  /**
+   * @name  Constructeur partiel
+   * @brief Créé un personnage prenant les paramètres donnés, des
+   * valeurs par défaut (la texture, le bool deuxmains, ...) et des
+   * valeurs aléatoires (age, poids, ...)
+   * @param nom le nom qu'on veut donner au personnage
+   * @param sexe le sexe du personnage (0 pour homme et 1 pour femme)
+   * @return Un personnage tout prêt !
+   */
+
+  /**
+   * @name  Constructeur par défaut
+   * @brief Créé un personnage avec des valeurs aléatoires, sert
+   * principalement pour les tests
+   * @return Un personnage tout prêt !
+   */
+
+  /**
+   * @name  passer
+   * @brief Méthode passer de l'observer
+   * @param m une référence vers le membre
+   * @return
+   */
+
+
+
 //include guard
 #ifndef PERSONNAGE_HPP
 #define PERSONNAGE_HPP
@@ -64,7 +103,9 @@ public :
   Personnage(string nom, int sexe);
   Personnage();
 
+  //Recopie
   Personnage(const Personnage& lautre);
+  //Assignement
   Personnage& operator=(const Personnage& lautre);
 
   //Getters

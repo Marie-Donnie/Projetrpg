@@ -22,7 +22,7 @@ Personnage::Personnage(string nom, int sexe, int age, double taille, double poid
     setTexture((sexe==0)?"./data/sprites/homme.png":"./data/sprites/femme.png");
 }
 
-/*-----Constructeur partiel-----*/
+/*-----Constructeurs partiels-----*/
 Personnage::Personnage(string nom, int sexe, int age, double taille, double poids, int niveau){
     _nom = nom;
     _sexe = sexe;
@@ -54,8 +54,6 @@ Personnage::Personnage(string nom, int sexe) : _equipement(Equipement("du sanato
 /*-----Constructeur par défaut-----*/
 Personnage::Personnage(){
   _sexe = (rand() % 2);
-  /*ifstream prenom;
-    ((_sexe==0)?(prenom.open("prenomm.txt")):(prenom.open("prenomf.txt")));*/
   _nom = "Rhand";
   _age = (rand() % 35 + 18);
   _taille = ((rand() % 150 + 70)/100.0);
@@ -67,6 +65,7 @@ Personnage::Personnage(){
     suiv = NULL;
 }
 
+/*--------Recopie--------*/
 Personnage::Personnage(const Personnage& lautre)
   : Entite(lautre),
     _nom(lautre._nom),
@@ -83,6 +82,8 @@ Personnage::Personnage(const Personnage& lautre)
 {
   _corps.setSuiv(this);
 }
+
+/*--------Assignement--------*/
 Personnage& Personnage::operator=(const Personnage& lautre){
   _nom=(lautre._nom);
   _sexe=(lautre._sexe);
@@ -125,6 +126,7 @@ void Personnage::levelUp(){++_niveau;}
 
 
 /*--------Methodes de l'Observer--------*/
+
 Observer* Personnage::getSuiv(){return suiv;}
 void Personnage::setSuiv(Observer* o){suiv = o;}
 void Personnage::passer(Membre& m){

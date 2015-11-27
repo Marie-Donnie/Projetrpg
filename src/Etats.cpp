@@ -21,17 +21,17 @@ interface->setEtat(&interface->abase);
   interface->affichage();}
 void ABase::inputchiffre(int chiffre){
   switch(chiffre){
-  case 1:{
+  case 1:{//Corps
     interface->setEtat(&interface->acorps);
     interface->affichage();
     break;
   }
-  case 2:{
+  case 2:{//Equipement
     interface->setEtat(&interface->aequi);
     interface->affichage();
     break;
   }
-  case 3:{
+  case 3:{//Stats
     interface->setEtat(&interface->astats);
     interface->affichage();
     break;
