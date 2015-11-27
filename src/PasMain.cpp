@@ -204,17 +204,17 @@ int main(){
 			else
 				input[11] = false;
 
-			if ( (sf::Keyboard::isKeyPressed(sf::Keyboard::Num0)) or (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad0)) )
+			if ( ((sf::Keyboard::isKeyPressed(sf::Keyboard::Num0)) or (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad0))))
 				input[12] = true;
 			else
 				input[12] = false;
 
-			if ( (sf::Keyboard::isKeyPressed(sf::Keyboard::Num1)) or (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad1)) )
+			if ( ((sf::Keyboard::isKeyPressed(sf::Keyboard::Num1)) or (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad1)) ) )
 				input[13] = true;
 			else
 				input[13] = false;
 
-			if ( (sf::Keyboard::isKeyPressed(sf::Keyboard::Num2)) or (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad2)) )
+			if ( ((sf::Keyboard::isKeyPressed(sf::Keyboard::Num2)) or (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad2)) ) )
 				input[14] = true;
 			else
 				input[14] = false;

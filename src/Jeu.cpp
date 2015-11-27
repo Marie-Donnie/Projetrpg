@@ -72,7 +72,7 @@ Personnage& Jeu::getPerso(){return _personnage;}
 vector<PNJ>& Jeu::getPNJs(){return _pnjs;}
 Monde& Jeu::getMonde(){return _monde;}
 Interface& Jeu::getInterface(){return *_interface;}
-  
+
 //Setters
 void Jeu::setInterface(Interface* interface){_interface = interface;}
 
@@ -277,22 +277,22 @@ void Jeu::inputs(bool * in)
         _personnage.setSprite(dir);
       }
     } //fin in[5]
-    
+
     //touches devant être activer une seule fois (et non en 60hz) :
     //touches numériques, E, I, R, F, H
-    
+
     bool saisie = false;
     int i;
     for(i=6; i<22; ++i){
       if(in[i])
         saisie = true;
     }
-    
+
     if(!_saisie and saisie){
       if (in[6]) //E
       {
         _saisie = true;
-        
+
         //détermination de la case
         int x = _personnage.getLocX();
         int y = _personnage.getLocY();
@@ -332,6 +332,7 @@ void Jeu::inputs(bool * in)
       else if (in[7]) //F
       {
         _personnage.soin();
+        cout << "Vous vous êtes soigné !" << endl;
       }
       else if (in[8]) //I
       {
@@ -347,7 +348,7 @@ void Jeu::inputs(bool * in)
       }
       else{
         i = 12;
-        
+
         while(!in[i] and i<22){
           ++i;
         }

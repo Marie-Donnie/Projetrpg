@@ -33,6 +33,7 @@ public:
   Arme changerArme(Arme& a);
 
   void afficher();
+  void afficherC();
 };
 
 #endif //EQUIPEMENT_HPP

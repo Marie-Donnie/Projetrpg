@@ -13,11 +13,12 @@ void ABase::affichage(){
   cout << "Votre force : " << interface->getPerso().getStats().getForce() << endl;
   cout << "Votre agilité : " << interface->getPerso().getStats().getAgi() << endl;
   cout << "Votre capacité de combat : " <<interface->getPerso().getStats().getCc() << endl;
-  cout << "1 : Corps | 2 : Equipement | 3 : Stats" << endl;
+  cout << "1 : Corps | 2 : Equipement | 3 : Stats | F : Soin" << endl;
   cout << "E : Interagir | I : Inventaire | R : Retour | H : Aide" << endl;
 }
 void ABase::retour(){}
 void ABase::inputchiffre(int chiffre){
+  cout << chiffre << endl;
   switch(chiffre){
   case 1:{
     interface->setEtat(&interface->acorps);
@@ -64,20 +65,23 @@ void AStats::retour(){
 interface->setEtat(&interface->abase);
   interface->affichage();
 }
-void AStats::inputchiffre(int chiffre){}
+void AStats::inputchiffre(int chiffre){
+  cout << chiffre << endl;}
 
 
 /*------------AEquipement------------*/
 AEquipement::AEquipement() {}
 void AEquipement::affichage(){
   cout << "\x1B[2J";
+  interface->getPerso().getEquipement().afficherC();
   cout << "R : Retour" << endl;
 }
 void AEquipement::retour(){
 interface->setEtat(&interface->abase);
   interface->affichage();
 }
-void AEquipement::inputchiffre(int chiffre){}
+void AEquipement::inputchiffre(int chiffre){
+  cout << chiffre << endl;}
 
 
 /*------------ACorps------------*/
@@ -111,6 +115,7 @@ void AInventaireSplit::retour(){
   interface->affichage();
 }
 void AInventaireSplit::inputchiffre(int chiffre){
+  cout << chiffre << endl;
   switch(chiffre){
   case 1:{
     interface->setEtat(&interface->ainvp);
@@ -139,6 +144,7 @@ interface->setEtat(&interface->abase);
   interface->affichage();
 }
 void AInventaire::inputchiffre(int chiffre){
+  cout << chiffre << endl;
   switch(chiffre){
   case 1:{
     interface->setEtat(&interface->aarmures);
@@ -171,6 +177,7 @@ interface->setEtat(&interface->abase);
   interface->affichage();
 }
 void AInventairep::inputchiffre(int chiffre){
+  cout << chiffre << endl;
   switch(chiffre){
   case 1:{
     interface->setEtat(&interface->aarmures);
@@ -209,14 +216,21 @@ interface->setEtat(&interface->ainvs);
   interface->affichage();
 }
 void AArmures::inputchiffre(int chiffre){
+  cout << chiffre << endl;
   if (interface->getQuoi() ==0){
+    if ((chiffre-1)< interface->getPerso().getInventaire().getArmures().size()){
     Armure a = interface->getPerso().getInventaire().prendreArmure(chiffre-1);
     Armure b = interface->getPerso().getEquipement().changerArmure(a);
     interface->getPerso().getInventaire().ajouterArmure(b);
+    cout << "L'armure a bien été équipée" << endl;
+    }
   }
   else if (interface->getQuoi() == 1){
+    if ((chiffre-1)< interface->getCase()->getInventaire().getArmures().size()){
     Armure a = interface->getCase()->getInventaire().prendreArmure(chiffre-1);
     interface->getPerso().getInventaire().ajouterArmure(a);
+    cout << "L'armure a bien été récupérée" << endl;
+    }
   }
 }
 
@@ -239,7 +253,24 @@ void AArmes::retour(){
 interface->setEtat(&interface->ainvs);
   interface->affichage();
 }
-void AArmes::inputchiffre(int chiffre){}
+void AArmes::inputchiffre(int chiffre){
+  cout << chiffre << endl;
+  if (interface->getQuoi() ==0){
+    if ((chiffre-1)< interface->getPerso().getInventaire().getArmes().size()){
+    Arme a = interface->getPerso().getInventaire().prendreArme(chiffre-1);
+    Arme b = interface->getPerso().getEquipement().changerArme(a);
+    interface->getPerso().getInventaire().ajouterArme(b);
+    cout << "L'arme a bien été équipée" << endl;
+    }
+  }
+  else if (interface->getQuoi() == 1){
+    if ((chiffre-1)< interface->getCase()->getInventaire().getArmes().size()){
+    Arme a = interface->getCase()->getInventaire().prendreArme(chiffre-1);
+    interface->getPerso().getInventaire().ajouterArme(a);
+    cout << "L'arme a bien été récupérée" << endl;
+    }
+  }
+}
 
 
 
@@ -260,7 +291,8 @@ void AObjets::retour(){
 interface->setEtat(&interface->ainvs);
   interface->affichage();
 }
-void AObjets::inputchiffre(int chiffre){}
+void AObjets::inputchiffre(int chiffre){
+  cout << chiffre << endl;}
 
 /*------------ADialogues------------*/
 
@@ -274,4 +306,5 @@ void ADialogues::retour(){
 interface->setEtat(&interface->abase);
   interface->affichage();
 }
-void ADialogues::inputchiffre(int chiffre){}
+void ADialogues::inputchiffre(int chiffre){  cout << chiffre << endl;
+}
