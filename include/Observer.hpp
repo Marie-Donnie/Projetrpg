@@ -1,10 +1,29 @@
+  /**
+   * @name  traiter
+   * @brief Méthode passer de l'observer
+   * @param m une référence vers le membre
+   * Passe le membre à son suivant dans la chaîne
+   */
+
+  /**
+   * @name  passer
+   * @brief Méthode passer de l'observer
+   * @param m une référence vers le membre
+   * Passe le membre à son suivant dans la chaîne
+   */
+
+
+
+//include guard
 #ifndef OBSERVER_HPP
 #define OBSERVER_HPP
 
-#include <cstdlib>
-
+//forward declaration
 class Membre;
 class PNJ;
+
+//included dependencies
+#include <cstdlib>
 
 class Observer{
 

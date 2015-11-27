@@ -52,12 +52,7 @@
    * @return Un personnage tout prêt !
    */
 
-  /**
-   * @name  passer
-   * @brief Méthode passer de l'observer
-   * @param m une référence vers le membre
-   * @return
-   */
+
 
 
 
@@ -65,6 +60,7 @@
 #ifndef PERSONNAGE_HPP
 #define PERSONNAGE_HPP
 
+//forward declarations
 class PNJ;
 
 //included dependencies
