@@ -51,7 +51,7 @@ void AAide::affichage(){
   cout << "Programmation : Robin Wibaux et Marie Delavergne" << endl;
   cout << "Art : Marie Delavergne" << endl;
   cout << "Musique : Florent Marchand de Kerchove de Denterghem" << endl;
-  cout << "Scénario : Logan Carpentier" << endl;
+  cout << "Scénario : Logan Carpantier" << endl;
   cout << "R : Retour | H : Aide" << endl;
 }
 void AAide::retour(){
