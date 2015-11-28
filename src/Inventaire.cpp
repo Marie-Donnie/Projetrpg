@@ -23,7 +23,8 @@ Inventaire::Inventaire(string nom){
       int type = rand()%2;
       //si 1 c'est une arme, 0 une armure
       if (type){
-        Arme a = Arme();
+
+        Arme a = Arme((rand()%3+1), (rand()%2+1));
         _armes.push_back(a);
       }
       else {

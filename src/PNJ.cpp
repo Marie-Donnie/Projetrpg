@@ -252,7 +252,7 @@ void PNJ::defendre(Personnage& attaquant){
     Arme* armeattaq = &(attaquant.getEquipement().getArme());
     int dmgarme = (rand()% (armeattaq->getDmgmax()- armeattaq->getDmgmin()+1)+armeattaq->getDmgmin());
     //Calcul des dommages
-    int coup = ((attaquant.getStats().getForce()+dmgarme)+3-((a->getDura() >0)?a->getScA():0));
+    int coup = ((attaquant.getStats().getForce()+dmgarme)+7-((a->getDura() >0)?a->getScA():0));
       //Jet de sauvegarde
       int sauv = rand() %10 ;
       //Si le score de sauvegarde est plus grand que le rand, seule
@@ -283,7 +283,7 @@ void PNJ::attaquer(Personnage& defendant){
 void PNJ::action(sf::Time turnTime){
 	//incrémente le temps de l'action
 	_tempsAction += turnTime;
-	
+
 	//détermina la durée selon l'arme du PNJ
 	sf::Time duree = sf::seconds(1.0)*float(_equi.getArme().getVitesse());
 
