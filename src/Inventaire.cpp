@@ -37,7 +37,7 @@ Inventaire::Inventaire(string nom){
       if (gigachance > 97){
         int type = rand()%2;
         if (type){
-          Arme a = Arme();
+          Arme a = Arme((rand()%3+1), (rand()%2+1));
           _armes.push_back(a);
         }
         else {
