@@ -19,36 +19,30 @@
   -> dommages
   -> pénétration
   -> contondance
-
-
-** Not done
-*** TODO Refactoring de Personnage::défendre
-*** TODO Inventaire
+*** DONE Inventaire
 - faire la classe
   -> trois vectors (armures armes objets)
   -> afficher, récupérer un objet, supprimer un objet
   -> inventaire infini
-*** TODO Objets (bandages, drap)
+*** DONE Objets (bandages, drap)
 - faire la classe
   -> transformer un drap en bandage (en le consommant)
   -> un objet a un affichage, un use() et des getters (nom et description)
-*** TODO Attaques simple et multiple
-*** TODO PNJ
+*** DONE Attaques simple et multiple
+*** DONE PNJ
 - faire la classe
   -> état inactif et agressif
   -> attaque au cac et se déplace vers toi
   -> vitesse d’attaque
   -> remplacer le pnj par un conteneur à sa mort
-*** TODO conteneur (cadavre, armoire, coffre, whatever)
+*** DONE conteneur (cadavre, armoire, coffre, whatever)
 - faire la classe
   ->tile qui contient des objets
-*** TODO Deplacements
-*** TODO Interface
-- 3 types
-  ->hud par défaut + inventaires et conteneurs par moments
-  ->affiche de la feuille de perso
-  ->dialogues
-*** TODO Map
+*** DONE Deplacements
+*** DONE Dialogues
+-écrire les dialogues/script
+
+*** DONE Map
 -tiles 16*16
 -matrice chargée par un fichier :
 
@@ -58,9 +52,16 @@
 ####################--#######
 #+END_EXAMPLE
 
+*** DONE Personnage “objet” qui déclenche les dialogues à proximité
+
+** Not done
+*** TODO Refactoring de Personnage::défendre -> visitor avec PNJ ?
+*** TODO Interface
+- 3 types
+  ->hud par défaut + inventaires et conteneurs par moments
+  ->affiche de la feuille de perso
+  ->dialogues
 *** TODO Sauvegarde
 - note tout dans un fichier et recharge du fichier (position du
   perso, équipement, stats, etc.)
-*** TODO Dialogues
--écrire les dialogues/script
-*** TODO Personnage “objet” qui déclenche les dialogues à proximité
+*** TODO Niveaux, pour ne pas oublier que c’est quand même un RPG un peu, normalement
