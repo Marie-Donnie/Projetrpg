@@ -340,62 +340,88 @@ void ADialogues::affichage(){
   cout << "\x1B[2J" ;
   switch(_nombre){
   case 0:{//intro
+  cout << "\x1b[34m";
   cout << "Vous : \"Wow... ma tête... Où suis-je ? Un sanatorium ?\"" << endl;
+  cout << "\x1b[31m";
   cout << "Inconnu : \"Salut.\"" << endl;
+  cout << "\x1b[34m";
   cout << "Vous : \"Qui-êtes vous ? Vous n’avez pas l’air d’un moine...\"" << endl;
+  cout << "\x1b[31m";
   cout << "Inconnu, riant : \"Non. Je suis quelqu’un qui a besoin de ton aide.\"" << endl;
+  cout << "\x1b[34m";
     cout << "1 : \"Mon aide pour quoi ?\"" << endl;
     cout << "2 : \"Pourquoi moi ?\"" << endl;
+  cout << "\x1b[39;49m";
     break;
       }
   case 1 :{//explications
+  cout << "\x1b[31m";
       cout << "Inconnu : \"La peste, là, qui ravage l’Europe... C’est pas bon pour mon commerce. Je sais bien que c’est une punition divine, mais il a un peu déconné, Dieu, là. " << endl;
-      cout << "  Entre la peste qui tue les gens et le fait que ça les ramène en mort-vivant pour bouffer d’autres gens... Il va pas rester grand monde. " << endl;
-      cout << "  Je sais, je sais vous l’avez cherché, comme pour Sodome et Gomorrhe, comme pour la tour de Babel, tout ça, mais le vieux il  déconne, là, on va se retrouver comme après le déluge avec plus personne avec qui marchander, s’il continue !" <<endl;
-      cout << "  Alors j’ai besoin de quelqu’un... Ben pour éliminer les sources de peste, ce genre de trucs.\" " << endl;
+      cout << "Entre la peste qui tue les gens et le fait que ça les ramène en mort-vivant pour bouffer d’autres gens... Il va pas rester grand monde. " << endl;
+      cout << "Je sais, je sais vous l’avez cherché, comme pour Sodome et Gomorrhe, comme pour la tour de Babel, tout ça, mais le vieux il  déconne, là, on va se retrouver comme après le déluge avec plus personne avec qui marchander, s’il continue !" <<endl;
+      cout << "Alors j’ai besoin de quelqu’un... Ben pour éliminer les sources de peste, ce genre de trucs.\" " << endl;
+  cout << "\x1b[34m";
       cout<< "1 : \"Vous vous rendez compte que je suis pas un chevalier ?\"" << endl;
       cout << "2 : \"D’accord. Vous me donnez quoi en échange ?\" " << endl;
       cout << "3 : \"D’accord, je vais sauver le monde.\"" << endl;
+  cout << "\x1b[39;49m";
       break;
     }
   case 2 :{//pourquoi moi ?
+  cout << "\x1b[31m";
     cout << "Inconnu : \"Et alors ? Noé il était pas capitaine de bateau ! Et puis, les chevaliers... A part leur armure, ils sont pas meilleurs que les autres !\"" << endl;
+  cout << "\x1b[34m";
       cout << "1 : \"D’accord. Vous me donnez quoi en échange ?\" " << endl;
       cout << "2 : \"D’accord, je vais sauver le monde. \" " << endl;
       cout << "3 : \"Euh...\"" << endl;
+  cout << "\x1b[39;49m";
       break;
   }
   case 3 :{//d'accord
+  cout << "\x1b[31m";
     cout << "Inconnu, riant à nouveau : \"Là, tu me plais. Je peux te donner deux ou trois trucs qui pourront bien t’aider. D’accord ?\""<<endl;;
+  cout << "\x1b[34m";
       cout << "1 : \"Non, en fait, rien à foutre, salut !\"" << endl;
     cout << "2 : \"Non, je suis un guerrier, je vais me démerder !\"" << endl;
     cout << "3 : \"Euh... ouais ?\"" << endl;
+  cout << "\x1b[39;49m";
     break;
   }
   case 4 :{//merveilleux
+  cout << "\x1b[31m";
     cout << "Inconnu : \"Merveilleux. D’abord : tiens, faut que je mette ma main sur ton épaule, là. Voilà.\" Une lueur brunâtre enveloppe sa main et votre épaule. \"Maintenant, si tu te concentres, tu vas pouvoir... Oh tiens, je te montre !\" L'inconnu sort une machette et coupe votre bras " << endl;
+  cout << "\x1b[34m";
     cout << "Vous : \"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH !\"" << endl;
+  cout << "\x1b[31m";
     cout << "Inconnu : \"Bon, j'y suis allé un peu fort. Mais vas-y, concentre-toi sur ta douleur. Voilà, comme ça. Tu vois ? Ca repousse ! Bon... Là, c'était cadeau. Je t'avoue que la prochaine fois, ça aura un coût. Mais passons à plus important. Je vais te laisser te démerder. Mais y a une surprise pour toi dans l'armoire là-bas, au nord. Je suis sûr que tu t'orientes trèès bien. Ah et... n'essaie pas de prendre les draps, ils n'servent à rien !\""<<endl;
+  cout << "\x1b[34m";
       cout << "1 : Quitter l'inconnu." << endl;
+  cout << "\x1b[39;49m";
     break;
   }
   case 5:{//snif
+  cout << "\x1b[31m";
     cout << "Inconnu : \" Quoi ? T'as besoin de moi finalement ?\" " <<endl;
+  cout << "\x1b[34m";
     cout << "1 : \" Un peu...\" " << endl;
     cout << "2 : \" NON ! \" " << endl;
+  cout << "\x1b[39;49m";
     break;
   }
   case 6:{//musique de Koyaanisqatsi
+  cout << "\x1b[31m";
     cout << "Inconnu : \"Je te surveille un peu.\" " << endl;
+  cout << "\x1b[34m";
     cout << "1 : Quitter l'inconnu." << endl;
+  cout << "\x1b[39;49m";
     break;
   }
   cout << "R : Retour | H : Aide" << endl;
-
+  cout << "\x1b[39;49m";
   }
 }
 void ADialogues::retour(){
-interface->setEtat(&interface->abase);
+  interface->setEtat(&interface->abase);
   interface->affichage();
 }
 void ADialogues::inputchiffre(int chiffre){
@@ -451,7 +477,9 @@ void ADialogues::inputchiffre(int chiffre){
     case 2://nop
       _nombre = 5;
       retour();
+  cout << "\x1b[31m";
       cout << "Inconnu : \"Ah ok, salut ! Et bonne chance !\" " << endl;
+  cout << "\x1b[39;49m";
       break;
     case 3: _nombre=4;
       break;
@@ -480,7 +508,9 @@ void ADialogues::inputchiffre(int chiffre){
       break;
     case 2://nonononon
       retour();
+  cout << "\x1b[31m";
       cout << "L'inconnu s'en souviendra." << endl;
+  cout << "\x1b[39;49m";
       break;
     }
     break;
